@@ -1,0 +1,556 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Ubuntu for Windows子系统的安装与配置 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。 为什么要用这个玩意？因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有">
+<meta name="keywords" content="Windows Ubuntu,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu for Windows子系统的安装与配置">
+<meta property="og:url" content="http://yoursite.com/2017/12/17/Ubuntu子系统的安装与配置/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。 为什么要用这个玩意？因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-002.png">
+<meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-003.png">
+<meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-004.png">
+<meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-006.png">
+<meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-005.png">
+<meta property="og:updated_time" content="2017-12-17T06:10:48.223Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu for Windows子系统的安装与配置">
+<meta name="twitter:description" content="前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。 为什么要用这个玩意？因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有">
+<meta name="twitter:image" content="http://yoursite.com/images/截屏2017_12_17-002.png">
+
+    
+    
+    <link rel="icon" href="/img/Earendil.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/12/17/Ubuntu子系统的安装与配置/" title="Ubuntu for Windows子系统的安装与配置" itemprop="url">Ubuntu for Windows子系统的安装与配置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2017-12-17T02:27:56.000Z" itemprop="datePublished"> 发表于 2017-12-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用这个玩意？"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Ubuntu子系统"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置Ubuntu子系统"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助系统"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;"></a>&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;"></a>&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统汉化"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x7CFB;&#x7EDF;&#x6C49;&#x5316;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x6C49;&#x5316;"></a>&#x7CFB;&#x7EDF;&#x6C49;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色配置"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x989C;&#x8272;&#x914D;&#x7F6E;" class="headerlink" title="&#x989C;&#x8272;&#x914D;&#x7F6E;"></a>&#x989C;&#x8272;&#x914D;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#git&#x914D;&#x7F6E;" class="headerlink" title="git&#x914D;&#x7F6E;"></a>git&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#鬼畜软件"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a>&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;</span></a></li></ol>
+		
+		</div>
+		
+		<p>前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。</p>
+<h1 id="为什么要用这个玩意？"><a href="#为什么要用这个玩意？" class="headerlink" title="为什么要用这个玩意？"></a>为什么要用这个玩意？</h1><p>因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有CLI界面的系统，占据的空间也很小。并且Windows下的所有存储资源都可以被Ubuntu简单引用（<code>/mnt</code>路径下的<code>e</code>,<code>f</code>,<code>g</code>,<code>h</code>就对应着各个磁盘分区）。这样既可以享受优秀的终端应用，又可以在熟悉的Windows环境中进行其他操作。</p>
+<p>当然缺点也是有的，作为一个新功能，它总是免不了有些bug；而且这种不常见的环境也就意味着遇到问题是不一定能Google到合适的解答。不过瑕不掩瑜，这还是值得一试的。</p>
+<h1 id="安装Ubuntu子系统"><a href="#安装Ubuntu子系统" class="headerlink" title="安装Ubuntu子系统"></a>安装Ubuntu子系统</h1><p>主要参考了<a href="https://www.windows10.pro/bash-on-ubuntu-on-windows/" target="_blank" rel="noopener">Win10专业网的教程</a> 、<a href="http://donggu.me/2016/10/09/Win10-Linux-Bash-Shell-%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C/" target="_blank" rel="noopener">冬菇酱的教程</a>以及<a href="https://www.laptopmag.com/articles/use-bash-shell-windows-10" target="_blank" rel="noopener">Laptop的教程</a>。</p>
+<p>首先，使用小娜（Windows10任务栏的搜索框）搜索“启用或关闭windows功能”，翻到对话框的最下面，勾选“适用于Linux的Windows子系统”（这个名字好像反了……）。之后如果要求重启，那就重启。</p>
+<p><img src="/images/截屏2017_12_17-002.png" alt="启用或关闭windows功能"></p>
+<p>然后在<code>设置-&gt;更新和安全-&gt;针对开发人员-&gt;使用开发人员功能</code>下选择“开发人员模式”。<strong>这一步操作可能增大你的电脑面临的风险，请考虑后再做决定。</strong>等待设置完成。</p>
+<p><img src="/images/截屏2017_12_17-003.png" alt="开发人员模式"></p>
+<p>对于这一步，记忆不很清晰了。应该是打开Microsoft Store，搜索“Ubuntu”即可打开这个窗口，选择一种安装（推荐Ubuntu）。</p>
+<p><img src="/images/截屏2017_12_17-004.png" alt="Microsoft Store"></p>
+<p>在一切就绪后，你就可以在开始菜单里找到Ubuntu的图标了（第一次使用可能要设置用户名和密码）。</p>
+<h1 id="配置Ubuntu子系统"><a href="#配置Ubuntu子系统" class="headerlink" title="配置Ubuntu子系统"></a>配置Ubuntu子系统</h1><h2 id="帮助系统"><a href="#帮助系统" class="headerlink" title="帮助系统"></a>帮助系统</h2><p>面对各种指令一脸茫然？请教一下帮助系统吧。一般对于一条指令<code>command</code>，有以下两种方式获取帮助。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 简短的帮助，直接打印在终端主窗口里</span></span><br><span class="line"><span class="built_in">command</span> --<span class="built_in">help</span></span><br><span class="line"><span class="comment"># 详细的文档，会另外显示</span></span><br><span class="line">man <span class="built_in">command</span></span><br></pre></td></tr></table></figure>
+<p>还有一种“帮助系统”，那就是各位大佬的教程，比如<a href="http://billie66.github.io/TLCL/book/index.html" target="_blank" rel="noopener">这个</a> 。</p>
+<h2 id="软件的安装"><a href="#软件的安装" class="headerlink" title="软件的安装"></a>软件的安装</h2><p>有一些系统自带了，没有的要自行安装，<strong>建议在安装之前先搜索一下</strong>，防止安错。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-cache search Software_name</span><br><span class="line"><span class="comment"># 从返回的列表中找到软件的正确名称</span></span><br><span class="line">sudo apt-get install Software_name</span><br></pre></td></tr></table></figure>
+<p>这里有一个问题：使用默认的软件库路径，在安装时经常会发生404 ERROR，可能是跟国内的网络环境有关。建议使用国内的镜像站，例如<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener">清华大学镜像</a>或者阿里云镜像。打开<code>/etc/apt/sources.list</code>，可以看到里面是官方源列表，我们在前面写入要使用的镜像源列表（<strong>建议先备份原文件</strong>）。然后执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>就可以正常安装软件了。</p>
+<p>另外，据说aptitude对软件的依赖处理得更好，还有交互式界面可用，可以先<code>sudo apt-get install aptitude</code>安装好，之后安装其他软件就可以用下面的命令了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo aptitude install Software_name</span><br></pre></td></tr></table></figure>
+<h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><ul>
+<li>git：系统自带</li>
+<li>gcc：没找到，需要自行安装，注意分为gcc和gcc5两个版本。（理论上gcc能自动识别<code>.cpp</code>从而编译c++代码，但发现实际上还是得用g++）</li>
+<li>g++：没找到，需要自行安装</li>
+<li>python：比较坑，因为python有2和3两个版本，系统自带了python3.5，应用名为python3，而<code>apt-get install python</code>安装的是python2，应用名为python</li>
+<li>pip：作为python的一部分，相同的情况，自带了pip3</li>
+<li>midnight commander：可视化的文件资源管理器，软件名是mc，建议不习惯CLI的朋友安装</li>
+<li>nano：系统自带，可以通过<code>/ets/nanorc</code>进行配置</li>
+<li>vim：系统自带</li>
+<li>Node.js和Hexo：见<a href="https://lgwangh.github.io/2017/12/16/Hello-World/" target="_blank" rel="noopener">之前的博文</a>。</li>
+<li>htop：进程显示工具，比系统的top命令好</li>
+<li>thefuck：命令纠正工具，<a href="https://github.com/nvbn/thefuck" target="_blank" rel="noopener">主页</a>。可以用<code>sudo pip3 install thefuck</code>安装，不能正常运行的话配置<code>alias fuck=&#39;eval $(thefuck $(fc -ln -1)); history -r&#39;</code>，然后就可以愉快的……</li>
+</ul>
+<h2 id="系统汉化"><a href="#系统汉化" class="headerlink" title="系统汉化"></a>系统汉化</h2><p>我的英语好辣鸡啊.jpg</p>
+<p>看到了很多种方法，我也混和着使用了各种步骤……已知下面一步是<strong>必须</strong>的，如果不行的话，可以试试执行可选步骤，再来进行这个配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+<p>然后你就会看到一个友好的配置界面，选择中文就行了！</p>
+<p>可选步骤：</p>
+<ul>
+<li><p>安装一个汉化包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install language-pack-zh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改环境变量<code>/etc/environment</code>，添加两行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LANG=<span class="string">"zh_CN.UTF-8"</span> </span><br><span class="line">LANGUAGE=<span class="string">"zh_CN:zh:en_US:en"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这一步应该不是必须的，因为我后来发现我把<code>environment</code>拼错了，新建了一个文件……（我的英语真的好辣鸡啊.jpg）</p>
+<h2 id="颜色配置"><a href="#颜色配置" class="headerlink" title="颜色配置"></a>颜色配置</h2><p>外貌协会成员打卡。</p>
+<p>其实这里完全就是用了Windows cmd的设置方式，就是在标题栏右键选择“属性”进行修改就可以了（最好只是选择颜色而不要修改颜色的值）。</p>
+<p><img src="/images/截屏2017_12_17-006.png" alt="控制台颜色"></p>
+<p>不过之后发现，Ubuntu似乎对Windows的颜色排列方法有些……误解？大概Ubuntu的标准颜色是8种而非16种，所以我把它修改成了这样（也就是把前面几种颜色也改成了后面的）：</p>
+<p><img src="/images/截屏2017_12_17-005.png" alt="Ubuntu颜色"></p>
+<p>背景最好用黑或白，不然可能出现背景和文字同色的情况。</p>
+<h1 id="git配置"><a href="#git配置" class="headerlink" title="git配置"></a>git配置</h1><p>关于git的使用方法有很多教程，例如<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">廖雪峰的教程</a>，里面还讲了个人信息的设置、与GitHub的链接方法，我在这里只提一个细枝末节——<del>颜色</del> log。</p>
+<p>可以使用<code>git log --pretty=format:</code>来对log进行格式化，教程见<a href="https://ruby-china.org/topics/939" target="_blank" rel="noopener">这里</a>，或者套用我的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lg <span class="string">"log --pretty=format:'%C(yellow) %h %Creset- %Cgreen%d%Creset %s %C(bold cyan)%cn, %cr %Creset' --graph"</span></span><br></pre></td></tr></table></figure>
+<p>之后使用<code>git lg</code>就可以了。</p>
+<h1 id="鬼畜软件"><a href="#鬼畜软件" class="headerlink" title="鬼畜软件"></a>鬼畜软件</h1><p>最后为了改善对于命令行的刻板印象，可以使用一下这些软件……</p>
+<ul>
+<li>lolcat：更漂亮的cat</li>
+<li>nynacat：彩虹猫屏保</li>
+<li>figlet：Ascii艺术字</li>
+<li>Asciinema：控制台录像</li>
+<li>nsnake：贪吃蛇！</li>
+<li>sudoku：数独！</li>
+<li>w3m：纯文本的浏览器！</li>
+<li>tpp：纯文本的PPT！</li>
+<li>其实aptitude里有一个扫雷</li>
+<li>还有一头大象</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Windows-Ubuntu/">Windows Ubuntu</a><a href="/tags/git/">git</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/12/17/Ubuntu子系统的安装与配置/" data-title="Ubuntu for Windows子系统的安装与配置 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/12/16/机械设计基础复习笔记/"  title="机械设计基础复习笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>机械设计基础复习笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用这个玩意？"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Ubuntu子系统"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置Ubuntu子系统"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助系统"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;"></a>&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;"></a>&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统汉化"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x7CFB;&#x7EDF;&#x6C49;&#x5316;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x6C49;&#x5316;"></a>&#x7CFB;&#x7EDF;&#x6C49;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色配置"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x989C;&#x8272;&#x914D;&#x7F6E;" class="headerlink" title="&#x989C;&#x8272;&#x914D;&#x7F6E;"></a>&#x989C;&#x8272;&#x914D;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#git&#x914D;&#x7F6E;" class="headerlink" title="git&#x914D;&#x7F6E;"></a>git&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#鬼畜软件"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a>&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Windows-Ubuntu/" title="Windows Ubuntu">Windows Ubuntu<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/复习笔记/" title="复习笔记">复习笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="http://creativecommons.org/licenses/by-nc/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
