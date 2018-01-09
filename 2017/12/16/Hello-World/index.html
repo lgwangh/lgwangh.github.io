@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/Ubuntu_bash.png">
 <meta property="og:image" content="http://yoursite.com/images/typora_Front_matter.png">
-<meta property="og:updated_time" content="2017-12-17T08:01:30.912Z">
+<meta property="og:updated_time" content="2018-01-09T03:24:26.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello, World! 博客的诞生">
 <meta name="twitter:description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境看了看教程，果然……coder们一">
@@ -125,7 +125,7 @@
 <p>这些<code>--------------</code>之上的部分被称为<code>Front_matter</code>，是用于控制文档属性的扩展内容，不会显示在博文里。具体用法还是参见Hexo的<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档</a> 。之后是博文的主体部分，使用大家喜闻乐见的Markdown语法（如果不知道的话，随意搜索一下就能得到海量的介绍与教程，例如<a href="http://xianbai.me/learn-md/index.html" target="_blank" rel="noopener">这篇</a>），如果你使用typora之类的即时预览的编辑器，写作过程会愉快很多。</p>
 <p>不过……Markdown也有个问题，就是方言比较多。我经过仔(胡)细(乱)研(尝)究(试)，大概总结了一下Hexo的渲染规则：</p>
 <ul>
-<li>空格敏感性混乱，这个比较麻烦。目前发现，<code>bala*point*bala</code>会显示成bala<em>point</em>bala，而和<code>bala *point* bala</code>就会变成和bala <em>point</em> bala。另一方面，<code>#AAA</code>却不能正常显示成标题，必须要用<code># AAA</code> 。</li>
+<li>空格敏感性混乱，这个比较麻烦。目前发现，<code>bala*point*bala</code>会显示成bala<em>point</em>bala，而<code>bala *point* bala</code>就会变成bala <em>point</em> bala。另一方面，<code>#AAA</code>却不能正常显示成标题，必须要用<code># AAA</code> 。</li>
 <li>标题层级。因为已经在<code>Front_matter</code>确定了标题，各种标题就顺延的降级了。<code># AAA</code>会变成节标题，<code>## BBB</code>就是小节标题。</li>
 <li>把图片单独存储是良好的习惯。如果你把图片存在<code>./source/images</code>，你会发现在typora中，要把路径写成<code>../images/File_name</code>才能正常预览，但对于Hexo来说，根目录是<code>./source</code>，所以还是写成<code>/images/File_name</code>吧。</li>
 </ul>
@@ -217,7 +217,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -227,7 +227,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/复习笔记/" title="复习笔记">复习笔记<sup>3</sup></a></li>
+				<li><a href="/tags/复习笔记/" title="复习笔记">复习笔记<sup>4</sup></a></li>
 			
 		
 			
@@ -235,19 +235,15 @@
 			
 		
 			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/材料/" title="材料">材料<sup>1</sup></a></li>
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
@@ -255,7 +251,11 @@
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -306,7 +306,7 @@
     
 
 		<p class="copyright">
-		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
 		
 		<a href="/about" target="_blank" title="Luke">Luke</a>
 		
