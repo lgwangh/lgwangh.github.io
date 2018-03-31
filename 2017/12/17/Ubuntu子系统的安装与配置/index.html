@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Ubuntu for Windows子系统的安装与配置 | 埃雅仁迪尔之星</title>
+    <title>Ubuntu for Windows子系统（WSL）的安装与配置 | 埃雅仁迪尔之星</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Luke">
@@ -14,7 +14,7 @@
     <meta name="description" content="前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。 为什么要用这个玩意？因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有">
 <meta name="keywords" content="Windows Ubuntu,git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu for Windows子系统的安装与配置">
+<meta property="og:title" content="Ubuntu for Windows子系统（WSL）的安装与配置">
 <meta property="og:url" content="http://yoursite.com/2017/12/17/Ubuntu子系统的安装与配置/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。 为什么要用这个玩意？因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有">
@@ -24,9 +24,9 @@
 <meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-004.png">
 <meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-006.png">
 <meta property="og:image" content="http://yoursite.com/images/截屏2017_12_17-005.png">
-<meta property="og:updated_time" content="2017-12-17T08:00:46.633Z">
+<meta property="og:updated_time" content="2018-03-31T02:45:20.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu for Windows子系统的安装与配置">
+<meta name="twitter:title" content="Ubuntu for Windows子系统（WSL）的安装与配置">
 <meta name="twitter:description" content="前几天看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。正好想试一下Linux环境，于是便折腾了一番。现在想起来要记录，发现有的东西已经记不清了，忘性还真是大啊。 为什么要用这个玩意？因为……我手滑把自己的Ubuntu虚拟机毁了。折腾一遍虚拟机，不见得会用几次，还得占用十几G空间，不太划算。而这个子系统只相当于一个应用，不需要担心各种资源的分配；作为仅有">
 <meta name="twitter:image" content="http://yoursite.com/images/截屏2017_12_17-002.png">
 
@@ -84,7 +84,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/12/17/Ubuntu子系统的安装与配置/" title="Ubuntu for Windows子系统的安装与配置" itemprop="url">Ubuntu for Windows子系统的安装与配置</a>
+      <a href="/2017/12/17/Ubuntu子系统的安装与配置/" title="Ubuntu for Windows子系统（WSL）的安装与配置" itemprop="url">Ubuntu for Windows子系统（WSL）的安装与配置</a>
   </h1>
   <p class="article-author">By
        
@@ -100,7 +100,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用这个玩意？"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Ubuntu子系统"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置Ubuntu子系统"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助系统"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;"></a>&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;"></a>&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统汉化"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x7CFB;&#x7EDF;&#x6C49;&#x5316;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x6C49;&#x5316;"></a>&#x7CFB;&#x7EDF;&#x6C49;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色配置"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x989C;&#x8272;&#x914D;&#x7F6E;" class="headerlink" title="&#x989C;&#x8272;&#x914D;&#x7F6E;"></a>&#x989C;&#x8272;&#x914D;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#git&#x914D;&#x7F6E;" class="headerlink" title="git&#x914D;&#x7F6E;"></a>git&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#鬼畜软件"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a>&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用这个玩意？"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Ubuntu子系统"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置Ubuntu子系统"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助系统"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;"></a>&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;"></a>&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统汉化"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x7CFB;&#x7EDF;&#x6C49;&#x5316;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x6C49;&#x5316;"></a>&#x7CFB;&#x7EDF;&#x6C49;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色配置"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x989C;&#x8272;&#x914D;&#x7F6E;" class="headerlink" title="&#x989C;&#x8272;&#x914D;&#x7F6E;"></a>&#x989C;&#x8272;&#x914D;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#git&#x914D;&#x7F6E;" class="headerlink" title="git&#x914D;&#x7F6E;"></a>git&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创造GUI"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x521B;&#x9020;GUI" class="headerlink" title="&#x521B;&#x9020;GUI"></a>&#x521B;&#x9020;GUI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#鬼畜软件"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a><del>&#x9B3C;&#x755C;</del>&#x8F6F;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件-1"><span class="toc-number">6.1.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;-1" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#真正的鬼畜软件"><span class="toc-number">6.2.</span> <span class="toc-text"><a href="#&#x771F;&#x6B63;&#x7684;&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x771F;&#x6B63;&#x7684;&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a>&#x771F;&#x6B63;&#x7684;&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -162,7 +162,27 @@
 <p>可以使用<code>git log --pretty=format:</code>来对log进行格式化，教程见<a href="https://ruby-china.org/topics/939" target="_blank" rel="noopener">这里</a>，或者套用我的</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lg <span class="string">"log --pretty=format:'%C(yellow) %h %Creset- %Cgreen%d%Creset %s %C(bold cyan)%cn, %cr %Creset' --graph"</span></span><br></pre></td></tr></table></figure>
 <p>之后使用<code>git lg</code>就可以了。</p>
-<h1 id="鬼畜软件"><a href="#鬼畜软件" class="headerlink" title="鬼畜软件"></a>鬼畜软件</h1><p>最后为了改善对于命令行的刻板印象，可以使用一下这些软件……</p>
+<h1 id="创造GUI"><a href="#创造GUI" class="headerlink" title="创造GUI"></a>创造GUI</h1><p>虽然命令行界面看起来很爽，但是当我用到 gnuplot 的时候，我意识到：GUI是好文明。于是参照一些教程（<a href="https://imtm.ml/wsl-config-gui/" target="_blank" rel="noopener">其中比较好的一份</a>），给 WSL 搭建了基础的GUI。</p>
+<ul>
+<li>在 Windows 下安装 Xming，启动</li>
+<li>在 Linux 下安装 x11-apps（当然就是用 <code>apt-get</code> 啦）</li>
+<li>使用 <code>DISPLAY=:0.0 command</code> 启动命令</li>
+<li>为了省事，可以直接在 <code>~/.bashrc</code> 里加上 <code>export DISPLAY=:0.0</code></li>
+</ul>
+<p>还可以进行其他配置，不过基本用不到。</p>
+<p>有了 GUI 之后，就要考虑字体问题了，WSL 没有自带中文字体，要自己安装。其实就是把字体拷贝到字体文件夹，然后刷新列表。这里以 Noto 系列为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/c/Windows/Fonts</span><br><span class="line">sudo mkdir /usr/share/fonts/opentype</span><br><span class="line">sudo mkdir /usr/share/fonts/opentype/Noto</span><br><span class="line">sudo cp Noto* /usr/share/fonts/opentype/Noto</span><br><span class="line">sudo chmod 744 /usr/share/fonts/opentype/Noto/Noto*</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">fc</span>-cache -fv</span><br></pre></td></tr></table></figure>
+<p>最好再安装一个 truetype 的字体，避免有些应用程序挑三拣四。</p>
+<h1 id="鬼畜软件"><a href="#鬼畜软件" class="headerlink" title="鬼畜软件"></a><del>鬼畜</del>软件</h1><h2 id="常用软件-1"><a href="#常用软件-1" class="headerlink" title="常用软件"></a>常用软件</h2><ul>
+<li>mc：Midnight Commander，非常好用的文件管理器，有直观的可视化界面</li>
+<li>feh：基于 x11 的图片浏览器，默认支持 jpg 和 png，有 ImageMagick 加持可以打开更多格式</li>
+<li>gnuplot：不用说了，绘图必备，为了配合 x11 可能要安装 gnuplot-x11</li>
+<li>htop：靠谱的任务管理器</li>
+<li>wget：下载工具，预装</li>
+<li>grep：正则匹配工具，预装</li>
+<li>lammps：分子动力学程序包，作为学材料的怎么能不会用呢Orz</li>
+</ul>
+<h2 id="真正的鬼畜软件"><a href="#真正的鬼畜软件" class="headerlink" title="真正的鬼畜软件"></a>真正的鬼畜软件</h2><p>最后为了改善对于命令行的刻板印象，可以使用一下这些软件……</p>
 <ul>
 <li>lolcat：更漂亮的cat</li>
 <li>nynacat：彩虹猫屏保</li>
@@ -192,7 +212,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/12/17/Ubuntu子系统的安装与配置/" data-title="Ubuntu for Windows子系统的安装与配置 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/12/17/Ubuntu子系统的安装与配置/" data-title="Ubuntu for Windows子系统（WSL）的安装与配置 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -234,7 +254,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用这个玩意？"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Ubuntu子系统"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置Ubuntu子系统"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助系统"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;"></a>&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;"></a>&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统汉化"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x7CFB;&#x7EDF;&#x6C49;&#x5316;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x6C49;&#x5316;"></a>&#x7CFB;&#x7EDF;&#x6C49;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色配置"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x989C;&#x8272;&#x914D;&#x7F6E;" class="headerlink" title="&#x989C;&#x8272;&#x914D;&#x7F6E;"></a>&#x989C;&#x8272;&#x914D;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#git&#x914D;&#x7F6E;" class="headerlink" title="git&#x914D;&#x7F6E;"></a>git&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#鬼畜软件"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a>&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#为什么要用这个玩意？"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x8FD9;&#x4E2A;&#x73A9;&#x610F;&#xFF1F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Ubuntu子系统"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x5B89;&#x88C5;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置Ubuntu子系统"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;"></a>&#x914D;&#x7F6E;Ubuntu&#x5B50;&#x7CFB;&#x7EDF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#帮助系统"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;"></a>&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;" class="headerlink" title="&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;"></a>&#x8F6F;&#x4EF6;&#x7684;&#x5B89;&#x88C5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件"><span class="toc-number">3.3.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统汉化"><span class="toc-number">3.4.</span> <span class="toc-text"><a href="#&#x7CFB;&#x7EDF;&#x6C49;&#x5316;" class="headerlink" title="&#x7CFB;&#x7EDF;&#x6C49;&#x5316;"></a>&#x7CFB;&#x7EDF;&#x6C49;&#x5316;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色配置"><span class="toc-number">3.5.</span> <span class="toc-text"><a href="#&#x989C;&#x8272;&#x914D;&#x7F6E;" class="headerlink" title="&#x989C;&#x8272;&#x914D;&#x7F6E;"></a>&#x989C;&#x8272;&#x914D;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#git配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#git&#x914D;&#x7F6E;" class="headerlink" title="git&#x914D;&#x7F6E;"></a>git&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创造GUI"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x521B;&#x9020;GUI" class="headerlink" title="&#x521B;&#x9020;GUI"></a>&#x521B;&#x9020;GUI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#鬼畜软件"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a><del>&#x9B3C;&#x755C;</del>&#x8F6F;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用软件-1"><span class="toc-number">6.1.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x8F6F;&#x4EF6;-1" class="headerlink" title="&#x5E38;&#x7528;&#x8F6F;&#x4EF6;"></a>&#x5E38;&#x7528;&#x8F6F;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#真正的鬼畜软件"><span class="toc-number">6.2.</span> <span class="toc-text"><a href="#&#x771F;&#x6B63;&#x7684;&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;" class="headerlink" title="&#x771F;&#x6B63;&#x7684;&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;"></a>&#x771F;&#x6B63;&#x7684;&#x9B3C;&#x755C;&#x8F6F;&#x4EF6;</span></a></li></ol></li></ol>
  
   </div>
 
@@ -254,7 +274,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -268,7 +288,7 @@
 			
 		
 			
-				<li><a href="/tags/Windows-Ubuntu/" title="Windows Ubuntu">Windows Ubuntu<sup>2</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
 			
 		
 			
@@ -276,7 +296,23 @@
 			
 		
 			
+				<li><a href="/tags/Windows-Ubuntu/" title="Windows Ubuntu">Windows Ubuntu<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
 			
 		
 			
@@ -292,11 +328,11 @@
 			
 		
 			
-				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+				<li><a href="/tags/数据处理/" title="数据处理">数据处理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
 			
 		
 			

@@ -1,0 +1,605 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>数据分析中的一些问题 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上写">
+<meta name="keywords" content="python,数据处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据分析中的一些问题">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/数据分析中的一些问题/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上写">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-31T18:03:47.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据分析中的一些问题">
+<meta name="twitter:description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上写">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/03/29/数据分析中的一些问题/" title="数据分析中的一些问题" itemprop="url">数据分析中的一些问题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2018-03-29T12:06:33.000Z" itemprop="datePublished"> 发表于 2018-03-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关于python"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;python" class="headerlink" title="&#x5173;&#x4E8E;python"></a>&#x5173;&#x4E8E;python</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Numpy"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jupyter-Notebook"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用魔术语句"><span class="toc-number">1.2.1.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x9B54;&#x672F;&#x8BED;&#x53E5;" class="headerlink" title="&#x5E38;&#x7528;&#x9B54;&#x672F;&#x8BED;&#x53E5;"></a>&#x5E38;&#x7528;&#x9B54;&#x672F;&#x8BED;&#x53E5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-matplotlib-的字体"><span class="toc-number">1.2.2.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;-matplotlib-&#x7684;&#x5B57;&#x4F53;" class="headerlink" title="&#x914D;&#x7F6E; matplotlib &#x7684;&#x5B57;&#x4F53;"></a>&#x914D;&#x7F6E; matplotlib &#x7684;&#x5B57;&#x4F53;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sympy-中的-mathjax-渲染"><span class="toc-number">1.2.3.</span> <span class="toc-text"><a href="#Sympy-&#x4E2D;&#x7684;-mathjax-&#x6E32;&#x67D3;" class="headerlink" title="Sympy &#x4E2D;&#x7684; mathjax &#x6E32;&#x67D3;"></a>Sympy &#x4E2D;&#x7684; mathjax &#x6E32;&#x67D3;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络库——Keras"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5E93;&#x2014;&#x2014;Keras" class="headerlink" title="&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5E93;&#x2014;&#x2014;Keras"></a>&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5E93;&#x2014;&#x2014;Keras</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入函数"><span class="toc-number">1.3.1.</span> <span class="toc-text"><a href="#&#x5F15;&#x5165;&#x51FD;&#x6570;" class="headerlink" title="&#x5F15;&#x5165;&#x51FD;&#x6570;"></a>&#x5F15;&#x5165;&#x51FD;&#x6570;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型建立"><span class="toc-number">1.3.2.</span> <span class="toc-text"><a href="#&#x6A21;&#x578B;&#x5EFA;&#x7ACB;" class="headerlink" title="&#x6A21;&#x578B;&#x5EFA;&#x7ACB;"></a>&#x6A21;&#x578B;&#x5EFA;&#x7ACB;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练"><span class="toc-number">1.3.3.</span> <span class="toc-text"><a href="#&#x6A21;&#x578B;&#x8BAD;&#x7EC3;" class="headerlink" title="&#x6A21;&#x578B;&#x8BAD;&#x7EC3;"></a>&#x6A21;&#x578B;&#x8BAD;&#x7EC3;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型应用"><span class="toc-number">1.3.4.</span> <span class="toc-text"><a href="#&#x6A21;&#x578B;&#x5E94;&#x7528;" class="headerlink" title="&#x6A21;&#x578B;&#x5E94;&#x7528;"></a>&#x6A21;&#x578B;&#x5E94;&#x7528;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于Gnuplot"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;Gnuplot" class="headerlink" title="&#x5173;&#x4E8E;Gnuplot"></a>&#x5173;&#x4E8E;Gnuplot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu子系统下的-Gnuplot"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#Ubuntu&#x5B50;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684;-Gnuplot" class="headerlink" title="Ubuntu&#x5B50;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684; Gnuplot"></a>Ubuntu&#x5B50;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684; Gnuplot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出图片的设置"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#&#x8F93;&#x51FA;&#x56FE;&#x7247;&#x7684;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x8F93;&#x51FA;&#x56FE;&#x7247;&#x7684;&#x8BBE;&#x7F6E;"></a>&#x8F93;&#x51FA;&#x56FE;&#x7247;&#x7684;&#x8BBE;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于算法"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;&#x7B97;&#x6CD5;" class="headerlink" title="&#x5173;&#x4E8E;&#x7B97;&#x6CD5;"></a>&#x5173;&#x4E8E;&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#插值算法"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x63D2;&#x503C;&#x7B97;&#x6CD5;" class="headerlink" title="&#x63D2;&#x503C;&#x7B97;&#x6CD5;"></a>&#x63D2;&#x503C;&#x7B97;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求导算法"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x6C42;&#x5BFC;&#x7B97;&#x6CD5;" class="headerlink" title="&#x6C42;&#x5BFC;&#x7B97;&#x6CD5;"></a>&#x6C42;&#x5BFC;&#x7B97;&#x6CD5;</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。</p>
+<h1 id="关于python"><a href="#关于python" class="headerlink" title="关于python"></a>关于python</h1><p>窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上写……</p>
+<h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><p>可以说 Numpy 的应用占据了 python 数据分析的一半内容，我另外开了<a href="https://lgwangh.github.io/2018/03/31/Numpy学习笔记/" target="_blank" rel="noopener">一篇博文</a>作为笔记。</p>
+<h2 id="Jupyter-Notebook"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</h2><p>python 最好的交互界面就是 Jupyter Notebook，但是这东西的配置比较麻烦。</p>
+<h3 id="常用魔术语句"><a href="#常用魔术语句" class="headerlink" title="常用魔术语句"></a>常用魔术语句</h3><p>将 <code>numpy</code> 和 <code>matplotlib.pylab</code> 的名字空间完全导入，并设置图像输出在 Notebook 中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">%pylab inline</span><br><span class="line">%xmode Plain</span><br><span class="line">%config InlineBackend.figure_format=<span class="string">"svg"</span></span><br></pre></td></tr></table></figure>
+<p>引入 <code>sympy</code> 并设置默认使用 <code>pprint</code> ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sympy <span class="keyword">as</span> sp</span><br><span class="line">sp.init_printing(use_latex=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="配置-matplotlib-的字体"><a href="#配置-matplotlib-的字体" class="headerlink" title="配置 matplotlib 的字体"></a>配置 matplotlib 的字体</h3><p>matplotlib 的默认字体并不支持中文，令人恼火，后来我在 segmentfault 找到了<a href="https://segmentfault.com/a/1190000005144275" target="_blank" rel="noopener">解决方案</a> 。</p>
+<ul>
+<li><p>进入 <code>C:/Anaconda/Lib/site-packages/matplotlib/mpl-data</code> 修改 matplotlibrc 配置文件。搜索 <code>font.serif</code> ，在字体列表里加上你效用的字体名称。我改成了这样：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#font.size           : 12.0</span></span><br><span class="line"><span class="comment">#font.serif          : Droid Sans Fallback, New Century Schoolbook, Century Schoolbook L, </span></span><br><span class="line">                       <span class="string">Utopia,</span> <span class="string">ITC</span> <span class="string">Bookman,</span> <span class="string">Bookman,</span> <span class="string">Nimbus</span> <span class="string">Roman</span> <span class="string">No9</span> <span class="string">L,</span> <span class="string">Times</span> <span class="string">New</span> <span class="string">Roman,</span></span><br><span class="line">                       <span class="string">Times,</span> <span class="string">Palatino,</span> <span class="string">Charter,</span> <span class="string">serif</span></span><br><span class="line"><span class="string">font.sans-serif</span>      <span class="string">:</span> <span class="string">Droid</span> <span class="string">Sans</span> <span class="string">Fallback,</span> <span class="string">Lucida</span> <span class="string">Grande,</span> <span class="string">Verdana,</span> <span class="string">Geneva,</span> <span class="string">Lucid,</span> <span class="string">Arial,</span></span><br><span class="line">                       <span class="string">Helvetica,</span> <span class="string">Avant</span> <span class="string">Garde,</span> <span class="string">sans-serif</span></span><br></pre></td></tr></table></figure>
+<p>也就是使用了 Sans 字体，把首选换成了字符集全面的 Droid Sans Fallback。</p>
+</li>
+<li><p>之后进入  <code>./fonts/ttf</code> ，删掉所有 <code>Vera</code> 系列的字体，并且把我们的 <code>DroidSans.ttf</code> 复制过来。</p>
+</li>
+</ul>
+<h3 id="Sympy-中的-mathjax-渲染"><a href="#Sympy-中的-mathjax-渲染" class="headerlink" title="Sympy 中的 mathjax 渲染"></a>Sympy 中的 mathjax 渲染</h3><p>默认使用 unicode 字符画，经过之前的设置会启用 mathjax。但是默认字体看着不舒服，最后在 StackOverflow 找到了 <a href="https://stackoverflow.com/questions/28909747/how-do-i-configure-mathjax-for-ipython-notebooks" target="_blank" rel="noopener">解决方案</a> 。从 <a href="https://github.com/mathjax/MathJax" target="_blank" rel="noopener">mathjax 官网</a> 下载原装包，解压之后：</p>
+<ul>
+<li><p>把 <code>jax/output/HTML-CSS/fonts/TeX</code> 复制到 <code>../notebook/static/components/MathJax/jax/output/HTML-CSS/fonts/</code> 目录下</p>
+</li>
+<li><p>把 <code>fonts/HTML-CSS/TeX</code> 复制到 <code>../notebook/static/components/MathJax/fonts/HTML-CSS/</code> 目录下</p>
+</li>
+<li><p>打开 <code>../notebook/static/notebook/js/main.min.js</code>, 搜索 <code>availableFonts</code>，把代码修改成：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">availableFonts: ["STIX-Web","TeX"],</span><br><span class="line">imageFont: null;</span><br><span class="line">preferredFont: "TeX",</span><br><span class="line">webFont: "TeX"</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>不过即使修改好了还是会有一些问题，例如字号问题导致上下标一团糟。可以在查看矩阵输出的时候把 mathjax 的设置临时改一下增大字号。</p>
+<h2 id="神经网络库——Keras"><a href="#神经网络库——Keras" class="headerlink" title="神经网络库——Keras"></a>神经网络库——Keras</h2><p>  之前研究过一段时间，经历了“自己编写$\to$使用 <code>TensorFlow</code> $\to$使用 <code>Keras</code> 作为前端”的过程。Keras 的官方教程已经有 <a href="http://keras-cn.readthedocs.io/en/latest/" target="_blank" rel="noopener">大佬翻译</a> ，在这里仅写出最常用的。</p>
+<h3 id="引入函数"><a href="#引入函数" class="headerlink" title="引入函数"></a>引入函数</h3><p>常用函数主要在 <code>keras.models</code> 和 <code>keras.layers</code> ：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential, load_model</span><br><span class="line"><span class="keyword">from</span> keras.layers.core <span class="keyword">import</span> Dense, Dropout, Reshape</span><br><span class="line"><span class="keyword">from</span> keras.layers.convolutional <span class="keyword">import</span> Conv2D</span><br><span class="line"><span class="keyword">from</span> keras.layers.pooling <span class="keyword">import</span> MaxPooling2D</span><br></pre></td></tr></table></figure>
+<h3 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h3><p>一个最简单的序贯模型，仅需要把所用的网络层逐个写上去：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">model=Sequential([                                        <span class="comment"># 序贯模型</span></span><br><span class="line">        Reshape([<span class="number">28</span>, <span class="number">28</span>, <span class="number">1</span>], input_shape=(<span class="number">784</span>,)),         <span class="comment"># 变形层</span></span><br><span class="line">        Conv2D(<span class="number">32</span>, <span class="number">5</span>, activation=<span class="string">'relu'</span>, padding=<span class="string">'same'</span>), <span class="comment"># 2D卷积层</span></span><br><span class="line">        MaxPooling2D(),                                   <span class="comment"># 2D最大值池化层</span></span><br><span class="line">        Conv2D(<span class="number">64</span>, <span class="number">5</span>, activation=<span class="string">'relu'</span>, padding=<span class="string">'same'</span>),  </span><br><span class="line">        MaxPooling2D(), </span><br><span class="line">        Reshape([<span class="number">7</span> * <span class="number">7</span> * <span class="number">64</span>]), </span><br><span class="line">        Dense(units=<span class="number">1024</span>, activation=<span class="string">'relu'</span>),             <span class="comment"># 全连接层</span></span><br><span class="line">        Dropout(<span class="number">0.1</span>),                                     <span class="comment"># 随机断开层</span></span><br><span class="line">        Dense(units=<span class="number">10</span>, activation=<span class="string">'softmax'</span>)</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Reshape( 输出变量形态 )</code></li>
+<li><code>Conv2D( 卷积核数目, 卷积核边长, activation=&#39;激励函数&#39;, padding=&#39;输出数据与原来的大小关系&#39; )</code></li>
+<li><code>MaxPooling2D()</code></li>
+<li><code>Dense( units=神经元数目, activation=&#39;激励函数&#39; )</code></li>
+<li><code>Dropout( 随机断开概率 )</code></li>
+<li>第一层一般加上 <code>input_shape=输入变量形态</code> 以方便检查变量是否合法</li>
+</ul>
+<h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型编译</span></span><br><span class="line">model.compile(optimizer=<span class="string">'rmsprop'</span>,             <span class="comment"># 优化器</span></span><br><span class="line">             loss=<span class="string">'categorical_crossentropy'</span>,  <span class="comment"># 损失函数</span></span><br><span class="line">             metrics=[<span class="string">'accuracy'</span>])             <span class="comment"># 目标（想要最小化的）变量</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型训练</span></span><br><span class="line">history=model.fit(mnist.train.images,          <span class="comment"># 训练集.数据</span></span><br><span class="line">                 mnist.train.labels,           <span class="comment"># 训练集.标准输出</span></span><br><span class="line">                 batch_size=<span class="number">100</span>,               <span class="comment"># 每个训练周期取的训练样本量</span></span><br><span class="line">                 epochs=<span class="number">3</span>)                     <span class="comment"># 重复训练次数</span></span><br></pre></td></tr></table></figure>
+<h3 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模型评估</span></span><br><span class="line">model.evaluate(mnist.test.images,   <span class="comment"># 测试集.数据</span></span><br><span class="line">              mnist.test.labels)    <span class="comment"># 测试集.标准输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进行预测</span></span><br><span class="line">model.predict(data)                 <span class="comment"># 输入数据</span></span><br></pre></td></tr></table></figure>
+<h1 id="关于Gnuplot"><a href="#关于Gnuplot" class="headerlink" title="关于Gnuplot"></a>关于Gnuplot</h1><p>Gnuplot 非常方便——对于我这种渣渣机械硬盘，开启速度比 matlab 快十倍。但是作为命令行程序，没有那么直观，并且配置也比较奇怪。</p>
+<h2 id="Ubuntu子系统下的-Gnuplot"><a href="#Ubuntu子系统下的-Gnuplot" class="headerlink" title="Ubuntu子系统下的 Gnuplot"></a>Ubuntu子系统下的 Gnuplot</h2><p>为了配合 LAMMPS，最好把 Gnuplot 装在 Ubuntu子系统里，但是这就有个 GUI 的问题。可以使用Windows 下的 X11 服务：</p>
+<ul>
+<li>在 Windows 下安装 Xming，启动</li>
+<li>在 Linux 下安装x11-apps</li>
+<li>（非必须）检验 Gnuplot 的版本，安装 gnuplot-x11</li>
+<li>使用 <code>DISPLAY=:0.0 gnuplot</code> 启动，如果显示终端是 <code>wxt</code> 的话，使用 <code>set term x11</code></li>
+<li>为了省事，可以直接在 <code>~/.bashrc</code> 里加上 <code>export DISPLAY=:0.0</code></li>
+</ul>
+<p>结果差强人意，x11下的输出确实不敢恭维，但是仅用来看看已经够了，设置好之后再用 <code>set term svg</code> ，<code>set output filename</code> 换 svg 输出。</p>
+<p>其中某一次，出于未知的原因（反正忘记 <code>set term x11</code> 了），我成功的打开了 gnuplot 的 wxt 终端（而且这个窗口的图标还是Xming），绘图质量甚至好于 Windows 下的 Gnuplot（Windows的辣鸡字体渲染……），但是之后再没成功过。</p>
+<p>于是现在使用的方式是打开 cmd，在 bash 里用 LAMMPS 算好，再回到 cmd 画图……</p>
+<h2 id="输出图片的设置"><a href="#输出图片的设置" class="headerlink" title="输出图片的设置"></a>输出图片的设置</h2><p>如果设置输出为 png，有一些选项可以设定 ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> term png [size x,y] [font font_name,font_size]</span><br></pre></td></tr></table></figure>
+<p>看起来可以随意设置输出图片的大小，获得高分辨率的图像。然而实际上真的只是调整了大小，分辨率是不变的，输出接近于一张白纸……所以还是不要用 png 输出了。</p>
+<ul>
+<li>可以使用 svg，矢量图吼啊！而且可以在 Inkscape 进一步编辑，加上各种辅助线，甚至调节颜色，进一步美化。</li>
+<li>如果要包含公式，可以考虑使用 epslatex 输出，不过也可以用 svg 输出再后期添上去。</li>
+</ul>
+<h1 id="关于算法"><a href="#关于算法" class="headerlink" title="关于算法"></a>关于算法</h1><h2 id="插值算法"><a href="#插值算法" class="headerlink" title="插值算法"></a>插值算法</h2><p>等间距插值比较简单，教程也多，而通式则比较复杂。</p>
+<p>以二阶插值为例，在各数据点之外还需要一个边界条件，一般是第一点处的导数，可以设定成 0 或者前两个点连线的斜率。那这样就可以给出插值参数的递推公式。</p>
+<p>设点 $(x_i,y_i)$ 与 $(x_{i+1},y_{i+1})$ 之间的曲线 $f_i(x)$ 为 $y=a_i x^2+b_i x+c_i$ ，则 $f_i(x)$ 满足：</p>
+<p>$$\left\{\begin{split}y_i&amp;=a_i x_i^2+b_i x_i+c_i\\y_{i+1}&amp;=a_i x_{i+1}^2+b_i x_{i+1}+c_i\\2a_i x_i+b_i&amp;=2a_{i-1}x_i+b_{i-1}\Leftrightarrow f_{i-1}’(x_i)=f_{i}’(x_i)\end{split}\right.$$</p>
+<p>以 $\vec{k}=(a_i\;b_i\;c_i)^T$ 为未知量，列出矩阵方程 $\mathbf{A}\vec{k}=\vec{b}$ ，其中：</p>
+<p>$$\mathbf{A}=\left(\begin{matrix}x_i^2 &amp; x_i &amp; 1\\x_{i+1}^2 &amp; x_{i+1} &amp; 1\\2x_i &amp; 1 &amp; 0\end{matrix}\right),\vec{b}=\left(\begin{matrix}y_i \\y_{i+1}\\2a_{i-1}x_i+y_{i-1}\end{matrix}\right)$$</p>
+<p>这样就可以在 python 中利用 numpy 很方便地写出插值函数。</p>
+<h2 id="求导算法"><a href="#求导算法" class="headerlink" title="求导算法"></a>求导算法</h2><p>数值积分的算法多，numpy 也有内置函数，而数值求导却不好找，于是我自己写了一个，这里以二阶导数为例。</p>
+<p>数值求导的原理就是泰勒展开，将 $f(x)$ 展开到二阶可得：</p>
+<p>$$f(x_0+t)=f(x_0)+f’(x_0)t+\frac{1}{2}f’’(x_0)t^2+O(t^2)$$</p>
+<p>可以看出，如果要以 $O(t^2)$ 的精确度得到 $f’’(x_0)$ ，要列三个方程，因此对于三个样本点 $(x_0-t_{-1},y_{-1}),(x_0,y_0),(x_0+t_1,y_1)$，得出三个展开式。目的是$Ay_{-1}+By_0+Cy_1=f’’(x_0)$ ，则以 $\vec{k}=(A\;B\;C)^T$ 为未知量忽略高阶小量，列出矩阵方程  $\mathbf{A}\vec{k}=\vec{b}$，其中</p>
+<p>$$\mathbf{A}=\left(\begin{matrix}1 &amp; 1 &amp; 1 \\ -t_{-1}&amp;0&amp;t_1 \\ \frac{1}{2}t_{-1}^2 &amp; 0 &amp; \frac{1}{2}t_1^2\end{matrix}\right),\vec{b}=\left(\begin{matrix}0\\0\\1\end{matrix}\right)$$</p>
+<p>这里有一个特殊情况：当 $t_{-1}=t_1$ 时，矩阵奇异，因此应跳过矩阵方程直接令 $\vec{k}=(1 \ -2\ 1)^T$。同样的，可以用 numpy 写出函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">diff2</span><span class="params">(num)</span>:</span></span><br><span class="line">    length=num.shape[<span class="number">0</span>]</span><br><span class="line">    f2=zeros([length,<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arange(<span class="number">1</span>,length<span class="number">-1</span>):</span><br><span class="line">        t_n,t_p=num[i,<span class="number">0</span>]-num[i<span class="number">-1</span>,<span class="number">0</span>],num[i+<span class="number">1</span>,<span class="number">0</span>]-num[i,<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> t_n==<span class="number">0</span> <span class="keyword">or</span> t_p==<span class="number">0</span>:</span><br><span class="line">            factor=matrix([[<span class="number">0</span>],[<span class="number">0</span>],[<span class="number">0</span>]])</span><br><span class="line">        <span class="keyword">elif</span> t_n == t_p:</span><br><span class="line">            factor=matrix([[<span class="number">1</span>],[<span class="number">-2</span>],[<span class="number">1</span>]])/t_n**<span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            A=matrix([[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],[t_p,<span class="number">0</span>,-t_n],[t_p**<span class="number">2</span>/<span class="number">2</span>,<span class="number">0</span>,t_n**<span class="number">2</span>/<span class="number">2</span>]])</span><br><span class="line">            b=matrix([[<span class="number">0</span>],[<span class="number">0</span>],[<span class="number">1</span>]])</span><br><span class="line">            factor=A**<span class="number">-1</span>*b</span><br><span class="line">        f2[i,<span class="number">0</span>]=num[i<span class="number">-1</span>:i+<span class="number">2</span>,<span class="number">1</span>].T*factor</span><br><span class="line">    f2[<span class="number">0</span>,<span class="number">0</span>],f2[<span class="number">-1</span>,<span class="number">0</span>]=f2[<span class="number">1</span>,<span class="number">0</span>],f2[<span class="number">-2</span>,<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> c_[num[:,<span class="number">0</span>],f2]</span><br></pre></td></tr></table></figure>
+<p>在实际应用之后我终于明白为什么数值求导不常用了：尽管理论上拥有 $O(t^2)$ 的精确度，实际上每个值还是只由三个点决定。对于一般的实验信号，其中都会存在高频噪音，这种算法得出的只是在 0 附近剧烈震荡的曲线，其振幅远超曲线总体变化的二阶导数，掩盖了有用信息。因此<strong>在数值求导之前必须进行滤波</strong>，以均值滤波为佳。在我所用的例子中，滤波窗口达到约 100 时才得到了满意的结果。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据处理/">数据处理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2018/03/29/数据分析中的一些问题/" data-title="数据分析中的一些问题 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/03/31/Numpy学习笔记/" title="Numpy学习笔记">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Numpy学习笔记</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/03/10/学习笔记合集/"  title="学习笔记合集">
+ <strong>下一篇：</strong><br/> 
+ <span>学习笔记合集
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#关于python"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;python" class="headerlink" title="&#x5173;&#x4E8E;python"></a>&#x5173;&#x4E8E;python</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Numpy"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jupyter-Notebook"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#Jupyter-Notebook" class="headerlink" title="Jupyter Notebook"></a>Jupyter Notebook</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用魔术语句"><span class="toc-number">1.2.1.</span> <span class="toc-text"><a href="#&#x5E38;&#x7528;&#x9B54;&#x672F;&#x8BED;&#x53E5;" class="headerlink" title="&#x5E38;&#x7528;&#x9B54;&#x672F;&#x8BED;&#x53E5;"></a>&#x5E38;&#x7528;&#x9B54;&#x672F;&#x8BED;&#x53E5;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-matplotlib-的字体"><span class="toc-number">1.2.2.</span> <span class="toc-text"><a href="#&#x914D;&#x7F6E;-matplotlib-&#x7684;&#x5B57;&#x4F53;" class="headerlink" title="&#x914D;&#x7F6E; matplotlib &#x7684;&#x5B57;&#x4F53;"></a>&#x914D;&#x7F6E; matplotlib &#x7684;&#x5B57;&#x4F53;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sympy-中的-mathjax-渲染"><span class="toc-number">1.2.3.</span> <span class="toc-text"><a href="#Sympy-&#x4E2D;&#x7684;-mathjax-&#x6E32;&#x67D3;" class="headerlink" title="Sympy &#x4E2D;&#x7684; mathjax &#x6E32;&#x67D3;"></a>Sympy &#x4E2D;&#x7684; mathjax &#x6E32;&#x67D3;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#神经网络库——Keras"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5E93;&#x2014;&#x2014;Keras" class="headerlink" title="&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5E93;&#x2014;&#x2014;Keras"></a>&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5E93;&#x2014;&#x2014;Keras</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#引入函数"><span class="toc-number">1.3.1.</span> <span class="toc-text"><a href="#&#x5F15;&#x5165;&#x51FD;&#x6570;" class="headerlink" title="&#x5F15;&#x5165;&#x51FD;&#x6570;"></a>&#x5F15;&#x5165;&#x51FD;&#x6570;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型建立"><span class="toc-number">1.3.2.</span> <span class="toc-text"><a href="#&#x6A21;&#x578B;&#x5EFA;&#x7ACB;" class="headerlink" title="&#x6A21;&#x578B;&#x5EFA;&#x7ACB;"></a>&#x6A21;&#x578B;&#x5EFA;&#x7ACB;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型训练"><span class="toc-number">1.3.3.</span> <span class="toc-text"><a href="#&#x6A21;&#x578B;&#x8BAD;&#x7EC3;" class="headerlink" title="&#x6A21;&#x578B;&#x8BAD;&#x7EC3;"></a>&#x6A21;&#x578B;&#x8BAD;&#x7EC3;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型应用"><span class="toc-number">1.3.4.</span> <span class="toc-text"><a href="#&#x6A21;&#x578B;&#x5E94;&#x7528;" class="headerlink" title="&#x6A21;&#x578B;&#x5E94;&#x7528;"></a>&#x6A21;&#x578B;&#x5E94;&#x7528;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于Gnuplot"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;Gnuplot" class="headerlink" title="&#x5173;&#x4E8E;Gnuplot"></a>&#x5173;&#x4E8E;Gnuplot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu子系统下的-Gnuplot"><span class="toc-number">2.1.</span> <span class="toc-text"><a href="#Ubuntu&#x5B50;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684;-Gnuplot" class="headerlink" title="Ubuntu&#x5B50;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684; Gnuplot"></a>Ubuntu&#x5B50;&#x7CFB;&#x7EDF;&#x4E0B;&#x7684; Gnuplot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出图片的设置"><span class="toc-number">2.2.</span> <span class="toc-text"><a href="#&#x8F93;&#x51FA;&#x56FE;&#x7247;&#x7684;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x8F93;&#x51FA;&#x56FE;&#x7247;&#x7684;&#x8BBE;&#x7F6E;"></a>&#x8F93;&#x51FA;&#x56FE;&#x7247;&#x7684;&#x8BBE;&#x7F6E;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于算法"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;&#x7B97;&#x6CD5;" class="headerlink" title="&#x5173;&#x4E8E;&#x7B97;&#x6CD5;"></a>&#x5173;&#x4E8E;&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#插值算法"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#&#x63D2;&#x503C;&#x7B97;&#x6CD5;" class="headerlink" title="&#x63D2;&#x503C;&#x7B97;&#x6CD5;"></a>&#x63D2;&#x503C;&#x7B97;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#求导算法"><span class="toc-number">3.2.</span> <span class="toc-text"><a href="#&#x6C42;&#x5BFC;&#x7B97;&#x6CD5;" class="headerlink" title="&#x6C42;&#x5BFC;&#x7B97;&#x6CD5;"></a>&#x6C42;&#x5BFC;&#x7B97;&#x6CD5;</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/复习笔记/" title="复习笔记">复习笔记<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Windows-Ubuntu/" title="Windows Ubuntu">Windows Ubuntu<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/科幻/" title="科幻">科幻<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据处理/" title="数据处理">数据处理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
