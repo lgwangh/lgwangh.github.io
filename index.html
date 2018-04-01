@@ -393,15 +393,11 @@ Markdown的表格样式果然还是太少了啊，是不是该用reST写的呢�
 			
 		
 			
-				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
 			
 		
 			
@@ -409,11 +405,11 @@ Markdown的表格样式果然还是太少了啊，是不是该用reST写的呢�
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>2</sup></a></li>
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>2</sup></a></li>
 			
 		
 			
@@ -421,7 +417,7 @@ Markdown的表格样式果然还是太少了啊，是不是该用reST写的呢�
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
@@ -429,7 +425,11 @@ Markdown的表格样式果然还是太少了啊，是不是该用reST写的呢�
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -557,7 +557,7 @@ $(document).ready(function(){
     $(this).find('img').each(function(){
       if ($(this).parent().hasClass('fancybox')) return;
       var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      
       $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
     });
     $(this).find('.fancybox').each(function(){
