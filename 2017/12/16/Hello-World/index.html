@@ -11,20 +11,20 @@
     
 
     
-    <meta name="description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境看了看教程，果然……coder们一">
-<meta name="keywords" content="Windows Ubuntu,博客">
+    <meta name="description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择 以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境 看了看教程，果然……coder">
+<meta name="keywords" content="WSL,博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello, World! 博客的诞生">
 <meta property="og:url" content="http://yoursite.com/2017/12/16/Hello-World/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
-<meta property="og:description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境看了看教程，果然……coder们一">
+<meta property="og:description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择 以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境 看了看教程，果然……coder">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/Ubuntu_bash.png">
 <meta property="og:image" content="http://yoursite.com/images/typora_Front_matter.png">
-<meta property="og:updated_time" content="2018-01-09T03:24:26.884Z">
+<meta property="og:updated_time" content="2018-04-01T07:17:48.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello, World! 博客的诞生">
-<meta name="twitter:description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境看了看教程，果然……coder们一">
+<meta name="twitter:description" content="作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。 框架选择 以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用Hexo的框架，把博客托管在github上。 于是我找来了一些教程：Hexo的官方文档，还有dimsky的小白向教程 5分钟 搭建免费个人博客。 关于系统环境 看了看教程，果然……coder">
 <meta name="twitter:image" content="http://yoursite.com/images/Ubuntu_bash.png">
 
     
@@ -97,54 +97,89 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#框架选择"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x6846;&#x67B6;&#x9009;&#x62E9;" class="headerlink" title="&#x6846;&#x67B6;&#x9009;&#x62E9;"></a>&#x6846;&#x67B6;&#x9009;&#x62E9;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于系统环境"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;" class="headerlink" title="&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;"></a>&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Hexo"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x57FA;&#x672C;&#x914D;&#x7F6E;" class="headerlink" title="&#x57FA;&#x672C;&#x914D;&#x7F6E;"></a>&#x57FA;&#x672C;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一篇博文"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;" class="headerlink" title="&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;"></a>&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#预览与发布"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;" class="headerlink" title="&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;"></a>&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更改与重发布"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;" class="headerlink" title="&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;"></a>&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#疑难杂症"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x7591;&#x96BE;&#x6742;&#x75C7;" class="headerlink" title="&#x7591;&#x96BE;&#x6742;&#x75C7;"></a>&#x7591;&#x96BE;&#x6742;&#x75C7;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https安全性"><span class="toc-number">8.1.</span> <span class="toc-text"><a href="#https&#x5B89;&#x5168;&#x6027;" class="headerlink" title="https&#x5B89;&#x5168;&#x6027;"></a>https&#x5B89;&#x5168;&#x6027;</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#框架选择"><span class="toc-number">1.</span> <span class="toc-text">&#x6846;&#x67B6;&#x9009;&#x62E9;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于系统环境"><span class="toc-number">2.</span> <span class="toc-text">&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装hexo"><span class="toc-number">3.</span> <span class="toc-text">&#x5B89;&#x88C5;Hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本配置"><span class="toc-number">4.</span> <span class="toc-text">&#x57FA;&#x672C;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一篇博文"><span class="toc-number">5.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#预览与发布"><span class="toc-number">6.</span> <span class="toc-text">&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更改与重发布"><span class="toc-number">7.</span> <span class="toc-text">&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#疑难杂症"><span class="toc-number">8.</span> <span class="toc-text">&#x7591;&#x96BE;&#x6742;&#x75C7;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https安全性"><span class="toc-number">8.1.</span> <span class="toc-text">https&#x5B89;&#x5168;&#x6027;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决-md-控制字符与公式的冲突"><span class="toc-number">8.2.</span> <span class="toc-text">&#x89E3;&#x51B3; MD &#x63A7;&#x5236;&#x5B57;&#x7B26;&#x4E0E;&#x516C;&#x5F0F;&#x7684;&#x51B2;&#x7A81;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启评论功能"><span class="toc-number">8.3.</span> <span class="toc-text">&#x5F00;&#x542F;&#x8BC4;&#x8BBA;&#x529F;&#x80FD;&#xFF01;</span></a></li></ol></li></ol>
 		
 		</div>
 		
 		<p>作为一个工科生而不是程序员，对于这些操作还真是不太熟悉……折腾了半天，这个博客算是建起来了。</p>
-<h1 id="框架选择"><a href="#框架选择" class="headerlink" title="框架选择"></a>框架选择</h1><p>以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>的框架，把博客托管在<a href="https://github.com" target="_blank" rel="noopener">github</a>上。</p>
+<h1 id="框架选择">框架选择</h1>
+<p>以前看过一些博客，新浪和博客园的风格太丑了，而那些大牛们自己建站的技术一时半会学不来，看了一圈最后决定采用<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>的框架，把博客托管在<a href="https://github.com" target="_blank" rel="noopener">github</a>上。</p>
 <p>于是我找来了一些教程：Hexo的<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档</a>，还有dimsky的小白向教程 <a href="http://www.jianshu.com/p/4eaddcbe4d12" target="_blank" rel="noopener">5分钟 搭建免费个人博客</a>。</p>
-<h1 id="关于系统环境"><a href="#关于系统环境" class="headerlink" title="关于系统环境"></a>关于系统环境</h1><p>看了看教程，果然……coder们一般是不用Windows系统工作的，毕竟终端太难用了，以前我用python的时候也是深有体会，很多东西即使凑活着能用，也会在你意想不到的地方出现bug。之前我安装过Ubuntu的虚拟机，不过由于自己不常用，常年放在电脑里吃灰，直到硬盘空间不足，手一滑就把虚拟硬盘删掉了〒▽〒（在我理解起来是这样）。</p>
+<h1 id="关于系统环境">关于系统环境</h1>
+<p>看了看教程，果然……coder们一般是不用Windows系统工作的，毕竟终端太难用了，以前我用python的时候也是深有体会，很多东西即使凑活着能用，也会在你意想不到的地方出现bug。之前我安装过Ubuntu的虚拟机，不过由于自己不常用，常年放在电脑里吃灰，直到硬盘空间不足，手一滑就把虚拟硬盘删掉了〒▽〒（在我理解起来是这样）。</p>
 <p>不过，既然想起来建博客，我自然也做了准备。之前看到Windows周年更新加入了一项有趣的功能：在Windows下安装一个Ubuntu子系统。这种结合比虚拟机更加紧密高效：Ubuntu相当于一个应用程序，占用系统资源很少；而Windows下的所有存储资源都可以被Ubuntu简单引用（<code>/mnt</code>路径下的<code>e,f,g,h</code>就对应着各个磁盘分区）。这样既可以享受优秀的终端应用，又可以在熟悉的Windows环境中进行其他操作。于是就按照<a href="https://www.windows10.pro/bash-on-ubuntu-on-windows/" target="_blank" rel="noopener">这份教程</a>试了试。在片刻的等待（+数次重启+两小时的颜色调整+数小时配置各种应用+玩一会CLI中的贪吃蛇）之后，得到了这个Ubuntu环境。</p>
-<p><img src="/images/Ubuntu_bash.png" alt="Ubuntu子系统的界面"></p>
+<div class="figure">
+<img src="/images/Ubuntu_bash.png" alt="Ubuntu子系统的界面">
+<p class="caption">Ubuntu子系统的界面</p>
+</div>
 <p>不过其实还没那么简单，比如说图中的中文就需要另外的配置。这个子系统和正常的Ubuntu环境还是有一些差别的，我在<a href="https://lgwangh.github.io/2017/12/17/Ubuntu子系统的安装与配置/" target="_blank" rel="noopener">另一篇博文</a>有详细介绍。</p>
 <p>关于Ubuntu的终端操作，我也不太熟悉……毕竟是Windows娇生惯养的孩子。这里有一份很好的<a href="http://billie66.github.io/TLCL/book/index.html" target="_blank" rel="noopener">入门教程</a> 。反正最基本的就是<code>命令名 -选项 参数</code>这样，至少要了解<code>cd</code>,<code>apt-get</code>,<code>sudo</code> 的用法，<code>git</code>也最好了解一下。</p>
-<h1 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h1><p>总之，一番操作过后，Ubuntu环境算是搭建起来了。之后就是根据教程的内容安装所需的软件。GitHub的账号我已经有了（为了托管复习笔记），git也是Ubuntu系统的预装应用，那么接下来要安装<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js</a>。其实我完全不了解这个大名鼎鼎的体系，在这里就把它当成是Hexo的依赖程序吧。在我的Ubuntu环境下，使用下面的命令：</p>
+<h1 id="安装hexo">安装Hexo</h1>
+<p>总之，一番操作过后，Ubuntu环境算是搭建起来了。之后就是根据教程的内容安装所需的软件。GitHub的账号我已经有了（为了托管复习笔记），git也是Ubuntu系统的预装应用，那么接下来要安装<a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js</a>。其实我完全不了解这个大名鼎鼎的体系，在这里就把它当成是Hexo的依赖程序吧。在我的Ubuntu环境下，使用下面的命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</span><br><span class="line">sudo apt-get install -y nodejs</span><br></pre></td></tr></table></figure>
 <p>Node.js应该包含了npm包管理器，可以用<code>npm</code>命令试试。没有问题的话，不用去管什么nvm了，可以直接安装Hexo，使用下面的命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
 <p>中间出了几个WARN，不过在使用中没发现什么影响。可以用<code>man hexo</code>查看Hexo的文档。</p>
-<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><p>先到GitHub创建一个仓库<code>username.github.io</code> （把<code>username</code>替换成自己的用户名）。之后回到Ubuntu bash，<code>cd</code>到自己想要的路径，使用：</p>
+<h1 id="基本配置">基本配置</h1>
+<p>先到GitHub创建一个仓库<code>username.github.io</code> （把<code>username</code>替换成自己的用户名）。之后回到Ubuntu bash，<code>cd</code>到自己想要的路径，使用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init username.github.io</span><br></pre></td></tr></table></figure>
 <p>然后泡一杯茶……文件夹初始化成功！现在来为你的博客捏个脸吧，Hexo的主题目录在<a href="https://hexo.io/themes/" target="_blank" rel="noopener">这里</a>，我比较喜欢其中的Jacman主题，这是<a href="http://wuchong.me/jacman/how-to-use-jacman/" target="_blank" rel="noopener">它的Demo</a>。</p>
 <p>关于主题的下载、配置，Demo上有详细的指导。配置文件采用简明的<code>YAML</code>语法，看看<a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="noopener">阮一峰的介绍</a>很快能懂。注意博客配置的<code>./_config.yml</code>和主题配置的<code>./theme/jacman/_config.yml</code>不是一个文件。一定要注意配置前者的<code>repo</code>项；后者的默认内容跟Demo的介绍有区别，建议在默认的基础上，参照Demo进行修改，比较稳妥。</p>
-<h1 id="第一篇博文"><a href="#第一篇博文" class="headerlink" title="第一篇博文"></a>第一篇博文</h1><p>其实，，，就是这篇。在博客根目录下，新建一篇博文：</p>
+<h1 id="第一篇博文">第一篇博文</h1>
+<p>其实，，，就是这篇。在博客根目录下，新建一篇博文：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] File_name</span><br></pre></td></tr></table></figure>
 <p>其中<code>[layout]</code>先不用管，直接忽视，<code>File_name</code>自然还是替换成想要的名字。然后让我们回到熟悉的Windows的怀抱，用你喜欢的编辑器打开<code>./source/_post/File_name.md</code>（我用的<a href="http://typora.io/" target="_blank" rel="noopener">typora</a>），映入眼帘的是这么几行字</p>
-<p><img src="/images/typora_Front_matter.png" alt="File_name.md的默认内容"></p>
+<div class="figure">
+<img src="/images/typora_Front_matter.png" alt="File_name.md的默认内容">
+<p class="caption">File_name.md的默认内容</p>
+</div>
 <p>这些<code>--------------</code>之上的部分被称为<code>Front_matter</code>，是用于控制文档属性的扩展内容，不会显示在博文里。具体用法还是参见Hexo的<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">官方文档</a> 。之后是博文的主体部分，使用大家喜闻乐见的Markdown语法（如果不知道的话，随意搜索一下就能得到海量的介绍与教程，例如<a href="http://xianbai.me/learn-md/index.html" target="_blank" rel="noopener">这篇</a>），如果你使用typora之类的即时预览的编辑器，写作过程会愉快很多。</p>
 <p>不过……Markdown也有个问题，就是方言比较多。我经过仔(胡)细(乱)研(尝)究(试)，大概总结了一下Hexo的渲染规则：</p>
 <ul>
-<li>空格敏感性混乱，这个比较麻烦。目前发现，<code>bala*point*bala</code>会显示成bala<em>point</em>bala，而<code>bala *point* bala</code>就会变成bala <em>point</em> bala。另一方面，<code>#AAA</code>却不能正常显示成标题，必须要用<code># AAA</code> 。</li>
+<li>空格敏感性混乱，这个比较麻烦。目前发现，<code>bala*point*bala</code>会显示成bala<em>point</em>bala，而<code>bala *point* bala</code>就会变成bala <em>point</em> bala。另一方面，<code>#AAA</code>却不能正常显示成标题，必须要用<code># AAA</code> 。（后来发觉这些问题与 hexo 默认的 markdown 渲染器有关，见<a href="https://lgwangh.github.io/2017/12/16/Hello-World/#）" target="_blank" rel="noopener">后文</a></li>
 <li>标题层级。因为已经在<code>Front_matter</code>确定了标题，各种标题就顺延的降级了。<code># AAA</code>会变成节标题，<code>## BBB</code>就是小节标题。</li>
 <li>把图片单独存储是良好的习惯。如果你把图片存在<code>./source/images</code>，你会发现在typora中，要把路径写成<code>../images/File_name</code>才能正常预览，但对于Hexo来说，根目录是<code>./source</code>，所以还是写成<code>/images/File_name</code>吧。</li>
 </ul>
-<h1 id="预览与发布"><a href="#预览与发布" class="headerlink" title="预览与发布"></a>预览与发布</h1><p>写作完成之后，使用：</p>
+<h1 id="预览与发布">预览与发布</h1>
+<p>写作完成之后，使用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>就能在本地建立起一个服务器（默认是<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>），然后……不要幻想终端中的浏览器了，乖乖回到Windows，用浏览器打开这个网址，就可以看到效果了。</p>
+<p>就能在本地建立起一个服务器（默认是<a href="http://localhost:4000/" class="uri" target="_blank" rel="noopener">http://localhost:4000/</a>），然后……不要幻想终端中的浏览器了，乖乖回到Windows，用浏览器打开这个网址，就可以看到效果了。</p>
 <p>为了发布，我们还要安装一个应用<code>hexo-deployer-git</code>，使用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 <p>如果你之前的配置没问题，那么这时候就可以成功发布了（不放心的话，也可以将博文提前备份）。使用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>激动人心的时刻到了，请放下手中的茶，在浏览器打开<code>http://username.github.io</code>，欣赏自己的成果吧！</p>
-<h1 id="更改与重发布"><a href="#更改与重发布" class="headerlink" title="更改与重发布"></a>更改与重发布</h1><p>我一点也不想写这一节的，因为上一节的结尾明摆着就是“从此王子与公主过上了幸福的日子”。</p>
+<h1 id="更改与重发布">更改与重发布</h1>
+<p>我一点也不想写这一节的，因为上一节的结尾明摆着就是“从此王子与公主过上了幸福的日子”。</p>
 <p>没办法，第一次结婚，吵架是难免的……可日子还得过。我之前太着急了，写完没有检查（真是个坏习惯），发布了之后才发现章节乱套了。可以参照我之前提到的Markdown注意事项修改，之后还是用这一套指令发布：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>不过似乎这个网页并不会立刻更新，可能要等待几分钟。</p>
-<h1 id="疑难杂症"><a href="#疑难杂症" class="headerlink" title="疑难杂症"></a>疑难杂症</h1><h2 id="https安全性"><a href="#https安全性" class="headerlink" title="https安全性"></a>https安全性</h2><ul>
+<h1 id="疑难杂症">疑难杂症</h1>
+<h2 id="https安全性">https安全性</h2>
+<ul>
 <li>问题：<strong>12月17日</strong>发现，在Chrome浏览器上打开博客，会在地址栏显示小盾牌，提示“该网页试图加载不安全的脚本”，这看起来非常恼人。</li>
 <li>原因：google一番之后发现是主题较老，里面的一些链接写死成了<code>&quot;http://xxxx&quot;</code>，导致网页只能通过http地址加载脚本。</li>
 <li>解决：打开<code>./themes/jacman/layout/_partial</code>，把所有<code>.ejs</code>文件中出现的所有<code>http:</code>删掉。（<strong>建议保存副本</strong>，可以用“替换”实现，注意查找关键字不是<code>http</code>，那样会把<code>https:</code>也毁掉）</li>
+</ul>
+<h2 id="解决-md-控制字符与公式的冲突">解决 MD 控制字符与公式的冲突</h2>
+<ul>
+<li>问题：<strong>3月31日</strong>发现，公式中的<code>_</code>等字符也会被当成 MD 中的控制字符，因而 <code>$x_i,y_i$</code>等等就无法正常显示，必须加<code>\</code>转义，既麻烦，又违背了latex的语法。</li>
+<li>原因：hexo 默认的 markdown 渲染器设置有问题。</li>
+<li>解决：参考了一些教程，看到大佬们推荐使用另一个渲染器 <code>hexo-renderer-pandoc</code>，步骤如下：
+<ol style="list-style-type: decimal">
+<li><p>删除或者禁用原有的 <code>hexo-renderer-marked</code>。如果删除，使用： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure></p>
+但是更推荐禁用，这样可以避免其他重要包被一起删除。方法是编辑 hexo 根目录下的 package.json，删除关于<code>hexo-renderer-marked</code>的内容。</li>
+<li>安装 pandoc ，很简单 <code>apt-get install</code></li>
+<li><p>安装新的渲染器： <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure></p></li>
+</ol>
+<p>要注意的是，这个渲染器对于 markdown 语法的要求更<del>严格</del>奇怪，空行有时候会影响输出效果。</p>
+<p>还有一个问题是这个渲染器会把图片标题重复两遍，比较影响美观，勉强……可以接受。</p></li>
+</ul>
+<h2 id="开启评论功能">开启评论功能！</h2>
+<ul>
+<li>问题：真是寂寞啊 (☄⊙ω⊙)☄</li>
+<li>原因：闲的</li>
+<li>解决：目前还健在的可免费使用的评论系统，最火的就是 Disqus。虽然在墙内不是很稳，但是功能无疑是最好的。我使用的 Jacman 主题已经内置了对它的支持。只要在 Disqus 官网上注册一下，把注册时填写的“网址名”复制到 <code>themes/jacman/_config.yml</code> 中的 <code>disqus_shortname:</code> 后面就行了。然后在 Disqus 官网一路确定，重新上传博客，搞定。</li>
 </ul>
   
 	</div>
@@ -154,7 +189,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Windows-Ubuntu/">Windows Ubuntu</a><a href="/tags/博客/">博客</a>
+  <span></span> <a href="/tags/WSL/">WSL</a><a href="/tags/博客/">博客</a>
   </div>
 
 </div>
@@ -189,6 +224,14 @@
 
 	
 
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
 
 
 </div>  
@@ -197,7 +240,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#框架选择"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x6846;&#x67B6;&#x9009;&#x62E9;" class="headerlink" title="&#x6846;&#x67B6;&#x9009;&#x62E9;"></a>&#x6846;&#x67B6;&#x9009;&#x62E9;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于系统环境"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;" class="headerlink" title="&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;"></a>&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Hexo"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x5B89;&#x88C5;Hexo" class="headerlink" title="&#x5B89;&#x88C5;Hexo"></a>&#x5B89;&#x88C5;Hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本配置"><span class="toc-number">4.</span> <span class="toc-text"><a href="#&#x57FA;&#x672C;&#x914D;&#x7F6E;" class="headerlink" title="&#x57FA;&#x672C;&#x914D;&#x7F6E;"></a>&#x57FA;&#x672C;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一篇博文"><span class="toc-number">5.</span> <span class="toc-text"><a href="#&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;" class="headerlink" title="&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;"></a>&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#预览与发布"><span class="toc-number">6.</span> <span class="toc-text"><a href="#&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;" class="headerlink" title="&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;"></a>&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更改与重发布"><span class="toc-number">7.</span> <span class="toc-text"><a href="#&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;" class="headerlink" title="&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;"></a>&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#疑难杂症"><span class="toc-number">8.</span> <span class="toc-text"><a href="#&#x7591;&#x96BE;&#x6742;&#x75C7;" class="headerlink" title="&#x7591;&#x96BE;&#x6742;&#x75C7;"></a>&#x7591;&#x96BE;&#x6742;&#x75C7;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https安全性"><span class="toc-number">8.1.</span> <span class="toc-text"><a href="#https&#x5B89;&#x5168;&#x6027;" class="headerlink" title="https&#x5B89;&#x5168;&#x6027;"></a>https&#x5B89;&#x5168;&#x6027;</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#框架选择"><span class="toc-number">1.</span> <span class="toc-text">&#x6846;&#x67B6;&#x9009;&#x62E9;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于系统环境"><span class="toc-number">2.</span> <span class="toc-text">&#x5173;&#x4E8E;&#x7CFB;&#x7EDF;&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装hexo"><span class="toc-number">3.</span> <span class="toc-text">&#x5B89;&#x88C5;Hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基本配置"><span class="toc-number">4.</span> <span class="toc-text">&#x57FA;&#x672C;&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一篇博文"><span class="toc-number">5.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7BC7;&#x535A;&#x6587;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#预览与发布"><span class="toc-number">6.</span> <span class="toc-text">&#x9884;&#x89C8;&#x4E0E;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更改与重发布"><span class="toc-number">7.</span> <span class="toc-text">&#x66F4;&#x6539;&#x4E0E;&#x91CD;&#x53D1;&#x5E03;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#疑难杂症"><span class="toc-number">8.</span> <span class="toc-text">&#x7591;&#x96BE;&#x6742;&#x75C7;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#https安全性"><span class="toc-number">8.1.</span> <span class="toc-text">https&#x5B89;&#x5168;&#x6027;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决-md-控制字符与公式的冲突"><span class="toc-number">8.2.</span> <span class="toc-text">&#x89E3;&#x51B3; MD &#x63A7;&#x5236;&#x5B57;&#x7B26;&#x4E0E;&#x516C;&#x5F0F;&#x7684;&#x51B2;&#x7A81;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启评论功能"><span class="toc-number">8.3.</span> <span class="toc-text">&#x5F00;&#x542F;&#x8BC4;&#x8BBA;&#x529F;&#x80FD;&#xFF01;</span></a></li></ol></li></ol>
  
   </div>
 
@@ -227,11 +270,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/复习笔记/" title="复习笔记">复习笔记<sup>5</sup></a></li>
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
 			
 		
 			
@@ -239,27 +282,19 @@
 			
 		
 			
-				<li><a href="/tags/Windows-Ubuntu/" title="Windows Ubuntu">Windows Ubuntu<sup>2</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/笔记/" title="笔记">笔记<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/文学/" title="文学">文学<sup>1</sup></a></li>
+				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
 			
 		
 			
@@ -267,11 +302,7 @@
 			
 		
 			
-				<li><a href="/tags/科幻/" title="科幻">科幻<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据处理/" title="数据处理">数据处理<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 			
@@ -279,7 +310,7 @@
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -298,7 +329,7 @@
 	
 	
 	<section class="info">
-		<p> Luke，一个不爱记笔记的工科生。 <br/>
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
 			</p>
 	</section>
 	 
@@ -468,6 +499,26 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
 
 
 

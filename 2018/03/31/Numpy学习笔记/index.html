@@ -11,18 +11,18 @@
     
 
     
-    <meta name="description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrixNumpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
-<meta name="keywords" content="python,数据分析,笔记">
+    <meta name="description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrix Numpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
+<meta name="keywords" content="笔记,python,数据分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Numpy学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/Numpy学习笔记/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
-<meta property="og:description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrixNumpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
+<meta property="og:description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrix Numpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-31T17:51:02.687Z">
+<meta property="og:updated_time" content="2018-04-01T06:22:57.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Numpy学习笔记">
-<meta name="twitter:description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrixNumpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
+<meta name="twitter:description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrix Numpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
 
     
     
@@ -94,67 +94,70 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构：array-与-matrix"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array-&#x4E0E;-matrix" class="headerlink" title="&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array &#x4E0E; matrix"></a>&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array &#x4E0E; matrix</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运算操作"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;" class="headerlink" title="&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;"></a>&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建特殊数组"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;" class="headerlink" title="&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;"></a>&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x7ED3;&#x8BBA;" class="headerlink" title="&#x7ED3;&#x8BBA;"></a>&#x7ED3;&#x8BBA;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各种乘法函数"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;" class="headerlink" title="&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;"></a>&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵的连接"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;" class="headerlink" title="&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;"></a>&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#r-与-c"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#r-&#x4E0E;-c" class="headerlink" title="r_[] &#x4E0E; c_[]"></a>r_[] &#x4E0E; c_[]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“叠加”方式"><span class="toc-number">3.1.1.</span> <span class="toc-text"><a href="#&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;" class="headerlink" title="&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;"></a>&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#骚操作切片"><span class="toc-number">3.1.2.</span> <span class="toc-text"><a href="#&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;" class="headerlink" title="&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;"></a>&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般用途"><span class="toc-number">3.1.3.</span> <span class="toc-text"><a href="#&#x4E00;&#x822C;&#x7528;&#x9014;" class="headerlink" title="&#x4E00;&#x822C;&#x7528;&#x9014;"></a>&#x4E00;&#x822C;&#x7528;&#x9014;</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构array-与-matrix"><span class="toc-number">1.</span> <span class="toc-text">&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array &#x4E0E; matrix</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运算操作"><span class="toc-number">1.1.</span> <span class="toc-text">&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建特殊数组"><span class="toc-number">1.2.</span> <span class="toc-text">&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.3.</span> <span class="toc-text">&#x7ED3;&#x8BBA;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各种乘法函数"><span class="toc-number">2.</span> <span class="toc-text">&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵的连接"><span class="toc-number">3.</span> <span class="toc-text">&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#r_-与-c_"><span class="toc-number">3.1.</span> <span class="toc-text">r_[] &#x4E0E; c_[]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#叠加方式"><span class="toc-number">3.1.1.</span> <span class="toc-text">&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#骚操作切片"><span class="toc-number">3.1.2.</span> <span class="toc-text">&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般用途"><span class="toc-number">3.1.3.</span> <span class="toc-text">&#x4E00;&#x822C;&#x7528;&#x9014;</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
 		<p>python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。</p>
 <p>问题总是层出不穷的，要学会搜索，<a href="https://docs.scipy.org/doc/numpy/search.html" target="_blank" rel="noopener">Numpy 手册搜索页面传送门</a> 。</p>
-<h1 id="数据结构：array-与-matrix"><a href="#数据结构：array-与-matrix" class="headerlink" title="数据结构：array 与 matrix"></a>数据结构：array 与 matrix</h1><p>Numpy 中有两种数组：<code>array</code> 和 <code>matrix</code>，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。</p>
+<h1 id="数据结构array-与-matrix">数据结构：array 与 matrix</h1>
+<p>Numpy 中有两种数组：<code>array</code> 和 <code>matrix</code>，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。</p>
 <p>在这里对二者进行一个简单（包罗万象）的对比：</p>
-<h2 id="运算操作"><a href="#运算操作" class="headerlink" title="运算操作"></a>运算操作</h2><table>
+<h2 id="运算操作">运算操作</h2>
+<table>
 <thead>
-<tr>
-<th></th>
-<th>array</th>
-<th>matrix</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">array</th>
+<th align="left">matrix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>维度</td>
-<td>1~，根据括号层数，可能下降 ①</td>
-<td>2</td>
+<tr class="odd">
+<td align="left">维度</td>
+<td align="left">1~，根据括号层数，可能下降 ①</td>
+<td align="left">2</td>
 </tr>
-<tr>
-<td>矩阵乘法</td>
-<td><del><code>np.matmul(A,B)</code>或<code>A.dot(B)</code></del><code>A @ B</code> ②</td>
-<td><code>A*B</code></td>
+<tr class="even">
+<td align="left">矩阵乘法</td>
+<td align="left"><del><code>np.matmul(A,B)</code>或<code>A.dot(B)</code></del><code>A @ B</code> ②</td>
+<td align="left"><code>A*B</code></td>
 </tr>
-<tr>
-<td>按位乘法</td>
-<td><code>A*B</code>，遵循<strong>广播法则</strong> ③</td>
-<td><code>np.multiply(A,B)</code></td>
+<tr class="odd">
+<td align="left">按位乘法</td>
+<td align="left"><code>A*B</code>，遵循<strong>广播法则</strong> ③</td>
+<td align="left"><code>np.multiply(A,B)</code></td>
 </tr>
-<tr>
-<td>矩阵乘方</td>
-<td><code>np.linalg.matrix_power(A,k)</code></td>
-<td><code>A**k</code></td>
+<tr class="even">
+<td align="left">矩阵乘方</td>
+<td align="left"><code>np.linalg.matrix_power(A,k)</code></td>
+<td align="left"><code>A**k</code></td>
 </tr>
-<tr>
-<td>按位乘方</td>
-<td><code>A**B</code>,<code>B</code>不能包含负整数 ④</td>
-<td><code>np.power(A,B)</code></td>
+<tr class="odd">
+<td align="left">按位乘方</td>
+<td align="left"><code>A**B</code>,<code>B</code>不能包含负整数 ④</td>
+<td align="left"><code>np.power(A,B)</code></td>
 </tr>
-<tr>
-<td>其他按位运算</td>
-<td>遵循<strong>广播法则</strong></td>
-<td>遵循<strong>广播法则</strong></td>
+<tr class="even">
+<td align="left">其他按位运算</td>
+<td align="left">遵循<strong>广播法则</strong></td>
+<td align="left">遵循<strong>广播法则</strong></td>
 </tr>
-<tr>
-<td>逆矩阵</td>
-<td><code>np.linalg.inv(A)</code></td>
-<td><code>A**-1</code>或<code>A.I</code></td>
+<tr class="odd">
+<td align="left">逆矩阵</td>
+<td align="left"><code>np.linalg.inv(A)</code></td>
+<td align="left"><code>A**-1</code>或<code>A.I</code></td>
 </tr>
 </tbody>
 </table>
-<ol>
+<ol style="list-style-type: decimal">
 <li>例如对于一个二维 array ，<code>mean(A,1)</code> 的结果是一维的</li>
 <li><del>对于多个矩阵连乘，优雅的写法是 <code>np.linalg.multi_dot([A,B,C])</code>，我感觉写成 <code>A.dot(B).dot(C)</code>也挺明白的</del> PEP465更新，将 <code>@</code> 作为矩阵相乘的符号</li>
 <li>广播法则：简而言之，就是把两个数组中低维、较小的升维（加入长度为1的维度）、重复，使其形状与另一个数组匹配。如果可以做到，就能成功进行运算。</li>
 <li>可以使用 <code>A**-2.0</code>或者 <code>(1/A)**2</code>这种 hack 手段</li>
 </ol>
-<h2 id="创建特殊数组"><a href="#创建特殊数组" class="headerlink" title="创建特殊数组"></a>创建特殊数组</h2><p>array 和 matrix 分别使用两套创建方法，matrix 所用的函数位于 <code>np.matlib</code> 中。要注意两点：</p>
+<h2 id="创建特殊数组">创建特殊数组</h2>
+<p>array 和 matrix 分别使用两套创建方法，matrix 所用的函数位于 <code>np.matlib</code> 中。要注意两点：</p>
 <ul>
 <li>matrix 的方法中，无论怎么给参数，输出都是二维的（要么报错），array 系列则不然。</li>
 <li>array 系列的 <code>empty,zeros,ones,full</code>均可改用<code>empty_like(A)</code>之类的函数来创建与已知矩阵 A 同形态的矩阵。</li>
@@ -163,122 +166,129 @@
 <p>以下假设<code>from numpy import *</code></p>
 <table>
 <thead>
-<tr>
-<th></th>
-<th>array</th>
-<th>matrix</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">array</th>
+<th align="left">matrix</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>[NxN]</code>单位矩阵</td>
-<td><code>eye(N)</code></td>
-<td><code>matlib.eye(N)</code></td>
+<tr class="odd">
+<td align="left"><code>[NxN]</code>单位矩阵</td>
+<td align="left"><code>eye(N)</code></td>
+<td align="left"><code>matlib.eye(N)</code></td>
 </tr>
-<tr>
-<td><code>[MxN]</code>空矩阵</td>
-<td><code>empty([M,N])</code></td>
-<td><code>matlib.empty([M,N])</code></td>
+<tr class="even">
+<td align="left"><code>[MxN]</code>空矩阵</td>
+<td align="left"><code>empty([M,N])</code></td>
+<td align="left"><code>matlib.empty([M,N])</code></td>
 </tr>
-<tr>
-<td><code>[MxN]</code>零矩阵</td>
-<td><code>zeros([M,N])</code></td>
-<td><code>matlib.zeros([M,N])</code></td>
+<tr class="odd">
+<td align="left"><code>[MxN]</code>零矩阵</td>
+<td align="left"><code>zeros([M,N])</code></td>
+<td align="left"><code>matlib.zeros([M,N])</code></td>
 </tr>
-<tr>
-<td><code>[MxN]</code>全1矩阵</td>
-<td><code>ones([M,N])</code></td>
-<td><code>matlib.ones([M,N])</code></td>
+<tr class="even">
+<td align="left"><code>[MxN]</code>全1矩阵</td>
+<td align="left"><code>ones([M,N])</code></td>
+<td align="left"><code>matlib.ones([M,N])</code></td>
 </tr>
-<tr>
-<td><code>[MxN]</code>全a矩阵</td>
-<td><code>full([M,N],a)</code></td>
-<td>无</td>
+<tr class="odd">
+<td align="left"><code>[MxN]</code>全a矩阵</td>
+<td align="left"><code>full([M,N],a)</code></td>
+<td align="left">无</td>
 </tr>
-<tr>
-<td><code>[MxN]</code>随机矩阵</td>
-<td><code>random.rand(M,N)</code></td>
-<td><code>matlib.rand(M,N)</code>或<code>matlib.rand([M,N])</code></td>
+<tr class="even">
+<td align="left"><code>[MxN]</code>随机矩阵</td>
+<td align="left"><code>random.rand(M,N)</code></td>
+<td align="left"><code>matlib.rand(M,N)</code>或<code>matlib.rand([M,N])</code></td>
 </tr>
-<tr>
-<td><code>[MxN]</code>正态随机矩阵</td>
-<td><code>random.randn(M,N)</code></td>
-<td><code>matlib.randn(M,N)</code>或<code>matlib.randn([M,N])</code></td>
+<tr class="odd">
+<td align="left"><code>[MxN]</code>正态随机矩阵</td>
+<td align="left"><code>random.randn(M,N)</code></td>
+<td align="left"><code>matlib.randn(M,N)</code>或<code>matlib.randn([M,N])</code></td>
 </tr>
-<tr>
-<td><code>[MxN]</code>随机整数矩阵</td>
-<td><code>random.rand(low,hight,[M,N])</code></td>
-<td>无</td>
+<tr class="even">
+<td align="left"><code>[MxN]</code>随机整数矩阵</td>
+<td align="left"><code>random.rand(low,hight,[M,N])</code></td>
+<td align="left">无</td>
 </tr>
 </tbody>
 </table>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>鉴于 array 的泛用性以及 matrix 按位运算的坑爹性，我打算用 array了。<del><code>A.dot(B)</code>的写法虽不舒服，把<code>.dot()</code>当作一个算符还能接受，而<code>np.multiply(A,B)</code>的写法实在是太不数学了。</del> 既然已经可以用 <code>A @ B</code> 表示矩阵相乘，还有什么理由不用 array 呢？</p>
+<h2 id="结论">结论</h2>
+<p>鉴于 array 的泛用性以及 matrix 按位运算的坑爹性，我打算用 array了。<del><code>A.dot(B)</code>的写法虽不舒服，把<code>.dot()</code>当作一个算符还能接受，而<code>np.multiply(A,B)</code>的写法实在是太不数学了。</del> 既然已经可以用 <code>A @ B</code> 表示矩阵相乘，还有什么理由不用 array 呢？</p>
 <p>因为 array 是支持各种维度数据的，和数学上常用的矩阵并不一样，例如：<code>[N]</code>个数据的向量和<code>[1xN]</code>的矩阵并不是一回事，对向量进行转置操作没有效果。而对于维度不等的数组，在运算时会用到广播法则，能得到想要的结果——但是总是觉得不放心。为了符合数学习惯，在声明变量的时候可以把向量都写成 <code>A=np.array([[a,b,c]])</code>的形式，这样就不必再考虑相乘的时候用什么函数（<code>.dot()? .inner()? .outer()?</code> （/TДT)/），只要按数学表达式转置相乘即可。不过要注意，两个向量用矩阵乘法或类似乘法的函数，返回值是标量；两个矩阵用矩阵乘法，返回值是<code>[1x1]</code>的矩阵。</p>
-<h1 id="各种乘法函数"><a href="#各种乘法函数" class="headerlink" title="各种乘法函数"></a>各种乘法函数</h1><p>如上所述，其实各种乘法函数都可以用“转置+矩阵乘法”代替，不过还是在这里列一下，假设<code>m,n</code>是两个<code>[1xN]</code>矩阵：</p>
+<h1 id="各种乘法函数">各种乘法函数</h1>
+<p>如上所述，其实各种乘法函数都可以用“转置+矩阵乘法”代替，不过还是在这里列一下，假设<code>m,n</code>是两个<code>[1xN]</code>矩阵：</p>
 <table>
 <thead>
-<tr>
-<th>函数</th>
-<th>等价于</th>
-<th>注释</th>
+<tr class="header">
+<th align="left">函数</th>
+<th align="left">等价于</th>
+<th align="left">注释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>np.matmul(A,B)-&gt;ndarray</code></td>
-<td><code>A @ B</code></td>
-<td>矩阵乘法，参数不能是标量</td>
+<tr class="odd">
+<td align="left"><code>np.matmul(A,B)-&gt;ndarray</code></td>
+<td align="left"><code>A @ B</code></td>
+<td align="left">矩阵乘法，参数不能是标量</td>
 </tr>
-<tr>
-<td><code>A.dot(B),np.dot(A,B)-&gt;ndarray</code></td>
-<td><code>A @ B</code></td>
-<td>参数中的一个可以是标量</td>
+<tr class="even">
+<td align="left"><code>A.dot(B),np.dot(A,B)-&gt;ndarray</code></td>
+<td align="left"><code>A @ B</code></td>
+<td align="left">参数中的一个可以是标量</td>
 </tr>
-<tr>
-<td><code>np.inner(m,n)-&gt;num</code></td>
-<td><code>m @ n.T</code></td>
-<td>可用于高维，但数学意义不明</td>
+<tr class="odd">
+<td align="left"><code>np.inner(m,n)-&gt;num</code></td>
+<td align="left"><code>m @ n.T</code></td>
+<td align="left">可用于高维，但数学意义不明</td>
 </tr>
-<tr>
-<td><code>np.outer(m,n)-&gt;ndarray</code></td>
-<td><code>m.T @ n</code></td>
-<td></td>
+<tr class="even">
+<td align="left"><code>np.outer(m,n)-&gt;ndarray</code></td>
+<td align="left"><code>m.T @ n</code></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td><code>np.vdot(m,n)-&gt;num</code></td>
-<td><code>m.conjugate() @ n.T</code></td>
-<td>复共轭内积，不应用于高维</td>
+<tr class="odd">
+<td align="left"><code>np.vdot(m,n)-&gt;num</code></td>
+<td align="left"><code>m.conjugate() @ n.T</code></td>
+<td align="left">复共轭内积，不应用于高维</td>
 </tr>
 </tbody>
 </table>
-<h1 id="矩阵的连接"><a href="#矩阵的连接" class="headerlink" title="矩阵的连接"></a>矩阵的连接</h1><h2 id="r-与-c"><a href="#r-与-c" class="headerlink" title="r_[] 与 c_[]"></a>r_[] 与 c_[]</h2><p>两个很方便的语法糖，但是具体用法……很那理解，可以说是只可意会不可言传了。</p>
-<h3 id="“叠加”方式"><a href="#“叠加”方式" class="headerlink" title="“叠加”方式"></a>“叠加”方式</h3><ul>
-<li><p><code>r_[]</code>的作用是“连接”，可以带一个“拟似参数”指定连接的轴，例如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]          <span class="comment"># shape(3,),shape(3,)</span></span><br><span class="line">array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])             <span class="comment"># shape(6,) </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'0'</span>,[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]],[[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]]  <span class="comment"># shape(1,3),shape(1,3)</span></span><br><span class="line">array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],               </span><br><span class="line">       [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])                 <span class="comment"># shape(2,3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'1'</span>,[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]],[[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]]  <span class="comment"># shape(1,3),shape(1,3)</span></span><br><span class="line">array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])           <span class="comment"># shape(1,6)</span></span><br></pre></td></tr></table></figure>
-<p>从<code>shape</code>值的角度看，玄乎的“连接”就对应着 <code>shape</code>的变化，记<code>shape</code>为向量$S$，则沿 0 轴连接，就是 $S[0]=s_a[0]+s_b[0]$，同时其他分量不变 $S[i]=s_a[i]=s_b[i]$</p>
-</li>
-<li><p>这样引出第二个“拟似参数”：最小维度。例如（数不够，字母凑，就当<code>a,b,c</code>是普通数字）：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'0,2'</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]  <span class="comment"># shape(3,),shape(3,)</span></span><br><span class="line">array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])               <span class="comment"># shape(2,3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'1,3'</span>,</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]],</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[a,b,c]]]      <span class="comment"># shape(2,3),shape(2,3)</span></span><br><span class="line">array([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">        [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],</span><br><span class="line">        [a,b,c]]])             <span class="comment"># shape(1,4,3)</span></span><br></pre></td></tr></table></figure>
-<p>维度，也就是<code>shape</code>值的分量数。当前维度比要求的最小维度低，就要升维，对应着<code>shape</code>增加分量。默认的升维方式是在高位加一维，其长度为 1，即 $S_a=(1,s_a)$。之后再进行连接，显然第二个例子的历程是这样的：<br>$$ \begin{matrix}s_a=(2,3)\\ s_b=(2,3)\end{matrix}\xrightarrow{升维}\begin{matrix}S_a=(1,2,3)\\ S_b=(1,2,3)\end{matrix}\xrightarrow{连接} S=(1,2+2,3)=(1,4,3)$$</p>
-</li>
-<li><p>那么升维只有这一种方法吗？No！请看第三个“拟似参数”:原<code>shape</code>在新<code>shape</code>中的坐标，这个最难理解。然而我和其他博主不一样，我会画图。简单的假设原来$s_a=(h,k,l)$，用“1”填充升维之后$S_a$为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">( 1 1 . . . 1 h k l 1 . . . 1 1 )</span><br><span class="line">              ^   ^</span><br><span class="line">         坐标 m   坐标 -n</span><br></pre></td></tr></table></figure>
-<p>我们很自然的采用 python 中列表索引的方式来表示这个坐标。这个坐标的意义是：确定好了原来<code>shape</code>的位置之后，其他的<code>1~m-1</code>和<code>-n+1~-1</code>的位置会被“1”填充。第三个“拟似参数”若为非负数，则表示 <code>m</code>；若为负数，则表示<code>-n</code>。下面是一个例子：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'2,5,1'</span>,</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>]],</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">7</span>,<span class="number">8</span>],[<span class="number">9</span>,a],[b,c]]]          <span class="comment"># shape(3,2),shape(3,2)</span></span><br><span class="line">array([[[[[<span class="number">1</span>]],[[<span class="number">2</span>]],[[<span class="number">7</span>]],[[<span class="number">8</span>]]],</span><br><span class="line">        [[[<span class="number">3</span>]],[[<span class="number">4</span>]],[[<span class="number">9</span>]],[[a]]],</span><br><span class="line">        [[[<span class="number">5</span>]],[[<span class="number">6</span>]],[[b]],[[c]]]]]) <span class="comment"># shape(1,3,4,1,1)</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>所以说，其实默认的<code>r_[A,B]</code>就是<code>r_[&#39;0,1,-1&#39;,A,B]</code>罢了</p>
-</li>
-<li><p>而<code>c_[A,B]</code>就是<code>r_[&#39;-1,2,0&#39;,A,B]</code>，也就是说：沿最后一轴连接，维度最小为2，倒序升维。</p>
-</li>
+<h1 id="矩阵的连接">矩阵的连接</h1>
+<h2 id="r_-与-c_">r_[] 与 c_[]</h2>
+<p>两个很方便的语法糖，但是具体用法……很那理解，可以说是只可意会不可言传了。</p>
+<h3 id="叠加方式">“叠加”方式</h3>
+<ul>
+<li><code>r_[]</code>的作用是“连接”，可以带一个“拟似参数”指定连接的轴，例如：</li>
 </ul>
-<h3 id="骚操作切片"><a href="#骚操作切片" class="headerlink" title="骚操作切片"></a>骚操作切片</h3><p><code>r_[]</code>和<code>c_[]</code>之所以不设计成函数，就是为了方便切片，其中用于连接的除了普通数组外，也可以是以下表达式：</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]          <span class="comment"># shape(3,),shape(3,)</span></span><br><span class="line">array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])             <span class="comment"># shape(6,) </span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'0'</span>,[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]],[[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]]  <span class="comment"># shape(1,3),shape(1,3)</span></span><br><span class="line">array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],               </span><br><span class="line">       [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])                 <span class="comment"># shape(2,3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'1'</span>,[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]],[[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]]  <span class="comment"># shape(1,3),shape(1,3)</span></span><br><span class="line">array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])           <span class="comment"># shape(1,6)</span></span><br></pre></td></tr></table></figure></p>
+<p>从<code>shape</code>值的角度看，玄乎的“连接”就对应着 <code>shape</code>的变化，记<code>shape</code>为向量<span class="math inline">\(S\)</span>，则沿 0 轴连接，就是 <span class="math inline">\(S[0]=s_a[0]+s_b[0]\)</span>，同时其他分量不变 <span class="math inline">\(S[i]=s_a[i]=s_b[i]\)</span></p>
+<ul>
+<li>这样引出第二个“拟似参数”：最小维度。例如（数不够，字母凑，就当<code>a,b,c</code>是普通数字）：</li>
+</ul>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'0,2'</span>,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]]  <span class="comment"># shape(3,),shape(3,)</span></span><br><span class="line">array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">       [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])               <span class="comment"># shape(2,3)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'1,3'</span>,</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]],</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],[a,b,c]]]      <span class="comment"># shape(2,3),shape(2,3)</span></span><br><span class="line">array([[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],</span><br><span class="line">        [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>],</span><br><span class="line">        [<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>],</span><br><span class="line">        [a,b,c]]])             <span class="comment"># shape(1,4,3)</span></span><br></pre></td></tr></table></figure></p>
+<p>维度，也就是<code>shape</code>值的分量数。当前维度比要求的最小维度低，就要升维，对应着<code>shape</code>增加分量。默认的升维方式是在高位加一维，其长度为 1，即 <span class="math inline">\(S_a=(1,s_a)\)</span>。之后再进行连接，显然第二个例子的历程是这样的： <span class="math display">\[ \begin{matrix}s_a=(2,3)\\ s_b=(2,3)\end{matrix}\xrightarrow{升维}\begin{matrix}S_a=(1,2,3)\\ S_b=(1,2,3)\end{matrix}\xrightarrow{连接} S=(1,2+2,3)=(1,4,3)\]</span></p>
+<ul>
+<li>那么升维只有这一种方法吗？No！请看第三个“拟似参数”:原<code>shape</code>在新<code>shape</code>中的坐标，这个最难理解。然而我和其他博主不一样，我会画图。简单的假设原来<span class="math inline">\(s_a=(h,k,l)\)</span>，用“1”填充升维之后<span class="math inline">\(S_a\)</span>为</li>
+</ul>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">( 1 1 . . . 1 h k l 1 . . . 1 1 )</span><br><span class="line">              ^   ^</span><br><span class="line">         坐标 m   坐标 -n</span><br></pre></td></tr></table></figure></p>
+<p>我们很自然的采用 python 中列表索引的方式来表示这个坐标。这个坐标的意义是：确定好了原来<code>shape</code>的位置之后，其他的<code>1~m-1</code>和<code>-n+1~-1</code>的位置会被“1”填充。第三个“拟似参数”若为非负数，则表示 <code>m</code>；若为负数，则表示<code>-n</code>。下面是一个例子： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>r_[<span class="string">'2,5,1'</span>,</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>]],</span><br><span class="line"><span class="meta">... </span>   [[<span class="number">7</span>,<span class="number">8</span>],[<span class="number">9</span>,a],[b,c]]]          <span class="comment"># shape(3,2),shape(3,2)</span></span><br><span class="line">array([[[[[<span class="number">1</span>]],[[<span class="number">2</span>]],[[<span class="number">7</span>]],[[<span class="number">8</span>]]],</span><br><span class="line">        [[[<span class="number">3</span>]],[[<span class="number">4</span>]],[[<span class="number">9</span>]],[[a]]],</span><br><span class="line">        [[[<span class="number">5</span>]],[[<span class="number">6</span>]],[[b]],[[c]]]]]) <span class="comment"># shape(1,3,4,1,1)</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>所以说，其实默认的<code>r_[A,B]</code>就是<code>r_['0,1,-1',A,B]</code>罢了</p></li>
+<li><p>而<code>c_[A,B]</code>就是<code>r_['-1,2,0',A,B]</code>，也就是说：沿最后一轴连接，维度最小为2，倒序升维。</p></li>
+</ul>
+<h3 id="骚操作切片">骚操作切片</h3>
+<p><code>r_[]</code>和<code>c_[]</code>之所以不设计成函数，就是为了方便切片，其中用于连接的除了普通数组外，也可以是以下表达式：</p>
 <ul>
 <li><code>起始:终止:步长</code>的形式，结果就像<code>np.arange()</code>一样，包含<code>起始</code>但不包含<code>终止</code>，python 一贯风格。</li>
 <li>如果步长是个虚数，即<code>起始:终止:步长j</code>的形式，那么<code>步长</code>表示的是总的点数，结果如同<code>np.linspace()</code>，然而这时候就是包含<code>终止</code>的了。</li>
 </ul>
 <p>那么可以这样快速产生等距矩阵：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=r_[<span class="string">'0,2'</span>,<span class="number">0</span>:<span class="number">10</span>:<span class="number">100j</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="一般用途"><a href="#一般用途" class="headerlink" title="一般用途"></a>一般用途</h3><p>说了那么多玄的，其实<code>r_[]</code>和<code>c_[]</code>一般还是用在二维的矩阵上，这时候就很简单了：</p>
+<h3 id="一般用途">一般用途</h3>
+<p>说了那么多玄的，其实<code>r_[]</code>和<code>c_[]</code>一般还是用在二维的矩阵上，这时候就很简单了：</p>
 <ul>
 <li><code>r_[A,B]</code>：保持列数不变，按行连接</li>
 <li><code>c_[A,B]</code>：保持行数不变，按列连接</li>
@@ -293,7 +303,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/笔记/">笔记</a>
+  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a>
   </div>
 
 </div>
@@ -328,6 +338,14 @@
 
 	
 
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
 
 
 </div>  
@@ -336,7 +354,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构：array-与-matrix"><span class="toc-number">1.</span> <span class="toc-text"><a href="#&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array-&#x4E0E;-matrix" class="headerlink" title="&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array &#x4E0E; matrix"></a>&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array &#x4E0E; matrix</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运算操作"><span class="toc-number">1.1.</span> <span class="toc-text"><a href="#&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;" class="headerlink" title="&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;"></a>&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建特殊数组"><span class="toc-number">1.2.</span> <span class="toc-text"><a href="#&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;" class="headerlink" title="&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;"></a>&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.3.</span> <span class="toc-text"><a href="#&#x7ED3;&#x8BBA;" class="headerlink" title="&#x7ED3;&#x8BBA;"></a>&#x7ED3;&#x8BBA;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各种乘法函数"><span class="toc-number">2.</span> <span class="toc-text"><a href="#&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;" class="headerlink" title="&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;"></a>&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵的连接"><span class="toc-number">3.</span> <span class="toc-text"><a href="#&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;" class="headerlink" title="&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;"></a>&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#r-与-c"><span class="toc-number">3.1.</span> <span class="toc-text"><a href="#r-&#x4E0E;-c" class="headerlink" title="r_[] &#x4E0E; c_[]"></a>r_[] &#x4E0E; c_[]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#“叠加”方式"><span class="toc-number">3.1.1.</span> <span class="toc-text"><a href="#&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;" class="headerlink" title="&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;"></a>&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#骚操作切片"><span class="toc-number">3.1.2.</span> <span class="toc-text"><a href="#&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;" class="headerlink" title="&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;"></a>&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般用途"><span class="toc-number">3.1.3.</span> <span class="toc-text"><a href="#&#x4E00;&#x822C;&#x7528;&#x9014;" class="headerlink" title="&#x4E00;&#x822C;&#x7528;&#x9014;"></a>&#x4E00;&#x822C;&#x7528;&#x9014;</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构array-与-matrix"><span class="toc-number">1.</span> <span class="toc-text">&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;array &#x4E0E; matrix</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#运算操作"><span class="toc-number">1.1.</span> <span class="toc-text">&#x8FD0;&#x7B97;&#x64CD;&#x4F5C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建特殊数组"><span class="toc-number">1.2.</span> <span class="toc-text">&#x521B;&#x5EFA;&#x7279;&#x6B8A;&#x6570;&#x7EC4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.3.</span> <span class="toc-text">&#x7ED3;&#x8BBA;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#各种乘法函数"><span class="toc-number">2.</span> <span class="toc-text">&#x5404;&#x79CD;&#x4E58;&#x6CD5;&#x51FD;&#x6570;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵的连接"><span class="toc-number">3.</span> <span class="toc-text">&#x77E9;&#x9635;&#x7684;&#x8FDE;&#x63A5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#r_-与-c_"><span class="toc-number">3.1.</span> <span class="toc-text">r_[] &#x4E0E; c_[]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#叠加方式"><span class="toc-number">3.1.1.</span> <span class="toc-text">&#x201C;&#x53E0;&#x52A0;&#x201D;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#骚操作切片"><span class="toc-number">3.1.2.</span> <span class="toc-text">&#x9A9A;&#x64CD;&#x4F5C;&#x5207;&#x7247;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般用途"><span class="toc-number">3.1.3.</span> <span class="toc-text">&#x4E00;&#x822C;&#x7528;&#x9014;</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
@@ -366,11 +384,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/复习笔记/" title="复习笔记">复习笔记<sup>5</sup></a></li>
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
 			
 		
 			
@@ -378,27 +396,19 @@
 			
 		
 			
-				<li><a href="/tags/Windows-Ubuntu/" title="Windows Ubuntu">Windows Ubuntu<sup>2</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/笔记/" title="笔记">笔记<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/文学/" title="文学">文学<sup>1</sup></a></li>
+				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
 			
 		
 			
@@ -406,11 +416,7 @@
 			
 		
 			
-				<li><a href="/tags/科幻/" title="科幻">科幻<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据处理/" title="数据处理">数据处理<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 			
@@ -418,7 +424,7 @@
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -437,7 +443,7 @@
 	
 	
 	<section class="info">
-		<p> Luke，一个不爱记笔记的工科生。 <br/>
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
 			</p>
 	</section>
 	 
@@ -607,6 +613,26 @@ $(document).ready(function(){
 
 
 
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
 
 
 
