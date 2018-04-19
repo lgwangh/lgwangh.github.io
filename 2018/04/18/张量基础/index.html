@@ -1,0 +1,749 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>张量基础与 Numpy 应用 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
+<meta name="keywords" content="python,数据分析,笔记,物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="张量基础与 Numpy 应用">
+<meta property="og:url" content="http://yoursite.com/2018/04/18/张量基础/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-19T02:46:09.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="张量基础与 Numpy 应用">
+<meta name="twitter:description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/04/18/张量基础/" title="张量基础与 Numpy 应用" itemprop="url">张量基础与 Numpy 应用</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2018-04-18T10:58:54.000Z" itemprop="datePublished"> 发表于 2018-04-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#张量与矩阵"><span class="toc-number">1.</span> <span class="toc-text">&#x5F20;&#x91CF;&#x4E0E;&#x77E9;&#x9635;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#爱因斯坦求和约定"><span class="toc-number">2.</span> <span class="toc-text">&#x7231;&#x56E0;&#x65AF;&#x5766;&#x6C42;&#x548C;&#x7EA6;&#x5B9A;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#张量的乘法计算"><span class="toc-number">3.</span> <span class="toc-text">&#x5F20;&#x91CF;&#x7684;&#x4E58;&#x6CD5;&#x8BA1;&#x7B97;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵与向量的乘法运算"><span class="toc-number">4.</span> <span class="toc-text">&#x77E9;&#x9635;&#x4E0E;&#x5411;&#x91CF;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标变换"><span class="toc-number">5.</span> <span class="toc-text">&#x5750;&#x6807;&#x53D8;&#x6362;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#张量微分"><span class="toc-number">6.</span> <span class="toc-text">&#x5F20;&#x91CF;&#x5FAE;&#x5206;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">&#x603B;&#x7ED3;</span></a></li></ol>
+		
+		</div>
+		
+		<p>所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。</p>
+<p>常见的张量：</p>
+<ul>
+<li>0阶：常见形式为标量，温度、势等；</li>
+<li>1阶：常见形式为矢量，力、速度等；</li>
+<li>2阶：常见形式为矩阵，应力、应变等；</li>
+<li>3阶：应力梯度等；</li>
+<li>4阶：弹性模量等。</li>
+</ul>
+<p>张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。</p>
+<h1 id="张量与矩阵">张量与矩阵</h1>
+<ul>
+<li><p>矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有关系。而三维空间中的二阶张量一定是<span class="math inline">\(3\times3\)</span>。</p></li>
+<li><p>向量：在讨论矩阵时，常把向量当作矩阵的特例，这是向量可分为行向量、列向量；但是若把向量作为张量，则并不存在“行、列”的概念。这一点在 Matlab 和 Numpy 中差别明显：</p></li>
+</ul>
+<p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">% Matlab 基于矩阵，数据默认为矩阵</span></span><br><span class="line">&gt; A = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span><br><span class="line">&gt; A'</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Numpy 对矩阵没有偏爱，维度取决于方括号</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.T</span><br><span class="line">array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B.T</span><br><span class="line">array([[<span class="number">1</span>],</span><br><span class="line">       [<span class="number">2</span>],</span><br><span class="line">       [<span class="number">3</span>]])</span><br></pre></td></tr></table></figure></p>
+<h1 id="爱因斯坦求和约定">爱因斯坦求和约定</h1>
+<blockquote>
+<p>这是数学史上的一大发现，若不信的话，可以试着返回那不使用这方法的古板日子。</p>
+</blockquote>
+<p>简言之，就是（N项式中的）一项中，如果一个下标出现两次，就把它作为从 1 变化到 3 的求和变量（称为<strong>哑标</strong>）；如果出现一次，就认为它可从 1 到 3 自由取值（称为自由标）。例如矩阵乘法：</p>
+<p><span class="math display">\[ \mathbf{C}=\mathbf{AB}\Leftrightarrow c_{ij}=\sum_{k=1}^3a_{ik}b_{kj}\Leftrightarrow c_{ij}=a_{ik}b_{kj} \]</span></p>
+<p>（不过张量计算中不用直接并在一起表示矩阵相乘）</p>
+<p>在 Numpy 中，有一个函数<code>einsum()</code>来按照求和约定求和，但是哑标和自由表没有完全遵守规定：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">用法</th>
+<th align="left">爱因斯坦记法</th>
+<th align="left">注解</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>c = einsum('i,i',a,b)</code></td>
+<td align="left"><span class="math inline">\(c=a_ib_i\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>c = einsum('ii',a)</code></td>
+<td align="left"><span class="math inline">\(c=a_{ii}\)</span></td>
+<td align="left">迹，相当于<code>trace(a)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>c = einsum('ii-&gt;i',a)</code></td>
+<td align="left"><span class="math inline">\(c_j=a_{ii}\)</span></td>
+<td align="left">缩并，非标准的标记，理论上是<code>ii-&gt;j</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>c = einsum('ij-&gt;i',a)</code></td>
+<td align="left"><span class="math inline">\(c_i=\sum_ja_{ij}\)</span></td>
+<td align="left">单向求和，非标准的标记</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>c = einsum(a,[0,1],b,[1,0])</code></td>
+<td align="left"><span class="math inline">\(c=a_{ij}b_{ji}\)</span></td>
+<td align="left">相当于用数字代替了脚标</td>
+</tr>
+</tbody>
+</table>
+<p>可以用<code>einsum_path</code>查看其求和过程，输出是一个完整的 log （长长的字符串）。</p>
+<h1 id="张量的乘法计算">张量的乘法计算</h1>
+<p>类型众多，而且很容易和矩阵运算混淆，甚至本身就有些定义不明……下面列出主要运算和 Numpy 函数。注意：</p>
+<ul>
+<li>整体表示法只是个记号，爱因斯坦表示法则能揭示其具体运算。</li>
+<li>因为张量的阶数是不定的，因此大部分用二阶作为例子，也可以推广到更多。</li>
+<li>张量积、外积、克罗内克积众说纷纭，我取了互不矛盾且符合 Numpy 函数的版本。</li>
+</ul>
+<table>
+<colgroup>
+<col width="8%">
+<col width="31%">
+<col width="24%">
+<col width="21%">
+<col width="14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">名称</th>
+<th align="left">整体表示法</th>
+<th align="left">爱因斯坦表示法</th>
+<th align="left">Numpy 函数</th>
+<th align="left">注解</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">张量积</td>
+<td align="left"><span class="math inline">\(\mathbf{C}=\mathbf{AB}\)</span></td>
+<td align="left"><span class="math inline">\(C_{ijkl}=A_{ij}B_{kl}\)</span></td>
+<td align="left"><code>tensordot(A,B,0)</code></td>
+<td align="left">阶数为二者之和</td>
+</tr>
+<tr class="even">
+<td align="left">内积/点积</td>
+<td align="left"><span class="math inline">\(\mathbf{C}=\mathbf{A}\cdot\mathbf{B}\)</span></td>
+<td align="left"><span class="math inline">\(C_{ij}=A_{ik}B_{kj}\)</span></td>
+<td align="left"><code>tensordot(A,B,1)</code>或<code>A @ B</code></td>
+<td align="left">二阶相当于矩阵相乘</td>
+</tr>
+<tr class="odd">
+<td align="left">克罗内克积</td>
+<td align="left"><span class="math inline">\(\mathbf{C}=\mathbf{A}\otimes\mathbf{B}\)</span></td>
+<td align="left"><span class="math inline">\(\mathbf{C}=[A_{ij}\mathbf{B}]\)</span></td>
+<td align="left"><code>kron(A,B)</code></td>
+<td align="left">相当于张量积展开</td>
+</tr>
+<tr class="even">
+<td align="left">二次点积</td>
+<td align="left"><span class="math inline">\(C=\mathbf{A}:\mathbf{B}\)</span></td>
+<td align="left"><span class="math inline">\(C=A_{ij}B_{ij}\)</span></td>
+<td align="left"><code>tensordot(A,B,2)</code></td>
+<td align="left">仅用于二阶；交换律</td>
+</tr>
+</tbody>
+</table>
+<h1 id="矩阵与向量的乘法运算">矩阵与向量的乘法运算</h1>
+<p>这样就可以看出我们熟知的矩阵、向量的运算与张量运算的关系。其中矢量运算也同样适用于一阶张量。以下大部分运算都可以通过<code>@</code>和<code>.T</code>的组合完成，不再列出。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">名称</th>
+<th align="left">矩阵/向量表示</th>
+<th align="left">对应张量运算</th>
+<th align="left">Numpy 函数</th>
+<th align="left">注解</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">矩阵乘法</td>
+<td align="left"><span class="math inline">\(\mathbf{AB}\)</span></td>
+<td align="left">内积</td>
+<td align="left"><code>matmul(A,B)</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">矩阵外积</td>
+<td align="left"><span class="math inline">\(\mathbf{A}\circ\mathbf{B}\)</span></td>
+<td align="left">克罗内克积</td>
+<td align="left"><code>kron(A,B)</code></td>
+<td align="left">形状与克罗内克不同</td>
+</tr>
+<tr class="odd">
+<td align="left">矢量内积</td>
+<td align="left"><span class="math inline">\(\vec{a}\cdot\vec{b}\Leftrightarrow\vec{a}^T\vec{b}\)</span></td>
+<td align="left">内积</td>
+<td align="left"><code>inner(a,b)</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">矢量叉积</td>
+<td align="left"><span class="math inline">\(\vec{a}\times\vec{b}\)</span></td>
+<td align="left">无</td>
+<td align="left"><code>cross(a,b)</code></td>
+<td align="left">一般用于一阶张量</td>
+</tr>
+<tr class="odd">
+<td align="left">矢量外积</td>
+<td align="left"><span class="math inline">\(\vec{a}\circ\vec{b}\Leftrightarrow\vec{a}\vec{b}^T\)</span></td>
+<td align="left">张量积</td>
+<td align="left"><code>outer(a,b)</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h1 id="坐标变换">坐标变换</h1>
+<p>坐标变换是张量的根本。设原基为 <span class="math inline">\(\mathbf{i}\)</span>，新基为 <span class="math inline">\(\bar{\mathbf{i}}\)</span>，则变换矩阵 <span class="math inline">\(\mathbf{\beta}=\bar{\mathbf{i}}\cdot\mathbf{i}\)</span></p>
+<p>对于一阶：</p>
+<p><span class="math display">\[\left\{\begin{align}\bar{\mathbf{a}}&amp;=\mathbf{\beta}\cdot\mathbf{a}\\\mathbf{a}&amp;=\mathbf{\beta}^T\cdot\bar{\mathbf{a}}\end{align}\right.\]</span></p>
+<p>对于二阶：</p>
+<p><span class="math display">\[\left\{\begin{align}\bar{\mathbf{A}}&amp;=\mathbf{\beta}\cdot\mathbf{A}\cdot\mathbf{\beta}^T\\\mathbf{A}&amp;=\mathbf{\beta}^T\cdot\bar{\mathbf{A}}\cdot\mathbf{\beta}\end{align}\right.\]</span></p>
+<h1 id="张量微分">张量微分</h1>
+<p>拉普拉斯算符 <span class="math inline">\(\vec{\nabla}=(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z})​\)</span> ，以此可表示各种微分运算。设 <span class="math inline">\(\mathbf{A}(x,y,z)​\)</span> 为一 N 阶张量函数。</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">函数操作</th>
+<th align="left">运算</th>
+<th align="left">阶数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">梯度</td>
+<td align="left"><span class="math inline">\(\mathrm{grad}\ \mathbf{A}=\mathbf{A}\vec{\nabla}\)</span></td>
+<td align="left">N+1</td>
+</tr>
+<tr class="even">
+<td align="left">散度</td>
+<td align="left"><span class="math inline">\(\mathrm{div}\ \mathbf{A}=\mathbf{A}\cdot\vec{\nabla}\)</span></td>
+<td align="left">N-1</td>
+</tr>
+<tr class="odd">
+<td align="left">旋度</td>
+<td align="left"><span class="math inline">\(\mathrm{rot}\ \mathbf{A}=\mathbf{A}\times\vec{\nabla}\)</span>（矢量叉积）</td>
+<td align="left">N</td>
+</tr>
+</tbody>
+</table>
+<h1 id="总结">总结</h1>
+<p>其实很多运算说不清到底适用于谁，例如克罗内克积和矩阵外积，矢量叉积……在 Numpy 中，为了保持语义清晰，可以：</p>
+<ul>
+<li>鉴于最常用的运算就是张量内积 / 矩阵乘法，应尽量使用通用的<code>@</code>，这在两种语境下都行得通。</li>
+<li>进行物理运算时，采用张量方法；计算线性代数时，采用矩阵方法。</li>
+<li>进行矩阵运算：将矢量表示为二维；尽量使用<code>@</code>。</li>
+<li>进行张量运算：将矢量表示为一维；尽量使用<code>@</code>和；由于无法转置，进行矢量运算时，灵活使用<code>inner(),outer(),cross()</code>。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/笔记/">笔记</a><a href="/tags/物理/">物理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2018/04/18/张量基础/" data-title="张量基础与 Numpy 应用 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/04/07/从头开始配置Latex/"  title="从头开始配置LaTeX">
+ <strong>下一篇：</strong><br/> 
+ <span>从头开始配置LaTeX
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#张量与矩阵"><span class="toc-number">1.</span> <span class="toc-text">&#x5F20;&#x91CF;&#x4E0E;&#x77E9;&#x9635;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#爱因斯坦求和约定"><span class="toc-number">2.</span> <span class="toc-text">&#x7231;&#x56E0;&#x65AF;&#x5766;&#x6C42;&#x548C;&#x7EA6;&#x5B9A;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#张量的乘法计算"><span class="toc-number">3.</span> <span class="toc-text">&#x5F20;&#x91CF;&#x7684;&#x4E58;&#x6CD5;&#x8BA1;&#x7B97;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#矩阵与向量的乘法运算"><span class="toc-number">4.</span> <span class="toc-text">&#x77E9;&#x9635;&#x4E0E;&#x5411;&#x91CF;&#x7684;&#x4E58;&#x6CD5;&#x8FD0;&#x7B97;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#坐标变换"><span class="toc-number">5.</span> <span class="toc-text">&#x5750;&#x6807;&#x53D8;&#x6362;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#张量微分"><span class="toc-number">6.</span> <span class="toc-text">&#x5F20;&#x91CF;&#x5FAE;&#x5206;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">&#x603B;&#x7ED3;</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

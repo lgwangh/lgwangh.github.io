@@ -12,7 +12,7 @@
 
     
     <meta name="description" content="我就是手写，就是交不上论文，我也不会再用一次 Word！ 真香  总是被 Word 的辣鸡“智能”折腾得死去活来，可是又找不到代替之法，可以和 Word 一较高下的系统我也试过不少了，可是都多多少少有些问题：  Texmacs：我最青睐的软件，非常智能，极大减轻了排版负担，写个实验报告之类的小短文非常合适。可惜它更新缓慢，容易崩溃（频率比 Word 还高……），并且我不清楚该怎么修改他的模版，怕">
-<meta name="keywords" content="笔记,latex">
+<meta name="keywords" content="笔记,LaTeX">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从头开始配置LaTeX">
 <meta property="og:url" content="http://yoursite.com/2018/04/07/从头开始配置Latex/index.html">
@@ -20,7 +20,7 @@
 <meta property="og:description" content="我就是手写，就是交不上论文，我也不会再用一次 Word！ 真香  总是被 Word 的辣鸡“智能”折腾得死去活来，可是又找不到代替之法，可以和 Word 一较高下的系统我也试过不少了，可是都多多少少有些问题：  Texmacs：我最青睐的软件，非常智能，极大减轻了排版负担，写个实验报告之类的小短文非常合适。可惜它更新缓慢，容易崩溃（频率比 Word 还高……），并且我不清楚该怎么修改他的模版，怕">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/截屏2018_04_14-001.png">
-<meta property="og:updated_time" content="2018-04-14T08:31:21.536Z">
+<meta property="og:updated_time" content="2018-04-14T08:35:31.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从头开始配置LaTeX">
 <meta name="twitter:description" content="我就是手写，就是交不上论文，我也不会再用一次 Word！ 真香  总是被 Word 的辣鸡“智能”折腾得死去活来，可是又找不到代替之法，可以和 Word 一较高下的系统我也试过不少了，可是都多多少少有些问题：  Texmacs：我最青睐的软件，非常智能，极大减轻了排版负担，写个实验报告之类的小短文非常合适。可惜它更新缓慢，容易崩溃（频率比 Word 还高……），并且我不清楚该怎么修改他的模版，怕">
@@ -166,16 +166,18 @@
 <li>控制语句和参数调用都是以<code>$something$</code>的形式出现，注释为<code>$-- text</code>的形式，其他都作为<code>tex</code>文本。注意<code>%</code>也不能注释掉控制语句，它只会原样出现在输出文件里。</li>
 <li>用到的参数可以用两种方法给出：在命令行运行 pandoc 时以<code>--arg=value</code>的形式给出；或者在 <code>.md</code>文件中以<code>YAML frontmatter</code>的形式给出。显然第二个更加灵活方便。</li>
 <li>参数的使用方法：可以用在判断和循环中，也可以用<code>$arg$</code>的形式直接调用其值（作为文本）。</li>
-<li>三种控制结构：</li>
-</ol>
+<li><p>三种控制结构：</p>
 <ul>
 <li><p>顺序结构。直接写在最外层的语句会被原封不动的写进输出文件里。</p></li>
-<li><p>判断结构。语法是</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$if(arg)$          $-- 若 arg 存在(被设定过),即为真</span><br><span class="line">case_1             $-- 则把文本&apos;case_1&apos;写入输出文件</span><br><span class="line">$else$</span><br><span class="line">case_2</span><br><span class="line">$endif$</span><br></pre></td></tr></table></figure></p>
-<p>换行不是必须的，也常常他们连续的写在一个大括号里。</p></li>
-<li><p>循环结构。语法是</p>
-<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$for(arg)$         $-- 对于 arg 中的每一个值</span><br><span class="line">balabala$arg$</span><br><span class="line">$endfor$</span><br></pre></td></tr></table></figure></p></li>
+<li><p>判断结构。语法是</p></li>
 </ul>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$if(arg)$          $-- 若 arg 存在(被设定过),即为真</span><br><span class="line">case_1             $-- 则把文本&apos;case_1&apos;写入输出文件</span><br><span class="line">$else$</span><br><span class="line">case_2</span><br><span class="line">$endif$</span><br></pre></td></tr></table></figure></p>
+<p>换行不是必须的，也常常他们连续的写在一个大括号里。</p>
+<ul>
+<li>循环结构。语法是</li>
+</ul>
+<p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$for(arg)$         $-- 对于 arg 中的每一个值</span><br><span class="line">balabala$arg$</span><br><span class="line">$endfor$</span><br></pre></td></tr></table></figure></p></li>
+</ol>
 <p>了解了这些，在默认模版上就可以修改出合适的模板了。我的已经放到了<a href="https://github.com/lgwangh/settings_of_latex" target="_blank" rel="noopener">github仓库</a>。这里有个问题，就是<code>documentclass</code>有默认值<code>article</code>，没办法用<code>$if(documentclass)$ctexart</code>的方法设置默认类型，所以我直接把它写死了，没办法从<code>frontmatter</code>里改，要改的话得先修改模板。</p>
 <h2 id="pandoc-命令">pandoc 命令</h2>
 <p>最后一步就是用 pandoc 转码啦！不需要指明输入/输出类型，pandoc 会根据输入/输出文件名自动判断，常用参数如下：</p>
@@ -190,7 +192,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/latex/">latex</a>
+  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/LaTeX/">LaTeX</a>
   </div>
 
 </div>
@@ -212,6 +214,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2018/04/18/张量基础/" title="张量基础与 Numpy 应用">
+  <strong>上一篇：</strong><br/>
+  <span>
+  张量基础与 Numpy 应用</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2018/03/31/Numpy学习笔记/"  title="Numpy学习笔记">
@@ -261,7 +271,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -271,19 +281,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/笔记/" title="笔记">笔记<sup>7</sup></a></li>
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>8</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>2</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
@@ -291,23 +297,15 @@
 			
 		
 			
+				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/latex/" title="latex">latex<sup>1</sup></a></li>
 			
 		
 			
@@ -315,7 +313,19 @@
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>1</sup></a></li>
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
 			
 		
 		</ul>
