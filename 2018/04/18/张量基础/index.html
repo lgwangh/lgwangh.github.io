@@ -12,14 +12,14 @@
 
     
     <meta name="description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
-<meta name="keywords" content="python,数据分析,笔记,物理">
+<meta name="keywords" content="笔记,数据分析,python,物理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="张量基础与 Numpy 应用">
 <meta property="og:url" content="http://yoursite.com/2018/04/18/张量基础/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-19T02:46:09.760Z">
+<meta property="og:updated_time" content="2018-04-22T13:25:11.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="张量基础与 Numpy 应用">
 <meta name="twitter:description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
@@ -120,7 +120,9 @@
 <p>这是数学史上的一大发现，若不信的话，可以试着返回那不使用这方法的古板日子。</p>
 </blockquote>
 <p>简言之，就是（N项式中的）一项中，如果一个下标出现两次，就把它作为从 1 变化到 3 的求和变量（称为<strong>哑标</strong>）；如果出现一次，就认为它可从 1 到 3 自由取值（称为自由标）。例如矩阵乘法：</p>
-<p><span class="math display">\[ \mathbf{C}=\mathbf{AB}\Leftrightarrow c_{ij}=\sum_{k=1}^3a_{ik}b_{kj}\Leftrightarrow c_{ij}=a_{ik}b_{kj} \]</span></p>
+<p><span class="math display">\[
+\mathbf{C}=\mathbf{AB}\Leftrightarrow c_{ij}=\sum_{k=1}^3a_{ik}b_{kj}\Leftrightarrow c_{ij}=a_{ik}b_{kj}
+\]</span></p>
 <p>（不过张量计算中不用直接并在一起表示矩阵相乘）</p>
 <p>在 Numpy 中，有一个函数<code>einsum()</code>来按照求和约定求和，但是哑标和自由表没有完全遵守规定：</p>
 <table>
@@ -268,9 +270,23 @@
 <h1 id="坐标变换">坐标变换</h1>
 <p>坐标变换是张量的根本。设原基为 <span class="math inline">\(\mathbf{i}\)</span>，新基为 <span class="math inline">\(\bar{\mathbf{i}}\)</span>，则变换矩阵 <span class="math inline">\(\mathbf{\beta}=\bar{\mathbf{i}}\cdot\mathbf{i}\)</span></p>
 <p>对于一阶：</p>
-<p><span class="math display">\[\left\{\begin{align}\bar{\mathbf{a}}&amp;=\mathbf{\beta}\cdot\mathbf{a}\\\mathbf{a}&amp;=\mathbf{\beta}^T\cdot\bar{\mathbf{a}}\end{align}\right.\]</span></p>
+<p><span class="math display">\[
+\left\{
+\begin{split}
+\bar{\mathbf{a}}&amp;=\mathbf{\beta}\cdot\mathbf{a}\\
+\mathbf{a}&amp;=\mathbf{\beta}^T\cdot\bar{\mathbf{a}}
+\end{split}
+\right.
+\]</span></p>
 <p>对于二阶：</p>
-<p><span class="math display">\[\left\{\begin{align}\bar{\mathbf{A}}&amp;=\mathbf{\beta}\cdot\mathbf{A}\cdot\mathbf{\beta}^T\\\mathbf{A}&amp;=\mathbf{\beta}^T\cdot\bar{\mathbf{A}}\cdot\mathbf{\beta}\end{align}\right.\]</span></p>
+<p><span class="math display">\[
+\left\{
+\begin{split}
+\bar{\mathbf{A}}&amp;=\mathbf{\beta}\cdot\mathbf{A}\cdot\mathbf{\beta}^T\\
+\mathbf{A}&amp;=\mathbf{\beta}^T\cdot\bar{\mathbf{A}}\cdot\mathbf{\beta}
+\end{split}
+\right.
+\]</span></p>
 <h1 id="张量微分">张量微分</h1>
 <p>拉普拉斯算符 <span class="math inline">\(\vec{\nabla}=(\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z})​\)</span> ，以此可表示各种微分运算。设 <span class="math inline">\(\mathbf{A}(x,y,z)​\)</span> 为一 N 阶张量函数。</p>
 <table>
@@ -315,7 +331,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/笔记/">笔记</a><a href="/tags/物理/">物理</a>
+  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/python/">python</a><a href="/tags/物理/">物理</a>
   </div>
 
 </div>
@@ -400,23 +416,11 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
 			
 		
 			
@@ -424,11 +428,15 @@
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
 			
 		
 			
@@ -436,7 +444,15 @@
 			
 		
 			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			

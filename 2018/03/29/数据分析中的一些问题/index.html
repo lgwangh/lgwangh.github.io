@@ -12,14 +12,14 @@
 
     
     <meta name="description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python 窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上">
-<meta name="keywords" content="python,数据分析">
+<meta name="keywords" content="数据分析,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据分析中的一些问题">
 <meta property="og:url" content="http://yoursite.com/2018/03/29/数据分析中的一些问题/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python 窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-19T00:43:08.453Z">
+<meta property="og:updated_time" content="2018-06-07T13:42:01.567Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据分析中的一些问题">
 <meta name="twitter:description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python 窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上">
@@ -119,6 +119,7 @@
 <p>也就是使用了 Sans 字体，把首选换成了字符集全面的 Droid Sans Fallback。</p>
 <ul>
 <li>之后进入 <code>./fonts/ttf</code> ，删掉所有 <code>Vera</code> 系列的字体，并且把我们的 <code>DroidSans.ttf</code> 复制过来。</li>
+<li>另外负号显示会有问题，把 <code>axes.unicode_minus</code> 项改成 <code>False</code> 即可。</li>
 </ul>
 <h3 id="sympy-中的-mathjax-渲染">Sympy 中的 mathjax 渲染</h3>
 <p>默认使用 unicode 字符画，经过之前的设置会启用 mathjax。但是默认字体看着不舒服，最后在 StackOverflow 找到了 <a href="https://stackoverflow.com/questions/28909747/how-do-i-configure-mathjax-for-ipython-notebooks" target="_blank" rel="noopener">解决方案</a> 。从 <a href="https://github.com/mathjax/MathJax" target="_blank" rel="noopener">mathjax 官网</a> 下载原装包，解压之后：</p>
@@ -177,20 +178,82 @@
 <p>等间距插值比较简单，教程也多，而通式则比较复杂。</p>
 <p>以二阶插值为例，在各数据点之外还需要一个边界条件，一般是第一点处的导数，可以设定成 0 或者前两个点连线的斜率。那这样就可以给出插值参数的递推公式。</p>
 <p>设点 <span class="math inline">\((x_i,y_i)\)</span> 与 <span class="math inline">\((x_{i+1},y_{i+1})\)</span> 之间的曲线 <span class="math inline">\(f_i(x)\)</span> 为 <span class="math inline">\(y=a_i x^2+b_i x+c_i\)</span> ，则 <span class="math inline">\(f_i(x)\)</span> 满足：</p>
-<p><span class="math display">\[\left\{\begin{split}y_i&amp;=a_i x_i^2+b_i x_i+c_i\\y_{i+1}&amp;=a_i x_{i+1}^2+b_i x_{i+1}+c_i\\2a_i x_i+b_i&amp;=2a_{i-1}x_i+b_{i-1}\Leftrightarrow f_{i-1}&#39;(x_i)=f_{i}&#39;(x_i)\end{split}\right.\]</span></p>
+<p><span class="math display">\[
+\left\{
+\begin{split}
+y_i&amp;=a_i x_i^2+b_i x_i+c_i\\
+y_{i+1}&amp;=a_i x_{i+1}^2+b_i x_{i+1}+c_i\\
+2a_i x_i+b_i&amp;=2a_{i-1}x_i+b_{i-1}\Leftrightarrow f_{i-1}&#39;(x_i)=f_{i}&#39;(x_i)
+\end{split}
+\right.
+\]</span></p>
 <p>以 <span class="math inline">\(\vec{k}=(a_i\;b_i\;c_i)^T\)</span> 为未知量，列出矩阵方程 <span class="math inline">\(\mathbf{A}\vec{k}=\vec{b}\)</span> ，其中：</p>
-<p><span class="math display">\[\mathbf{A}=\left(\begin{matrix}x_i^2 &amp; x_i &amp; 1\\x_{i+1}^2 &amp; x_{i+1} &amp; 1\\2x_i &amp; 1 &amp; 0\end{matrix}\right),\vec{b}=\left(\begin{matrix}y_i \\y_{i+1}\\2a_{i-1}x_i+y_{i-1}\end{matrix}\right)\]</span></p>
+<p><span class="math display">\[
+\mathbf{A}=\left(
+\begin{matrix}
+x_i^2 &amp; x_i &amp; 1\\
+x_{i+1}^2 &amp; x_{i+1} &amp; 1\\
+2x_i &amp; 1 &amp; 0
+\end{matrix}
+\right),
+\vec{b}=\left(
+\begin{matrix}
+y_i \\
+y_{i+1}\\
+2a_{i-1}x_i+y_{i-1}
+\end{matrix}
+\right)
+\]</span></p>
 <p>这样就可以在 python 中利用 numpy 很方便地写出插值函数。</p>
 <h3 id="二维一阶插值">二维一阶插值</h3>
 <p>高维插值在有限元中十分有用。对于三角形面元，可以比较简单的表达为行列式形式：</p>
-<p><span class="math display">\[\left(\begin{matrix}T_i \\T_j\\T_k\end{matrix}\right)=\left(\begin{matrix}1&amp;x_i&amp;y_i\\1&amp;x_j&amp;y_j\\1&amp;x_k&amp;y_k\end{matrix}\right)\left(\begin{matrix}a_1\\a_2\\a_3\end{matrix}\right)\]</span></p>
+<p><span class="math display">\[
+\left(
+\begin{matrix}
+T_i \\
+T_j\\
+T_k
+\end{matrix}
+\right)
+=\left(
+\begin{matrix}
+1&amp;x_i&amp;y_i\\
+1&amp;x_j&amp;y_j\\
+1&amp;x_k&amp;y_k
+\end{matrix}
+\right)
+\left(
+\begin{matrix}
+a_1\\
+a_2\\
+a_3
+\end{matrix}
+\right)
+\]</span></p>
 <p>很容易求出系数<span class="math inline">\((a_1\ a_2\ a_3)^T\)</span>。</p>
 <h2 id="求导算法">求导算法</h2>
 <p>数值积分的算法多，numpy 也有内置函数，而数值求导却不好找，于是我自己写了一个，这里以二阶导数为例。</p>
 <p>数值求导的原理就是泰勒展开，将 <span class="math inline">\(f(x)\)</span> 展开到二阶可得：</p>
-<p><span class="math display">\[f(x_0+t)=f(x_0)+f&#39;(x_0)t+\frac{1}{2}f&#39;&#39;(x_0)t^2+O(t^2)\]</span></p>
+<p><span class="math display">\[
+f(x_0+t)=f(x_0)+f&#39;(x_0)t+\frac{1}{2}f&#39;&#39;(x_0)t^2+O(t^2)
+\]</span></p>
 <p>可以看出，如果要以 <span class="math inline">\(O(t^2)\)</span> 的精确度得到 <span class="math inline">\(f&#39;&#39;(x_0)\)</span> ，要列三个方程，因此对于三个样本点 <span class="math inline">\((x_0-t_{-1},y_{-1}),(x_0,y_0),(x_0+t_1,y_1)\)</span>，得出三个展开式。目的是<span class="math inline">\(Ay_{-1}+By_0+Cy_1=f&#39;&#39;(x_0)\)</span> ，则以 <span class="math inline">\(\vec{k}=(A\;B\;C)^T\)</span> 为未知量忽略高阶小量，列出矩阵方程 <span class="math inline">\(\mathbf{A}\vec{k}=\vec{b}\)</span>，其中</p>
-<p><span class="math display">\[\mathbf{A}=\left(\begin{matrix}1 &amp; 1 &amp; 1 \\ -t\_{-1}&amp;0&amp;t_1 \\ \frac{1}{2}t_{-1}^2 &amp; 0 &amp; \frac{1}{2}t_1^2\end{matrix}\right),\vec{b}=\left(\begin{matrix}0\\0\\1\end{matrix}\right)\]</span></p>
+<p><span class="math display">\[
+\mathbf{A}=\left(
+\begin{matrix}
+1 &amp; 1 &amp; 1 \\
+-t\_{-1}&amp;0&amp;t_1 \\
+\frac{1}{2}t_{-1}^2 &amp; 0 &amp; \frac{1}{2}t_1^2
+\end{matrix}
+\right),
+\vec{b}=\left(
+\begin{matrix}
+0\\
+0\\
+1
+\end{matrix}
+\right)
+\]</span></p>
 <p>这里有一个特殊情况：当 <span class="math inline">\(t_{-1}=t_1\)</span> 时，矩阵奇异，因此应跳过矩阵方程直接令 <span class="math inline">\(\vec{k}=(1 \ -2\ 1)^T\)</span>。同样的，可以用 numpy 写出函数：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">diff2</span><span class="params">(num)</span>:</span></span><br><span class="line">    length=num.shape[<span class="number">0</span>]</span><br><span class="line">    f2=zeros([length,<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arange(<span class="number">1</span>,length<span class="number">-1</span>):</span><br><span class="line">        t_n,t_p=num[i,<span class="number">0</span>]-num[i<span class="number">-1</span>,<span class="number">0</span>],num[i+<span class="number">1</span>,<span class="number">0</span>]-num[i,<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> t_n==<span class="number">0</span> <span class="keyword">or</span> t_p==<span class="number">0</span>:</span><br><span class="line">            factor=matrix([[<span class="number">0</span>],[<span class="number">0</span>],[<span class="number">0</span>]])</span><br><span class="line">        <span class="keyword">elif</span> t_n == t_p:</span><br><span class="line">            factor=matrix([[<span class="number">1</span>],[<span class="number">-2</span>],[<span class="number">1</span>]])/t_n**<span class="number">2</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            A=matrix([[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],[t_p,<span class="number">0</span>,-t_n],[t_p**<span class="number">2</span>/<span class="number">2</span>,<span class="number">0</span>,t_n**<span class="number">2</span>/<span class="number">2</span>]])</span><br><span class="line">            b=matrix([[<span class="number">0</span>],[<span class="number">0</span>],[<span class="number">1</span>]])</span><br><span class="line">            factor=A**<span class="number">-1</span>*b</span><br><span class="line">        f2[i,<span class="number">0</span>]=num[i<span class="number">-1</span>:i+<span class="number">2</span>,<span class="number">1</span>].T*factor</span><br><span class="line">    f2[<span class="number">0</span>,<span class="number">0</span>],f2[<span class="number">-1</span>,<span class="number">0</span>]=f2[<span class="number">1</span>,<span class="number">0</span>],f2[<span class="number">-2</span>,<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> c_[num[:,<span class="number">0</span>],f2]</span><br></pre></td></tr></table></figure>
 <p>在实际应用之后我终于明白为什么数值求导不常用了：尽管理论上拥有 <span class="math inline">\(O(t^2)\)</span> 的精确度，实际上每个值还是只由三个点决定。对于一般的实验信号，其中都会存在高频噪音，这种算法得出的只是在 0 附近剧烈震荡的曲线，其振幅远超曲线总体变化的二阶导数，掩盖了有用信息。因此<strong>在数值求导之前必须进行滤波</strong>，以均值滤波为佳。在我所用的例子中，滤波窗口达到约 100 时才得到了满意的结果。</p>
@@ -202,7 +265,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a>
+  <span></span> <a href="/tags/数据分析/">数据分析</a><a href="/tags/python/">python</a>
   </div>
 
 </div>
@@ -295,23 +358,11 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>3</sup></a></li>
 			
 		
 			
@@ -319,11 +370,15 @@
 			
 		
 			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
 			
 		
 			
@@ -331,7 +386,15 @@
 			
 		
 			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
