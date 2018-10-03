@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python 窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-15T08:26:20.707Z">
+<meta property="og:updated_time" content="2018-09-15T08:36:58.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据分析中的一些问题">
 <meta name="twitter:description" content="近来做试验报告，学分子动力学的时候处理了一些数据，已经忘得差不多的数值计算方法又捡起来一些。然而问题总是层出不穷的，现在记下来，以后再遇到的时候不至于手足无措。 关于python 窃以为用 python 做数值分析比 matlab 要好，因为相比语法简单而有简易的 matlab， python 是一门完备的语言，并且在机器学习方面正在大放异彩。再说用盗版 matlab 算出来的东西不好意思往论文上">
@@ -263,8 +263,13 @@ f(x_0+t)=f(x_0)+f&#39;(x_0)t+\frac{1}{2}f&#39;&#39;(x_0)t^2+O(t^2)
 <p>数学期望<span class="math inline">\(\mu=E(X)\)</span>、方差<span class="math inline">\(\sigma^2=D(X)\)</span>都是针对随机事件的本质（总体）的，而采用样本代表总体时会有偏差。</p>
 <p>样本均值<span class="math inline">\(\bar X=\frac 1 n \sum X_i\)</span>，数学期望即为总体均值，即<span class="math inline">\(E(\bar X)=\mu\)</span>，方差<span class="math inline">\(D(\bar X)=\frac{\sigma^2}{n}\)</span></p>
 <p>样本方差<span class="math inline">\(S^2=\frac{1}{n-1}\sum(X_i-\bar X)^2\)</span>，数学期望即为总体方差，即<span class="math inline">\(E(S^2)=\sigma^2\)</span>。注意此处分母为<span class="math inline">\(n-1\)</span>，定性的来说，这是因为算式中使用了<span class="math inline">\(X_i-\bar X\)</span>而非<span class="math inline">\(X_i-\mu\)</span>，<span class="math inline">\(\bar X\)</span>本身就存在误差，因而误差增大，使得<span class="math inline">\(\frac{1}{n}\sum(X_i-\mu)^2=\frac{1}{n-1}\sum(X_i-\bar X)^2\)</span>。</p>
+<p>在Numpy中，有两个相关函数：</p>
+<ul>
+<li><code>cov(X,Y)</code>返回一个协方差矩阵，只给一个参数的话返回<span class="math inline">\(\frac{1}{n-1} \sum(X_i-\bar X)^2\)</span></li>
+<li><code>var(X)</code>返回一组数据的方差，即<span class="math inline">\(\frac 1 n \sum(X_i-\bar X)^2\)</span></li>
+</ul>
 <h2 id="拟合优度和线性相关系数">拟合优度和线性相关系数</h2>
-<p>拟合优度（又称决定系数）<span class="math inline">\(R^2​\)</span>代表“模型能在多大程度上解释因变量的变化”，用于评价拟合的好坏。</p>
+<p>拟合优度（又称决定系数）<span class="math inline">\(R^2\)</span>代表“模型能在多大程度上解释因变量的变化”，用于评价拟合的好坏。</p>
 <p>以<span class="math inline">\(\bar{y}\)</span>表示样本均值，<span class="math inline">\(\hat{y}\)</span>表示根据回归模型预测的值，则残差平方和与方差之比越小，表明能解释的部分越多，即 <span class="math display">\[
 R^2=1-\frac{\mathrm{var}(\varepsilon)}{\mathrm{var}(Y)}=1-\frac{\sum(y_i-\hat{y})^2}{\sum(y_i-\bar{y})^2}
 \]</span> 可以看出<span class="math inline">\(R^2\in(-\infty,1]\)</span>，但一般而言是不会小于0的。</p>
@@ -363,7 +368,7 @@ r=\frac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -385,7 +390,11 @@ r=\frac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2
 			
 		
 			
-				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
 			
 		
 			
@@ -393,11 +402,19 @@ r=\frac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2
 			
 		
 			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
 			
 		
 			
@@ -410,14 +427,6 @@ r=\frac{\sum(X_i-\overline{X})(Y_i-\overline{Y})}{\sqrt{\sum(X_i-\overline{X})^2
 		
 			
 				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 		</ul>
