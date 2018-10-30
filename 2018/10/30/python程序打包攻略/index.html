@@ -1,0 +1,600 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python程序打包攻略 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="最近在做一门迷之课程的编程作业（老师这门课要上多久都不知道，简直是个傻子，总之非常一言难尽），最后要发给老师，所以必须打包。程序写了两天，打包，，，包了3天…… 尝试了很多方法，最后终于找到一套还说的过去的方案。 可选的方法  使用cx_Freeze库。我以前用过这种方法，效果不错，但是这次总是不行。首先是cx_Freeze似乎不能打包NumPy以及任何依赖于它的库；第二是在我的电脑上，cx_Fr">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python程序打包攻略">
+<meta property="og:url" content="http://yoursite.com/2018/10/30/python程序打包攻略/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="最近在做一门迷之课程的编程作业（老师这门课要上多久都不知道，简直是个傻子，总之非常一言难尽），最后要发给老师，所以必须打包。程序写了两天，打包，，，包了3天…… 尝试了很多方法，最后终于找到一套还说的过去的方案。 可选的方法  使用cx_Freeze库。我以前用过这种方法，效果不错，但是这次总是不行。首先是cx_Freeze似乎不能打包NumPy以及任何依赖于它的库；第二是在我的电脑上，cx_Fr">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-30T13:22:01.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python程序打包攻略">
+<meta name="twitter:description" content="最近在做一门迷之课程的编程作业（老师这门课要上多久都不知道，简直是个傻子，总之非常一言难尽），最后要发给老师，所以必须打包。程序写了两天，打包，，，包了3天…… 尝试了很多方法，最后终于找到一套还说的过去的方案。 可选的方法  使用cx_Freeze库。我以前用过这种方法，效果不错，但是这次总是不行。首先是cx_Freeze似乎不能打包NumPy以及任何依赖于它的库；第二是在我的电脑上，cx_Fr">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/10/30/python程序打包攻略/" title="python程序打包攻略" itemprop="url">python程序打包攻略</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2018-10-30T03:37:43.000Z" itemprop="datePublished"> 发表于 2018-10-30</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#可选的方法"><span class="toc-number">1.</span> <span class="toc-text">&#x53EF;&#x9009;&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐方案虚拟环境下的pyinstaller"><span class="toc-number">2.</span> <span class="toc-text">&#x63A8;&#x8350;&#x65B9;&#x6848;&#xFF1A;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x4E0B;&#x7684;PyInstaller</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用virtualenv创建虚拟环境"><span class="toc-number">2.1.</span> <span class="toc-text">&#x4F7F;&#x7528;virtualenv&#x521B;&#x5EFA;&#x865A;&#x62DF;&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyinstaller的基本使用方法"><span class="toc-number">2.2.</span> <span class="toc-text">PyInstaller&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyinstaller的进阶使用方法"><span class="toc-number">2.3.</span> <span class="toc-text">PyInstaller&#x7684;&#x8FDB;&#x9636;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyinstaller-的其他问题"><span class="toc-number">2.4.</span> <span class="toc-text">PyInstaller &#x7684;&#x5176;&#x4ED6;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#备选方案创造一个合适的python环境然后压缩起来"><span class="toc-number">3.</span> <span class="toc-text">&#x5907;&#x9009;&#x65B9;&#x6848;&#xFF1A;&#x521B;&#x9020;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;python&#x73AF;&#x5883;&#xFF0C;&#x7136;&#x540E;&#x538B;&#x7F29;&#x8D77;&#x6765;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建嵌入式python环境"><span class="toc-number">3.1.</span> <span class="toc-text">&#x642D;&#x5EFA;&#x5D4C;&#x5165;&#x5F0F;python&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用批处理文件打造程序入口"><span class="toc-number">3.2.</span> <span class="toc-text">&#x7528;&#x6279;&#x5904;&#x7406;&#x6587;&#x4EF6;&#x6253;&#x9020;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包"><span class="toc-number">3.3.</span> <span class="toc-text">&#x6253;&#x5305;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他问题"><span class="toc-number">4.</span> <span class="toc-text">&#x5176;&#x4ED6;&#x95EE;&#x9898;</span></a></li></ol>
+		
+		</div>
+		
+		<p>最近在做一门迷之课程的编程作业（老师这门课要上多久都不知道，简直是个傻子，总之非常一言难尽），最后要发给老师，所以必须打包。程序写了两天，打包，，，包了3天……</p>
+<p>尝试了很多方法，最后终于找到一套还说的过去的方案。</p>
+<h1 id="可选的方法">可选的方法</h1>
+<ol style="list-style-type: decimal">
+<li>使用<code>cx_Freeze</code>库。我以前用过这种方法，效果不错，但是这次总是不行。首先是<code>cx_Freeze</code>似乎不能打包<code>NumPy</code>以及任何依赖于它的库；第二是在我的电脑上，<code>cx_Freeze</code>出错退出时没有任何错误信息，我甚至不知道发生了什么，这浪费了我很多时间。我已经提交了issue，在作者修复之前我想我是不会去碰了。其实<code>cx_Freeze</code>能通过<code>setup.py</code>进行构建，并且打包时能自动识别用到的库，能修复问题还是不错的，用户文档在<a href="https://cx-freeze.readthedocs.io/" target="_blank" rel="noopener">这里</a>。</li>
+<li>使用<code>PyInstaller</code>库。这个我之前也用过，似乎会无脑把系统中的python库全都打包进去，导致输出文件体积颇大。但是相比前者而言，至少能用。</li>
+<li>歪门邪道，不进行真正的打包，只是把python本体和程序压缩一下了事。这样不能像<code>.exe</code>一样隐藏代码，但是打包后体积一般比<code>PyInstaller</code>输出的小。</li>
+</ol>
+<p>在多方测试之后，有两种方案可行。</p>
+<h1 id="推荐方案虚拟环境下的pyinstaller">推荐方案：虚拟环境下的PyInstaller</h1>
+<p><code>PyInstaller</code>会把系统中的python库全都打包，怎么办？<del>那就把多余的包删掉</del>那就创造一个没有多余的包的环境。这也有三种方法：使用<code>conda</code>创建，使用<code>virtualenv</code>创建，和直接下载一个嵌入版python创建。我测试下来，最稳的是用<code>virtualenv</code>。</p>
+<h2 id="使用virtualenv创建虚拟环境">使用virtualenv创建虚拟环境</h2>
+<p>安装方法很简单，<code>pip install virtualenv</code>。</p>
+<p>然后在程序目录中（路径中最好不要有中文和特殊字符），使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv --no-site-packages name</span><br></pre></td></tr></table></figure>
+<p>这将会在当前目录下创建一个名为<code>name</code>的文件夹，里面就是一个不含额外库的python（当然，已经装好了<code>pip</code>,<code>setuptools</code>和<code>wheel</code>）。然后要启动这个虚拟环境，注意，不要在PowerShell下操作，最好使用cmd。各种有用的命令行程序都在<code>\name\Scripts</code>文件夹中（注意在cmd中，使用正斜线作为路径分隔很容易引发错误），包括启动命令<code>activate</code>以及结束命令<code>deactivate</code>，还有<code>pip</code>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\name\Scripts\activate</span><br></pre></td></tr></table></figure>
+<p>启动成功的标志是cmd命令提示符之前出现<code>(name)</code>的标志。按照<a href="https://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001432712108300322c61f256c74803b43bfd65c6f8d0d0000" target="_blank" rel="noopener">廖雪峰的教程</a>，启动之后，<code>\name\Scripts</code>会临时进入系统路径，此时在任何位置调用<code>pip</code>都是这里的——然而如果建立虚拟环境时路径中有中文和特殊字符，就不行了，只能每次都<code>\name\Scripts\pip</code>凑活一下。</p>
+<p>之后在这个虚拟环境里，使用<code>pip</code>安装上程序需要的库，最后<code>pip install pyinstaller</code>。</p>
+<h2 id="pyinstaller的基本使用方法">PyInstaller的基本使用方法</h2>
+<p>完整用户手册在<a href="https://pyinstaller.readthedocs.io/" target="_blank" rel="noopener">这里</a>。</p>
+<p>最简单的用法，就是直接在命令行中指定选项，基本就是这样</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller [options] my_script.py</span><br><span class="line">常用 [options]:</span><br><span class="line">	-h 显示help并退出</span><br><span class="line">	-D 生成一个文件夹，其中包含一个exe（默认）</span><br><span class="line">	-F 生成单个exe文件</span><br><span class="line">	-w 生成一个无命令行界面的程序</span><br><span class="line">	-i file.ico 指定图标</span><br><span class="line">	--add-data SRC;DEST 在程序中用到的其他（非二进制）文件，不建议用（见后文）</span><br><span class="line">	--hidden-import MODULENAME 在程序中隐式导入的库，可多次使用</span><br><span class="line">	--exclude-module MODULENAME 不希望导入的库，可多次使用</span><br></pre></td></tr></table></figure>
+<p>运行之后，会在<strong>运行这条命令的路径</strong>下生成构建选项文件<code>my_script.spec</code>，以及两个文件夹，<code>build</code>保存构建中用到的文件，<code>dist</code>保存构建结果。</p>
+<h2 id="pyinstaller的进阶使用方法">PyInstaller的进阶使用方法</h2>
+<p>通过编辑<code>.spec</code>文件可以进行更详细的设定，例如当程序中用到外部文件时，可以用<code>--add-data</code>选项，但是直接在<code>.spec</code>文件中指定来的更明白。</p>
+<p>使用如下命令，可以仅仅生成<code>.spec</code>文件，而不进行后续步骤：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyi-makespec [options] name.py</span><br><span class="line">[options] 与之前类似</span><br></pre></td></tr></table></figure>
+<p>如果要添加外部文件，就把<code>.spec</code>文件中的<code>datas=[]</code>改成<code>[('file1','path1'),('file2','path2')]</code>的形式，<code>path</code>也是相对于<strong>运行这条命令的路径</strong>的（但是为什么不写成<code>('\path\file','.')</code>呢，这样更明白）。</p>
+<p>修改好后，使用<code>pyinstaller my_script.spec</code>运行即可。</p>
+<h2 id="pyinstaller-的其他问题">PyInstaller 的其他问题</h2>
+<p>有时使用时会出现一些关于encode的问题（错误报告忘了记录下来了Orz），可以在<code>\Lib\site-packages\PyInstaller</code>找到<code>compet.py</code>，在389行，加上一个参数<code>error  =  'ignore'</code>。（解决问题的方法，就是直接忽视它）</p>
+<h1 id="备选方案创造一个合适的python环境然后压缩起来">备选方案：创造一个合适的python环境，然后压缩起来</h1>
+<p>其实还是用PyInstaller较好，基本不会有DLL问题，但是有时候它的输出结果实在太大，或者有无法解决的bug，那么可以考虑这种方法。</p>
+<h2 id="搭建嵌入式python环境">搭建嵌入式python环境</h2>
+<p>先去官网下载一个嵌入版压缩包（考虑到程序可能要在某些古老电脑运行，可以下载32位版，即Windows x86 embeddable zip file），建议使用python3.5.4，因为更低版本不支持某些新功能，更高版本再下一步会出bug，下载网址是<a href="https://www.python.org/downloads/release/python-354/" class="uri" target="_blank" rel="noopener">https://www.python.org/downloads/release/python-354/</a>。</p>
+<p>解压之后就可以得到python的“核”，它很精简，甚至不包含<code>pip</code>三件套。把<a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="noopener">这个脚本</a>保存为<code>get-pip.py</code>，用“核”中包含的<code>python.exe</code>运行它，就能安装上三件套了。</p>
+<p>之后的操作，就是用<code>Scripts</code>目录下的<code>pip</code>安装上各种需要的包。有时候会出问题，可以先把<code>.whl</code>文件下载到本地再安装，这个网站提供的比较全：<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/" class="uri" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a></p>
+<h2 id="用批处理文件打造程序入口">用批处理文件打造程序入口</h2>
+<p>这种方法无法把代码冻结起来（全开源……）。显然，让用户直接去点击<code>.py</code>文件运行是不妥当的，可以把主程序藏到<code>\lib</code>文件夹里，写一个批处理文件<code>run.bat</code>什么的当作入口：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3.5.4\python lib\my_script.py</span><br></pre></td></tr></table></figure>
+<h2 id="打包">打包</h2>
+<p>然后把文件夹压缩一下就好了。</p>
+<p>但是如果你还是觉得这压缩包太大（仅仅<code>PySide2</code>一个库就60多兆……），可以试试让用户自己安装。就包含一个python的核，外加自己的程序和<code>get-pip.py</code>，然后写一个<code>install.bat</code>，包含安装<code>pip</code>和各种库的过程，别忘了安装完成后得给点提示，比如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@echo Install Successful!</span><br><span class="line">pause</span><br></pre></td></tr></table></figure>
+<p>但是实际应用中发现这方法不太行，因为下载库的时候经常卡到出超时错误……</p>
+<h1 id="其他问题">其他问题</h1>
+<ul>
+<li>如果用到Qt相关的库的话，可能需要手动指定一下使用的库的路径，例如使用<code>PySide2</code>：</li>
+</ul>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">dirname = os.path.dirname(PySide2.__file__)</span><br><span class="line">plugin_path = os.path.join(dirname, <span class="string">'plugins'</span>, <span class="string">'platforms'</span>)</span><br><span class="line">os.environ[<span class="string">'QT_QPA_PLATFORM_PLUGIN_PATH'</span>] = plugin_path</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>如果用到<code>matplotlib</code>，当然还是要解决一下字体问题，如果使用黑科技<code>install.bat</code>，可以先在<code>lib</code>里存一个改过的<code>matplotlibrc</code>，然后在安装过程中</li>
+</ul>
+<p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy /y lib\matplotlibrc python3\Lib\site-packages\matplotlib\mpl-data</span><br></pre></td></tr></table></figure></p>
+<p>要用到的字体也如法炮制。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2018/10/30/python程序打包攻略/" data-title="python程序打包攻略 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/10/30/python中几种数据结构的常用操作/"  title="python中几种数据结构的常用操作">
+ <strong>下一篇：</strong><br/> 
+ <span>python中几种数据结构的常用操作
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#可选的方法"><span class="toc-number">1.</span> <span class="toc-text">&#x53EF;&#x9009;&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#推荐方案虚拟环境下的pyinstaller"><span class="toc-number">2.</span> <span class="toc-text">&#x63A8;&#x8350;&#x65B9;&#x6848;&#xFF1A;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x4E0B;&#x7684;PyInstaller</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用virtualenv创建虚拟环境"><span class="toc-number">2.1.</span> <span class="toc-text">&#x4F7F;&#x7528;virtualenv&#x521B;&#x5EFA;&#x865A;&#x62DF;&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyinstaller的基本使用方法"><span class="toc-number">2.2.</span> <span class="toc-text">PyInstaller&#x7684;&#x57FA;&#x672C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyinstaller的进阶使用方法"><span class="toc-number">2.3.</span> <span class="toc-text">PyInstaller&#x7684;&#x8FDB;&#x9636;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyinstaller-的其他问题"><span class="toc-number">2.4.</span> <span class="toc-text">PyInstaller &#x7684;&#x5176;&#x4ED6;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#备选方案创造一个合适的python环境然后压缩起来"><span class="toc-number">3.</span> <span class="toc-text">&#x5907;&#x9009;&#x65B9;&#x6848;&#xFF1A;&#x521B;&#x9020;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;python&#x73AF;&#x5883;&#xFF0C;&#x7136;&#x540E;&#x538B;&#x7F29;&#x8D77;&#x6765;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#搭建嵌入式python环境"><span class="toc-number">3.1.</span> <span class="toc-text">&#x642D;&#x5EFA;&#x5D4C;&#x5165;&#x5F0F;python&#x73AF;&#x5883;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用批处理文件打造程序入口"><span class="toc-number">3.2.</span> <span class="toc-text">&#x7528;&#x6279;&#x5904;&#x7406;&#x6587;&#x4EF6;&#x6253;&#x9020;&#x7A0B;&#x5E8F;&#x5165;&#x53E3;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包"><span class="toc-number">3.3.</span> <span class="toc-text">&#x6253;&#x5305;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他问题"><span class="toc-number">4.</span> <span class="toc-text">&#x5176;&#x4ED6;&#x95EE;&#x9898;</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
