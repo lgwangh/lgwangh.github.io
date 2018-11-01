@@ -11,17 +11,18 @@
     
 
     
-    <meta name="description" content="这是一个还没填的坑啦啦啦~~">
+    <meta name="description" content="或许对于英语用户而言，各种编程语言中的函数都很好记吧，但是对于我……分不清pop和remove有什么区别，还是记一下吧。 列表 列表可以随机访问，如果用for .. in ..也是按顺序的，可以用+连接，或者用*重复。有以下常用操作： 1234a.append(value)         # 在末尾添加元素a.insert(index, value)  # 在 index 处插入元素（原 ind">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python中几种数据结构的常用操作">
 <meta property="og:url" content="http://yoursite.com/2018/10/30/python中几种数据结构的常用操作/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
-<meta property="og:description" content="这是一个还没填的坑啦啦啦~~">
+<meta property="og:description" content="或许对于英语用户而言，各种编程语言中的函数都很好记吧，但是对于我……分不清pop和remove有什么区别，还是记一下吧。 列表 列表可以随机访问，如果用for .. in ..也是按顺序的，可以用+连接，或者用*重复。有以下常用操作： 1234a.append(value)         # 在末尾添加元素a.insert(index, value)  # 在 index 处插入元素（原 ind">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-30T13:05:59.810Z">
+<meta property="og:updated_time" content="2018-11-01T14:51:27.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python中几种数据结构的常用操作">
-<meta name="twitter:description" content="这是一个还没填的坑啦啦啦~~">
+<meta name="twitter:description" content="或许对于英语用户而言，各种编程语言中的函数都很好记吧，但是对于我……分不清pop和remove有什么区别，还是记一下吧。 列表 列表可以随机访问，如果用for .. in ..也是按顺序的，可以用+连接，或者用*重复。有以下常用操作： 1234a.append(value)         # 在末尾添加元素a.insert(index, value)  # 在 index 处插入元素（原 ind">
 
     
     
@@ -93,16 +94,45 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#列表"><span class="toc-number">1.</span> <span class="toc-text">&#x5217;&#x8868;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字典"><span class="toc-number">2.</span> <span class="toc-text">&#x5B57;&#x5178;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集合"><span class="toc-number">3.</span> <span class="toc-text">&#x96C6;&#x5408;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串和元组"><span class="toc-number">4.</span> <span class="toc-text">&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x5143;&#x7EC4;</span></a></li></ol>
 		
 		</div>
 		
-		<p>这是一个还没填的坑啦啦啦~<sub>~</sub></p>
+		<p>或许对于英语用户而言，各种编程语言中的函数都很好记吧，但是对于我……分不清<code>pop</code>和<code>remove</code>有什么区别，还是记一下吧。</p>
+<h1 id="列表">列表</h1>
+<p>列表可以随机访问，如果用<code>for .. in ..</code>也是按顺序的，可以用<code>+</code>连接，或者用<code>*</code>重复。有以下常用操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.append(value)         <span class="comment"># 在末尾添加元素</span></span><br><span class="line">a.insert(index, value)  <span class="comment"># 在 index 处插入元素（原 index 处及之后元素后移）</span></span><br><span class="line">a.pop(index)            <span class="comment"># 删除 index 处的元素（返回删除的元素）</span></span><br><span class="line">a.remove(value)         <span class="comment"># 删除列表中第一个等于 value 的元素</span></span><br></pre></td></tr></table></figure>
+<p>以上都是原位修改，除<code>pop</code>以外都没有返回值。</p>
+<p>那么问题来了，怎么才能删除列表中符合条件的某些元素呢？自然会想到<code>for</code>循环，但是删除过程中列表长度会变化，到底循环了几次呢？</p>
+<p>经过用<code>remove</code>验证，循环次数大概会随着列表长度变化动态变化，因而下面的代码没有问题</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    <span class="keyword">if</span> i &lt; <span class="number">3</span>:</span><br><span class="line">        a.remove(i)</span><br><span class="line">print(a)</span><br><span class="line"><span class="comment"># [5, 7, 3, 4]</span></span><br><span class="line"><span class="comment"># 只循环四次，没有索引溢出问题，而且达到了目的</span></span><br></pre></td></tr></table></figure>
+<p>相比之下，用<code>pop</code>就必须先保存一份拷贝，并且考虑后续元素序号的变化，很不方便：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">b = deepcopy(a)</span><br><span class="line">num_deleted = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(b)):</span><br><span class="line">    <span class="keyword">if</span> b[i] &lt; <span class="number">3</span>:</span><br><span class="line">        a.pop(i - num_deleted)</span><br><span class="line">        num_deleted += <span class="number">1</span></span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+<p>但是，<code>remove</code>并不是最佳方案，不要忘了列表解析！</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = [i <span class="keyword">for</span> i <span class="keyword">in</span> a <span class="keyword">if</span> <span class="keyword">not</span> i &lt; <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<p>或者更省事的方法，直接使用<code>numpy</code>库，把列表做成<code>ndarray</code>对象，不过<code>ndarray</code>对象需要先定好内存空间，灵活性不足了。</p>
+<p>相比之下，插入问题就没什么好办法了，只能像<code>pop</code>一样多引入变量计算着插入数，幸好这种操作很少用到。</p>
+<h1 id="字典">字典</h1>
+<p>字典的键是没有顺序的，而值可以使用键索引随机访问。注意<code>for .. in ..</code>遍历的是键而不是值，常用操作比较少：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a.keys()    <span class="comment"># 返回键列表（其实是一个类似列表的对象）</span></span><br><span class="line">a.pop(key)  <span class="comment"># 删除键为 key 的键值（返回删除的值）</span></span><br><span class="line">a.update(b) <span class="comment"># 把字典 b 中的键值添加到 a 中</span></span><br></pre></td></tr></table></figure>
+<p>没有<code>insert</code>，因为需要新的键值的话直接赋值即可。如果要合并字典，不能用<code>+</code>，可以使用3.5起改进的解包语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = &#123;**dict1, **dict2&#125;   <span class="comment"># 漂亮！</span></span><br></pre></td></tr></table></figure>
+<h1 id="集合">集合</h1>
+<p>集合也是用<code>{}</code>表示，因而为了防止与空字典混淆，声明空集的话，要用<code>a = set()</code>。无法随机访问，只能用遍历的方法，集合的运算符比较独特：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a &amp; b <span class="comment"># a 交 b</span></span><br><span class="line">a | b <span class="comment"># a 并 b</span></span><br><span class="line">a - b <span class="comment"># a 与 b 的差集</span></span><br></pre></td></tr></table></figure>
+<p>其中b也是集合。因为元素不能重复，也就没有更多复杂问题了。（集合的<code>pop()</code>方法是不取参数的，效果是随机删除并返回一个值……）</p>
+<h1 id="字符串和元组">字符串和元组</h1>
+<p>共同的特点是不能原位更改，更多的……用到再说吧，毕竟字符串处理是个复杂的问题。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/python/">python</a>
+  </div>
 
 </div>
 
@@ -160,7 +190,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#列表"><span class="toc-number">1.</span> <span class="toc-text">&#x5217;&#x8868;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字典"><span class="toc-number">2.</span> <span class="toc-text">&#x5B57;&#x5178;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集合"><span class="toc-number">3.</span> <span class="toc-text">&#x96C6;&#x5408;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串和元组"><span class="toc-number">4.</span> <span class="toc-text">&#x5B57;&#x7B26;&#x4E32;&#x548C;&#x5143;&#x7EC4;</span></a></li></ol>
  
   </div>
 
@@ -194,7 +224,7 @@
 			
 		
 			
-				<li><a href="/tags/python/" title="python">python<sup>4</sup></a></li>
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
 			
 		
 			
@@ -206,11 +236,11 @@
 			
 		
 			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
 			
 		
 			
@@ -218,19 +248,7 @@
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
 			
 		
 			
@@ -238,7 +256,19 @@
 			
 		
 			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
 			
 		
 		</ul>
