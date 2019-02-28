@@ -1,0 +1,781 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>流体力学 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{v}, \pmb{P}\)为关于\((x, y, z, t)\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量和体积压缩系数 \[   E_V=\frac{1}{\beta_p}=-V\frac{\mathr">
+<meta name="keywords" content="笔记,物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="流体力学">
+<meta property="og:url" content="http://yoursite.com/2019/02/23/流体力学/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{v}, \pmb{P}\)为关于\((x, y, z, t)\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量和体积压缩系数 \[   E_V=\frac{1}{\beta_p}=-V\frac{\mathr">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-28T14:03:50.386Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="流体力学">
+<meta name="twitter:description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{v}, \pmb{P}\)为关于\((x, y, z, t)\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量和体积压缩系数 \[   E_V=\frac{1}{\beta_p}=-V\frac{\mathr">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/02/23/流体力学/" title="流体力学" itemprop="url">流体力学</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2019-02-23T12:11:52.000Z" itemprop="datePublished"> 发表于 2019-02-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流体的力学性质"><span class="toc-number">1.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x7684;&#x529B;&#x5B66;&#x6027;&#x8D28;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体流动的基本概念"><span class="toc-number">2.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x6D41;&#x52A8;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流场的描述"><span class="toc-number">2.1.</span> <span class="toc-text">&#x6D41;&#x573A;&#x7684;&#x63CF;&#x8FF0;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#质点导数"><span class="toc-number">2.2.</span> <span class="toc-text">&#x8D28;&#x70B9;&#x5BFC;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迹线和流线"><span class="toc-number">2.3.</span> <span class="toc-text">&#x8FF9;&#x7EBF;&#x548C;&#x6D41;&#x7EBF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流体的运动与变形"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x7684;&#x8FD0;&#x52A8;&#x4E0E;&#x53D8;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流体的流动与阻力"><span class="toc-number">2.5.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x7684;&#x6D41;&#x52A8;&#x4E0E;&#x963B;&#x529B;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体静力学"><span class="toc-number">3.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x9759;&#x529B;&#x5B66;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重力场流体静力学"><span class="toc-number">3.1.</span> <span class="toc-text">&#x91CD;&#x529B;&#x573A;&#x6D41;&#x4F53;&#x9759;&#x529B;&#x5B66;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体流动的守恒原理"><span class="toc-number">4.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x6D41;&#x52A8;&#x7684;&#x5B88;&#x6052;&#x539F;&#x7406;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不可压缩流体的一维层流"><span class="toc-number">5.</span> <span class="toc-text">&#x4E0D;&#x53EF;&#x538B;&#x7F29;&#x6D41;&#x4F53;&#x7684;&#x4E00;&#x7EF4;&#x5C42;&#x6D41;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#狭缝流动分析"><span class="toc-number">5.1.</span> <span class="toc-text">&#x72ED;&#x7F1D;&#x6D41;&#x52A8;&#x5206;&#x6790;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管流分析"><span class="toc-number">5.2.</span> <span class="toc-text">&#x7BA1;&#x6D41;&#x5206;&#x6790;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体流动微分方程"><span class="toc-number">6.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x6D41;&#x52A8;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不可压缩流体管内流动"><span class="toc-number">7.</span> <span class="toc-text">&#x4E0D;&#x53EF;&#x538B;&#x7F29;&#x6D41;&#x4F53;&#x7BA1;&#x5185;&#x6D41;&#x52A8;</span></a></li></ol>
+		
+		</div>
+		
+		<p>为了毕设开始学习<del>留级</del>流体力学( •̥́ ˍ •̀ )</p>
+<h1 id="流体的力学性质">流体的力学性质</h1>
+<p>流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是<span class="math inline">\(\rho, \pmb{v}, \pmb{P}\)</span>为关于<span class="math inline">\((x, y, z, t)\)</span>的连续函数。</p>
+<p>流体的力学特性包括：</p>
+<ul>
+<li><p>流动性</p></li>
+<li><p>可压缩性：体弹模量和体积压缩系数 <span class="math display">\[
+  E_V=\frac{1}{\beta_p}=-V\frac{\mathrm{d}p}{\mathrm{d}V}
+  \]</span></p></li>
+<li><p>黏滞性：表现为内摩擦力，许多流体满足牛顿黏流定律，对于速度场为<span class="math inline">\(\pmb{u}=\pmb{u}(x, y, z, t)​\)</span>的流体，在垂直于<span class="math inline">\(y​\)</span>向的平面上，切应力 <span class="math display">\[
+  \pmb\tau=\mu\frac{\partial\pmb u}{\partial y}
+  \]</span> 其中<span class="math inline">\(\mu​\)</span>为动力黏度，单位为<span class="math inline">\(\mathrm{Pa\cdot s}​\)</span>。液体黏度随温度升高而减小，气体黏度随温度升高而增加，定义运动粘度<span class="math inline">\(\nu=\frac{\mu}{\rho}​\)</span>。<span class="math inline">\(\mu=0​\)</span>则为理想流体。对于非牛顿流体，黏度与速度梯度有关，不是物性参数，因而不满足此定律。</p></li>
+</ul>
+<p>黏滞性的另一表现为无滑移条件，即流体与壁面无相对滑动。</p>
+<ul>
+<li>表面张力：表面张力处处垂直于流体线并切于液面，<span class="math inline">\(f=\sigma l\)</span>，其中<span class="math inline">\(\sigma\)</span>为表面张力系数。对于曲面液面，会因此产生压力差 <span class="math display">\[
+  \Delta p=\sigma\left(\frac{1}{R_1}+\frac{1}{R_2}\right)
+  \]</span> <span class="math inline">\(R_1,R_2\)</span>是通过曲面上一点的任意一对正交法切线的曲率半径（可证明对于确定的点而言是常数）。由此会产生毛细现象，对于直径<span class="math inline">\(r\)</span>的毛细管，若液面与管壁夹角为<span class="math inline">\(\theta\)</span>，则毛细管内页面高出外侧 <span class="math display">\[
+  h=\frac{2\sigma\cos\theta}{\rho g r}
+  \]</span></li>
+</ul>
+<h1 id="流体流动的基本概念">流体流动的基本概念</h1>
+<h2 id="流场的描述">流场的描述</h2>
+<p>有两种描述流体运动的方法：</p>
+<ul>
+<li><p>拉格朗日法，着眼于追踪流体质点。设<span class="math inline">\(t_0​\)</span>时刻流体质点位于<span class="math inline">\((a, b, c)​\)</span>，则其运动轨迹可表示为 <span class="math display">\[
+  \pmb{r}=x\mathbf{i}+y\mathbf{j}+z\mathbf{k}=\pmb{r}(a,b,c,t)
+  \]</span> 则流场的各种物理量都可表示成<span class="math inline">\((a,b,c,t)\)</span>的函数</p></li>
+<li><p>欧拉法，着眼于确定空间点上的流体流动，采用速度场作为基础 <span class="math display">\[
+  \pmb{v}=v_x\mathbf{i}+v_y\mathbf{j}+v_z\mathbf{k}=\pmb{v}(x,y,z,t)
+  \]</span> 则流场的各种物理量都可表示成<span class="math inline">\((x,y,z,t)\)</span>的函数</p></li>
+</ul>
+<p>两种方法可以互换：</p>
+<ul>
+<li>拉<span class="math inline">\(\to​\)</span>欧：从<span class="math inline">\(\pmb r=\pmb r(a,b,c,t)​\)</span>反解出<span class="math inline">\((a,b,c)=\pmb r^{-1}(x,y,z,t)​\)</span>，再带回<span class="math inline">\(\phi=\phi(a,b,c,t)​\)</span></li>
+<li>欧<span class="math inline">\(\to​\)</span>拉：从微分方程组<span class="math inline">\(\pmb v=\left(\frac{\mathrm{d}x}{\mathrm{d}t},\frac{\mathrm{d}y}{\mathrm{d}t},\frac{\mathrm{d}z}{\mathrm{d}t}\right)=\pmb v(x,y,z,t)​\)</span>解出<span class="math inline">\((x,y,z)=\pmb r(c_1,c_2,c_3,t)​\)</span>，根据<span class="math inline">\(t=t_0​\)</span>时<span class="math inline">\((x,y,z)=(x_0,y_0,z_0)​\)</span>确定积分常数<span class="math inline">\(c_1,c_2,c_3​\)</span>，再代回<span class="math inline">\(\phi=\phi(x,y,z,t)​\)</span></li>
+</ul>
+<h2 id="质点导数">质点导数</h2>
+<p>流体质点的物理量相对时间的变化率。对于拉格朗日法，物理量<span class="math inline">\(\phi=\phi(a,b,c,t)​\)</span>的质点导数就是<span class="math inline">\(\frac{\partial \phi(a,b,c,t)}{\partial t}​\)</span>，但是对于欧拉法不是。定义质点导数算子 <span class="math display">\[
+\frac{\mathrm{D}}{\mathrm{D}t}=\underbrace{\frac{\partial}{\partial t}}_{局部项}+\underbrace{v_x\frac{\partial}{\partial x}+v_y\frac{\partial}{\partial y}+v_z\frac{\partial}{\partial z}}_{对流项}
+\]</span> 则物理量<span class="math inline">\(\phi=\phi(x,y,z,t)\)</span>的质点导数为<span class="math inline">\(\frac{\mathrm{D} \phi(x,y,z,t)}{\mathrm{D} t}\)</span></p>
+<h2 id="迹线和流线">迹线和流线</h2>
+<p>流体质点的运动轨迹曲线称为迹线。拉格朗日法即为迹线参数方程，从中消去<span class="math inline">\(t\)</span>即为迹线方程；而欧拉法需要先换成拉格朗日法。</p>
+<p>而流线如同电场线、磁感线，流线微分方程 <span class="math display">\[
+\frac{\mathrm{d}x}{v_x}=\frac{\mathrm{d}y}{v_y}=\frac{\mathrm{d}z}{v_z}
+\]</span> 在积分时将<span class="math inline">\(t\)</span>作为常数。在稳态流动条件下（<span class="math inline">\(\frac{\partial \phi(x,y,z,t)}{\partial t}=0\)</span>），流线与迹线重合。</p>
+<p>流线包围成的管状曲面称为流管，在流管上再做两截面<span class="math inline">\(A_1,A_2\)</span>，则构成封闭曲面，在稳态条件下，总流体通量为0，类似于电场的高斯定理，管流具有连续性方程 <span class="math display">\[
+\iint_{A_1}\rho_1(\pmb v_1\cdot\mathrm{d}\pmb A_1)=\iint_{A_2}\rho_2(\pmb v_2\cdot\mathrm{d}\pmb A_2)
+\]</span> 对于工程中的实际管流，简化为 <span class="math display">\[
+A_1 \rho_{1m}v_{1m}=A_2 \rho_{2m}v_{2m}
+\]</span> 其中<span class="math inline">\(A\)</span>为管道横截面积，<span class="math inline">\(\rho_m,v_m\)</span>为管道截面上流体平均密度和平均速度。</p>
+<h2 id="流体的运动与变形">流体的运动与变形</h2>
+<p>流体微元团的运动可分解为三种：</p>
+<ul>
+<li><p>平移速度<span class="math inline">\(\pmb v\)</span></p></li>
+<li><p>转动速度 <span class="math display">\[
+  \begin{aligned}
+  \pmb\omega&amp;=\frac 1 2\mathrm{rot}\:\pmb v=\frac 1 2\pmb\nabla\times\pmb v\\
+  &amp;=\frac 1 2\left(\frac{\partial v_z}{\partial y}-\frac{\partial v_y}{\partial z}\right)\mathbf{i}+\frac 1 2\left(\frac{\partial v_x}{\partial z}-\frac{\partial v_z}{\partial x}\right)\mathbf{j}+\frac 1 2\left(\frac{\partial v_y}{\partial x}-\frac{\partial v_x}{\partial y}\right)\mathbf{k}
+  \end{aligned}
+  \]</span> 若<span class="math inline">\(\pmb\omega=\mathbf{0}\)</span>，则为无旋流动，否则为有旋流动</p></li>
+<li><p>变形速率 <span class="math display">\[
+  \varepsilon_{ij}=\frac 1 2\left(\frac{\partial v_i}{\partial j}+\frac{\partial v_j}{\partial i}\right)
+  \]</span> 则体积膨胀速率 <span class="math display">\[
+  \dot V=\mathrm{div}\:\pmb v=\pmb\nabla\cdot\pmb v=\frac{\partial v_x}{\partial x}+\frac{\partial v_y}{\partial y}+\frac{\partial v_z}{\partial z}
+  \]</span> 则可得不可压缩流体的连续性方程 <span class="math display">\[
+  \pmb\nabla\cdot\pmb v=0
+  \]</span></p></li>
+</ul>
+<h2 id="流体的流动与阻力">流体的流动与阻力</h2>
+<p>圆管中流体的雷诺数 <span class="math display">\[
+Re=\frac{\rho u_m D}{\mu}
+\]</span> 其中<span class="math inline">\(u_m\)</span>为平均速度。雷诺数越小流体脉动越小： <span class="math display">\[
+Re\left\{
+\begin{aligned}
+&amp;&lt;2300&amp; 层流\\
+&amp;2300\sim4000&amp; 过渡流\\
+&amp;&gt;4000&amp; 湍流
+\end{aligned}
+\right.
+\]</span></p>
+<ul>
+<li>层流：远离进口的管道街面上速度分布为抛物线形，<span class="math inline">\(u=u_\max\left(1-\frac{r^2}{R^2}\right),u_\max=2u_m​\)</span></li>
+<li>湍流：流体微团大尺度随机脉动，速度分布近似圆台，<span class="math inline">\(u_\max\approx1.25u_m\)</span></li>
+</ul>
+<p>固壁边界对流体流动产生阻力<span class="math inline">\(F_D\)</span>，包括正应力产生的形状阻力<span class="math inline">\(F_p\)</span>和切应力产生的摩擦阻力<span class="math inline">\(F_f\)</span>： <span class="math display">\[
+\begin{aligned}
+F_D=C_D\frac{\rho u_0^2}{2}A_D\\
+F_p=C_p\frac{\rho u_0^2}{2}A_D\\
+F_f=C_f\frac{\rho u_0^2}{2}A_f
+\end{aligned}
+\]</span> 其中<span class="math inline">\(C_D,C_p,C_f\)</span>为流体雷诺数的函数，<span class="math inline">\(A_D\)</span>为来流方向的投影面积，<span class="math inline">\(A_f\)</span>为摩擦表面积。几种常见情况：</p>
+<ul>
+<li><p>平壁：<span class="math inline">\(F_p=0\)</span>，则壁面平均切应力 <span class="math display">\[
+  \tau_0=C_f\frac{\rho u_0^2}{2}
+  \]</span></p></li>
+<li><p>圆管：<span class="math inline">\(F_p=0\)</span>，令流动摩擦系数<span class="math inline">\(\lambda=4C_f\)</span>，则 <span class="math display">\[
+  \tau_0=\frac{\lambda\rho u_m^2}{8}
+  \]</span> 则对于圆管内的充分发展流动，压降公式为 <span class="math display">\[
+  \Delta p=\lambda\frac{L}{D}\frac{\rho u_m^2}{2}
+  \]</span> 而流动摩擦系数有经验公式 <span class="math display">\[
+  \lambda=\left\{
+  \begin{aligned}
+  &amp;\frac{64}{Re} &amp;Re&lt;2300\\
+  &amp;\frac{0.3164}{\sqrt[4]{Re}} &amp;4000&lt;Re&lt;10^5
+  \end{aligned}
+  \right.
+  \]</span></p></li>
+</ul>
+<h1 id="流体静力学">流体静力学</h1>
+<p>作用在流体上的力可分为质量力（重力、惯性力）和表面力。记单位质量力为<span class="math inline">\(\pmb f\)</span>，则体积为<span class="math inline">\(V\)</span>的流体上的总质量力为 <span class="math display">\[
+\pmb F_m=\iiint_V\rho \pmb f\:\mathrm d V
+\]</span> 记单位表面力为<span class="math inline">\(\pmb p_n=\pmb \sigma_n+\pmb \tau_n\)</span>，则总表面力为 <span class="math display">\[
+\pmb F_A=\iint_A \pmb p_n\:\mathrm d A
+\]</span> 对于流体，表面正应力总是压应力。</p>
+<p>对于静止流体，单位体积的质量力等于流体静压力的梯度，即流体静力平衡方程： <span class="math display">\[
+\rho \pmb f=\pmb\nabla p
+\]</span> 由此可知静流体中<span class="math inline">\(\pmb f\)</span>处处垂直于等压面。</p>
+<h2 id="重力场流体静力学">重力场流体静力学</h2>
+<p>重力场中，自由液面压强为<span class="math inline">\(p_0\)</span>，则深度为<span class="math inline">\(h\)</span>处的液体压强为 <span class="math display">\[
+p=p_0+\rho gh
+\]</span> 对于静流体中任意壁面，其水平受力等于其竖直方向投影的受力： <span class="math display">\[
+F_x=p_aA+\rho g\int_0^Hhw\:\mathrm d h
+\]</span> 其竖直受力等于其上自由液面压力与液体重力之和。其总力矩为 <span class="math display">\[
+\pmb M=-\iint_Ap\pmb r\times\mathrm{d}\pmb A
+\]</span> 浸没物体所受浮力满足阿基米德定律：<span class="math inline">\(F=\rho gV\)</span></p>
+<h1 id="流体流动的守恒原理">流体流动的守恒原理</h1>
+<p>拉格朗日法面向确定物质组成的<strong>系统</strong>，而欧拉法面向确定空间位置的<strong>控制体</strong>。系统更有物理意义，因此要考虑如何用控制体中的物理量变化表示系统的守恒关系，通式为： <span class="math display">\[
+输出控制体的物理量流量-输入控制体的物理量流量+控制体内物理量变化率=系统物理量变化率
+\]</span> 以下是几种守恒关系：</p>
+<table>
+<colgroup>
+<col width="8%">
+<col width="45%">
+<col width="45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">守恒关系</th>
+<th align="center">通式</th>
+<th align="center">稳态简式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">质量守恒</td>
+<td align="center"><span class="math inline">\(\iint_{\rm cs}\rho(\pmb v\cdot\mathrm d\pmb A)++\frac{\mathrm d m_{\rm cv}}{\mathrm d t}=0\)</span></td>
+<td align="center"><span class="math inline">\(q_{mo}-q_{mi}=0\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">动量守恒</td>
+<td align="center"><span class="math inline">\(\sum \pmb F=\iint_{\rm cs}\rho\pmb v(\pmb v\cdot\mathrm d\pmb A)+\frac{\mathrm d}{\mathrm d t}\iiint_{\rm cv}\rho\pmb v \:\mathrm d V\)</span></td>
+<td align="center"><span class="math inline">\(\sum \pmb F=(\pmb v_o -\pmb v_i)q_{m}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">动量矩守恒</td>
+<td align="center"><span class="math inline">\(\sum \pmb M=\iint_{\rm cs}\rho(\pmb r\times\pmb v)(\pmb v\cdot\mathrm d\pmb A)+\frac{\mathrm d}{\mathrm d t}\iiint_{\rm cv}\rho(\pmb r\times\pmb v) \:\mathrm d V\)</span></td>
+<td align="center">（二维）<span class="math inline">\(\sum M_z=(r_i v_i\sin\alpha_i-r_o v_o\sin\alpha_o)q_m\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">能量守恒</td>
+<td align="center"><span class="math inline">\(\dot Q-\dot W=\iint_{\rm cs}e\rho(\pmb v\cdot\mathrm d A)+\frac{\mathrm d E_{\rm cv}}{\mathrm d t}\\E_{\rm cv}=\iiint_{\rm cv}\rho(u+\frac{v^2}{2}+gz)\:\mathrm d V\)</span></td>
+<td align="center">伯努利方程</td>
+</tr>
+</tbody>
+</table>
+<p>伯努利方程的适用条件为：无热量传递，无轴功输出，不可压缩理想流体的稳态流动。 <span class="math display">\[
+\frac{1}{2}\rho v^2+\rho g h+p=C\Leftrightarrow\rho v\:\mathrm{d}v+\rho g\:\mathrm{d}h+\mathrm{d}p=0
+\]</span> 将管道截面上的速度分布视为均一可得 <span class="math display">\[
+\frac{\rho Q^2}{2A^2}+\rho g h+p=C
+\]</span></p>
+<h1 id="不可压缩流体的一维层流">不可压缩流体的一维层流</h1>
+<p>流体速度沿<span class="math inline">\(x\)</span>方向，且仅在<span class="math inline">\(y\)</span>方向有变化，即<span class="math inline">\(\pmb u=u_x(y)\mathbf i\)</span>。对微元分析，可知<span class="math inline">\(\rho=C,u_1=u_2,\sum F_x=0,\sum F_y=0\)</span>，即微元体所受质量力与表面力之和为0,。且微元表面法向力只有压力，没有附加粘性力，<span class="math inline">\(\frac{\partial \tau_{xy}}{\partial x}=0\)</span>。</p>
+<h2 id="狭缝流动分析">狭缝流动分析</h2>
+<p>若黏度恒定，对于长 <span class="math inline">\(L\)</span>，宽<span class="math inline">\(D\)</span>，倾角为<span class="math inline">\(\beta\)</span>的狭缝，速度分布为 <span class="math display">\[
+\begin{aligned}
+&amp;u=-\frac{\Delta p^*y^2}{2\mu L}+\frac{C_1 y}{\mu}+C_2\\
+&amp;包括抛物线形的压差流-\frac{\Delta p^*y^2}{2\mu L}+\frac{D\Delta p^* y}{2\mu L}\\
+&amp;和线性形的剪切流
+\end{aligned}
+\]</span> 其中<span class="math inline">\(C_1,C_2\)</span>由上下表面剪切情况确定（固壁界面相对速度为0），而修正压力降<span class="math inline">\(\Delta p^*=p_1-p_2+\rho g L\cos\beta\)</span>，为狭缝两端压降扣除液柱重力后的实际摩擦压降。</p>
+<h2 id="管流分析">管流分析</h2>
+<p>类似的，可得</p>
+<table>
+<colgroup>
+<col width="20%">
+<col width="42%">
+<col width="37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">类型</th>
+<th align="center">速度分布</th>
+<th align="center">最大速度位置</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">通式</td>
+<td align="center"><span class="math inline">\(u=-\frac{\Delta p^* r^2}{4\mu L}+\frac{C_1}{\mu}\ln r+C_2\)</span></td>
+<td align="center">-</td>
+</tr>
+<tr class="even">
+<td align="center">圆管（半径<span class="math inline">\(R\)</span>）</td>
+<td align="center"><span class="math inline">\(u=\frac{\Delta p^* (R^2-r^2)}{4\mu L}\)</span></td>
+<td align="center"><span class="math inline">\(r_0=0\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">圆套管（内径<span class="math inline">\(R_1\)</span>外径<span class="math inline">\(R_2\)</span>）</td>
+<td align="center"><span class="math inline">\(u=\frac{\Delta p^*(R_2^2\ln\frac{r}{R_1}+R_1^2\ln\frac{R_2}{r}-r^2\ln\frac{R_2}{R_1})}{4\mu L\ln\frac{R_2}{R_1}}\)</span></td>
+<td align="center"><span class="math inline">\(r_0=\sqrt{\frac{R_2^2-R_1^2}{2\ln\frac{R_2}{R_1}}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h1 id="流体流动微分方程">流体流动微分方程</h1>
+<p>类似于塑性力学中的分析， 结合连续性方程、以应力表示的运动方程、牛顿流体的本构方程可得到黏性流体运动微分方程——耐维-斯托克斯方程，在常黏度条件下可表示为： <span class="math display">\[
+\frac{\mathrm D\pmb v}{\mathrm D t}=\pmb f-\frac{1}{\rho}\left[\pmb \nabla p+\mu\pmb\nabla^2\pmb v+\frac{\mu}{3}\pmb\nabla(\pmb \nabla\cdot\pmb v)\right]
+\]</span> 对于不可压缩流体，又可以写为 <span class="math display">\[
+\underbrace{\frac{\partial \pmb v}{\partial t}}
+_{非定常项}
++\underbrace{(\pmb v\cdot\pmb\nabla)\pmb v}
+_{对流项}
+=\underbrace{\pmb f-\frac{1}{\rho}\pmb \nabla p}
+_{源项(体积力、压差力)}
++\underbrace{\frac{\mu}{\rho}\pmb\nabla^2\pmb v}
+_{扩散项}
+\]</span></p>
+<h1 id="不可压缩流体管内流动">不可压缩流体管内流动</h1>
+<p>雷诺数较高时，由层流转变为湍流，湍流瞬时速度<span class="math inline">\(u=\bar u+u&#39;\)</span>可认为是时均速度与随机脉动量的叠加。对于湍流一般采用半经验理论，将基于N-S方程进行时均化得到的雷诺方程与原N-S方程比较，可得到6个雷诺应力，其形式为<span class="math inline">\(-\rho\overline{v_i&#39;v_j&#39;}\)</span>，反映了湍流脉动对平均运动的附加影响。</p>
+<p>采用普朗特混和长度理论，可将雷诺应力表示为 <span class="math display">\[
+(\tau_{yx})_T=-\rho\overline{u&#39;v&#39;}=\rho l^2\left(\frac{\mathrm d \overline{u}}{\mathrm d y}\right)^2
+\]</span> 管内的流体可分为三个区域：近壁粘性底层、过渡区、湍流核心区。湍流核心区速度分布经验式为： <span class="math display">\[
+\overline{u}=8.74u^*\left(\frac{R-r}{y^*}\right)^{1/7}
+\]</span> 圆管阻力系数与流体雷诺数、壁面粗糙度有关，可从莫迪图上查到，而局部阻力可根据其类型确定其局部阻力系数进行换算。</p>
+<p>流体在经过进口段之后才能成为充分发展流动，对于层流可认为进口段长度<span class="math inline">\(L_e=100D\)</span>，对于湍流<span class="math inline">\(L_e=50D\)</span>。进口段的阻力更大。</p>
+<hr>
+<p>剩下的不学了Orz</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/物理/">物理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2019/02/23/流体力学/" data-title="流体力学 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/10/30/python程序打包攻略/"  title="python程序打包攻略">
+ <strong>下一篇：</strong><br/> 
+ <span>python程序打包攻略
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流体的力学性质"><span class="toc-number">1.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x7684;&#x529B;&#x5B66;&#x6027;&#x8D28;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体流动的基本概念"><span class="toc-number">2.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x6D41;&#x52A8;&#x7684;&#x57FA;&#x672C;&#x6982;&#x5FF5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流场的描述"><span class="toc-number">2.1.</span> <span class="toc-text">&#x6D41;&#x573A;&#x7684;&#x63CF;&#x8FF0;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#质点导数"><span class="toc-number">2.2.</span> <span class="toc-text">&#x8D28;&#x70B9;&#x5BFC;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迹线和流线"><span class="toc-number">2.3.</span> <span class="toc-text">&#x8FF9;&#x7EBF;&#x548C;&#x6D41;&#x7EBF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流体的运动与变形"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x7684;&#x8FD0;&#x52A8;&#x4E0E;&#x53D8;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流体的流动与阻力"><span class="toc-number">2.5.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x7684;&#x6D41;&#x52A8;&#x4E0E;&#x963B;&#x529B;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体静力学"><span class="toc-number">3.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x9759;&#x529B;&#x5B66;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重力场流体静力学"><span class="toc-number">3.1.</span> <span class="toc-text">&#x91CD;&#x529B;&#x573A;&#x6D41;&#x4F53;&#x9759;&#x529B;&#x5B66;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体流动的守恒原理"><span class="toc-number">4.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x6D41;&#x52A8;&#x7684;&#x5B88;&#x6052;&#x539F;&#x7406;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不可压缩流体的一维层流"><span class="toc-number">5.</span> <span class="toc-text">&#x4E0D;&#x53EF;&#x538B;&#x7F29;&#x6D41;&#x4F53;&#x7684;&#x4E00;&#x7EF4;&#x5C42;&#x6D41;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#狭缝流动分析"><span class="toc-number">5.1.</span> <span class="toc-text">&#x72ED;&#x7F1D;&#x6D41;&#x52A8;&#x5206;&#x6790;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管流分析"><span class="toc-number">5.2.</span> <span class="toc-text">&#x7BA1;&#x6D41;&#x5206;&#x6790;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#流体流动微分方程"><span class="toc-number">6.</span> <span class="toc-text">&#x6D41;&#x4F53;&#x6D41;&#x52A8;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#不可压缩流体管内流动"><span class="toc-number">7.</span> <span class="toc-text">&#x4E0D;&#x53EF;&#x538B;&#x7F29;&#x6D41;&#x4F53;&#x7BA1;&#x5185;&#x6D41;&#x52A8;</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>9</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
