@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>机械设计基础复习笔记 | 埃雅仁迪尔之星</title>
+    <title>GAMBIT学习笔记 | 埃雅仁迪尔之星</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Luke">
     
 
     
-    <meta name="description" content="本体 先把本体摆在这里：机械设计基础复习笔记 我们老师真是深知学生的心思，不考的东西几乎都没讲(●ˇ∀ˇ●)不过这也导致这份笔记内容不是很全面。 关于笔记的撰写 之前就提过，Markdown的结构太简单，导致方言泛滥，着实恼人。前几天读python的help文档，发现他们似乎使用了某种标记语法，查了查，发现这就是reStructedText。这种标记语法是python帮助文档的标准，而有一个库Sp">
-<meta name="keywords" content="笔记,机械">
+    <meta name="description" content="学习GAMBIT时的一些问题。 几何绘制 Connect / Disconnect的用法 以二维为例，在通过Split操作用线或面将面分隔开时，产生的两个面默认是保持网格连续性的，也就是说他们共用一条（或几条）边。对他们的共用边使用Disconnect Edges，可以将共用边拆成（部分）重合的两条，不再保持网格连续。放过来可以用Connect Edges连接两个面，这会删除重合边中的一条。相比之">
+<meta name="keywords" content="笔记,模拟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机械设计基础复习笔记">
-<meta property="og:url" content="http://yoursite.com/2017/12/16/机械设计基础复习笔记/index.html">
+<meta property="og:title" content="GAMBIT学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/GAMBIT学习笔记/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
-<meta property="og:description" content="本体 先把本体摆在这里：机械设计基础复习笔记 我们老师真是深知学生的心思，不考的东西几乎都没讲(●ˇ∀ˇ●)不过这也导致这份笔记内容不是很全面。 关于笔记的撰写 之前就提过，Markdown的结构太简单，导致方言泛滥，着实恼人。前几天读python的help文档，发现他们似乎使用了某种标记语法，查了查，发现这就是reStructedText。这种标记语法是python帮助文档的标准，而有一个库Sp">
+<meta property="og:description" content="学习GAMBIT时的一些问题。 几何绘制 Connect / Disconnect的用法 以二维为例，在通过Split操作用线或面将面分隔开时，产生的两个面默认是保持网格连续性的，也就是说他们共用一条（或几条）边。对他们的共用边使用Disconnect Edges，可以将共用边拆成（部分）重合的两条，不再保持网格连续。放过来可以用Connect Edges连接两个面，这会删除重合边中的一条。相比之">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-01T05:12:57.245Z">
+<meta property="og:updated_time" content="2019-03-05T07:59:03.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机械设计基础复习笔记">
-<meta name="twitter:description" content="本体 先把本体摆在这里：机械设计基础复习笔记 我们老师真是深知学生的心思，不考的东西几乎都没讲(●ˇ∀ˇ●)不过这也导致这份笔记内容不是很全面。 关于笔记的撰写 之前就提过，Markdown的结构太简单，导致方言泛滥，着实恼人。前几天读python的help文档，发现他们似乎使用了某种标记语法，查了查，发现这就是reStructedText。这种标记语法是python帮助文档的标准，而有一个库Sp">
+<meta name="twitter:title" content="GAMBIT学习笔记">
+<meta name="twitter:description" content="学习GAMBIT时的一些问题。 几何绘制 Connect / Disconnect的用法 以二维为例，在通过Split操作用线或面将面分隔开时，产生的两个面默认是保持网格连续性的，也就是说他们共用一条（或几条）边。对他们的共用边使用Disconnect Edges，可以将共用边拆成（部分）重合的两条，不再保持网格连续。放过来可以用Connect Edges连接两个面，这会删除重合边中的一条。相比之">
 
     
     
@@ -78,14 +78,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/12/16/机械设计基础复习笔记/" title="机械设计基础复习笔记" itemprop="url">机械设计基础复习笔记</a>
+      <a href="/2019/03/04/GAMBIT学习笔记/" title="GAMBIT学习笔记" itemprop="url">GAMBIT学习笔记</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
 		
   <p class="article-time">
-    <time datetime="2017-12-16T12:11:25.000Z" itemprop="datePublished"> 发表于 2017-12-16</time>
+    <time datetime="2019-03-04T08:04:26.000Z" itemprop="datePublished"> 发表于 2019-03-04</time>
     
   </p>
 </header>
@@ -94,16 +94,157 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#本体"><span class="toc-number">1.</span> <span class="toc-text">&#x672C;&#x4F53;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于笔记的撰写"><span class="toc-number">2.</span> <span class="toc-text">&#x5173;&#x4E8E;&#x7B14;&#x8BB0;&#x7684;&#x64B0;&#x5199;</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#几何绘制"><span class="toc-number">1.</span> <span class="toc-text">&#x51E0;&#x4F55;&#x7ED8;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect-disconnect的用法"><span class="toc-number">1.1.</span> <span class="toc-text"><code>Connect / Disconnect</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入几何图形"><span class="toc-number">1.2.</span> <span class="toc-text">&#x5BFC;&#x5165;&#x51E0;&#x4F55;&#x56FE;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-face的用法"><span class="toc-number">1.3.</span> <span class="toc-text"><code>Form Face</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题"><span class="toc-number">1.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网格划分"><span class="toc-number">2.</span> <span class="toc-text">&#x7F51;&#x683C;&#x5212;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-dislink的用法"><span class="toc-number">2.1.</span> <span class="toc-text"><code>Link / Dislink</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh的用法"><span class="toc-number">2.2.</span> <span class="toc-text"><code>Mesh</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boundary-layer的设置"><span class="toc-number">2.3.</span> <span class="toc-text"><code>Boundary Layer</code>&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题-1"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元边界类型设定"><span class="toc-number">3.</span> <span class="toc-text">&#x5355;&#x5143;/&#x8FB9;&#x754C;&#x7C7B;&#x578B;&#x8BBE;&#x5B9A;</span></a></li></ol>
 		
 		</div>
 		
-		<h1 id="本体">本体</h1>
-<p>先把本体摆在这里：<a href="http://machine-design-notes.readthedocs.io/zh_CN/latest/" target="_blank" rel="noopener">机械设计基础复习笔记</a></p>
-<p>我们老师真是深知学生的心思，不考的东西几乎都没讲(●ˇ∀ˇ●)不过这也导致这份笔记内容不是很全面。</p>
-<h1 id="关于笔记的撰写">关于笔记的撰写</h1>
-<p>之前就提过，Markdown的结构太简单，导致方言泛滥，着实恼人。前几天读python的help文档，发现他们似乎使用了某种标记语法，查了查，发现这就是reStructedText。这种标记语法是python帮助文档的标准，而有一个库Sphinx可以将<code>.rst</code>格式的文件轻松转化成赏心悦目的文档。那还等什么，管他什么复习，先用起来再说。</p>
-<p>然而，事情总是不会那么轻松，配置地狱永远张开大嘴欢迎我，但这么多内容放在这个“机械设计”的标题底下实在是跑题，我应该在另外一篇博文中详说一下。简而言之，就是使用<code>.rst + Sphinx + git + github + readthedocs</code>的组合操作。</p>
+		<p>学习GAMBIT时的一些问题。</p>
+<h1 id="几何绘制">几何绘制</h1>
+<h2 id="connect-disconnect的用法"><code>Connect / Disconnect</code>的用法</h2>
+<p>以二维为例，在通过<code>Split</code>操作用线或面将面分隔开时，产生的两个面默认是<strong>保持网格连续性</strong>的，也就是说他们共用一条（或几条）边。对他们的共用边使用<code>Disconnect Edges</code>，可以将共用边拆成（部分）重合的两条，不再保持网格连续。放过来可以用<code>Connect Edges</code>连接两个面，这会删除重合边中的一条。相比之下，<code>Merge Faces</code>会完全删除公共边，而此法会留下边，可用于分块划分网格。</p>
+<h2 id="导入几何图形">导入几何图形</h2>
+<p>以二维为例，在CAD软件中绘制好曲面（而不仅是线框）之后，导出<code>.igs</code>文件，即可导入GAMBIT。</p>
+<h2 id="form-face的用法"><code>Form Face</code>的用法</h2>
+<p>绘制平面十分简单，绘制曲面可使用额外的选项：</p>
+<ul>
+<li><code>Initial Face</code>：参照面，绘制的面会尽量与其保持曲率一致</li>
+<li><code>Guide Edges</code>：指定必须经过的边</li>
+<li><code>Guide Vertices</code>：指定必须经过的点</li>
+</ul>
+<h2 id="杂项问题">杂项问题</h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center">命令</th>
+<th align="center">用法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>Smooth/Heal</code></td>
+<td align="center">自动修复有问题的几何特征</td>
+</tr>
+<tr class="even">
+<td align="center"><code>Convert(Nonreal to Real)</code></td>
+<td align="center">将虚几何元素转化为实几何元素</td>
+</tr>
+</tbody>
+</table>
+<h1 id="网格划分">网格划分</h1>
+<h2 id="link-dislink的用法"><code>Link / Dislink</code>的用法</h2>
+<p><strong>（不确信的内容）</strong>应该是指将拓扑特征相似的两个图形进行关联，之后对其中一个划分网格时会自动给另一个也划分网格，要求两图形边数/面数相同，此外为了确定网格形态还需要指定参照点、参照方向。</p>
+<h2 id="mesh的用法"><code>Mesh</code>的用法</h2>
+<ul>
+<li><p><code>Mesh Edges</code>中，可以通过调节<code>Ratio</code>调节线网格偏置</p></li>
+<li><p><code>Mesh Faces</code>中，可选的单元形状有四边形/三角形/混搭，网格类型有<code>Map</code>正规形，<code>Submap</code>分块正规形，<code>Pave</code>无规形。前两者只适用于近四边形的简单形状，一般采用<code>Pave</code>。</p></li>
+<li><p><code>Mexh Volumns</code>中，可选的单元形状有<code>Hex</code>六面体/<code>Hex + Wedge</code>六面体+楔形/<code>Tet + Hybrid</code>四面体+六面体+四棱锥+楔形，网格类型众多，主要有<code>Map, Submap</code>，<code>Cooper</code>根据指定的“源”面扫掠，<code>TGrid</code>各种单元混搭，<code>Hex Core</code>中心为六面体单元，周围异形部分为混搭。</p></li>
+</ul>
+<blockquote>
+<p>三维的格子能画出来就不错了</p>
+</blockquote>
+<h2 id="boundary-layer的设置"><code>Boundary Layer</code>的设置</h2>
+<p>设定从边界向内部厚度等比变化的多层网格，以下四个参数需设定三个：</p>
+<ul>
+<li><code>First row</code>第一层厚度</li>
+<li><code>Growth factor</code>厚度比</li>
+<li><code>Rows</code>层数</li>
+<li><code>Depth</code>总厚度</li>
+</ul>
+<p>而第一层网格长度需要先用对边分网格的方法定好。此外，如果将<code>Algorithm</code>选为<code>Aspect ratio(first)</code>，则等比的不是厚度，而是长厚比。</p>
+<h2 id="杂项问题-1">杂项问题</h2>
+<table>
+<colgroup>
+<col width="27%">
+<col width="72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">命令</th>
+<th align="center">用法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>Move Face Nodes</code></td>
+<td align="center">选择面内的网格节点并进行拖动，如果勾选<code>smooth</code>周边网格也会随之变化</td>
+</tr>
+<tr class="even">
+<td align="center"><code>Split Quad Meshes</code></td>
+<td align="center">将四边形网格变为三角形网格</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>Split Meshed Face</code></td>
+<td align="center">将选择的网格面按照若干网格节点连成的折线分成两个虚拟面</td>
+</tr>
+<tr class="even">
+<td align="center"><code>Set Face Vertex Type</code></td>
+<td align="center">设置某个面上某点附近的网格形态（影响网格节点的数量、网格边的夹角等），例如<code>End</code>外凸顶点，<code>Corner</code>内凹顶点</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>Modify</code></td>
+<td align="center"><strong>（不确信的内容）</strong>主要用于<code>Face</code>，很少用于<code>Volume</code>。主要用于曲面上，根据设置的网格边角度范围，将网格边转化为拓扑曲面片</td>
+</tr>
+</tbody>
+</table>
+<h1 id="单元边界类型设定">单元/边界类型设定</h1>
+<p>单元类型包括：<code>FLUID</code>流体，<code>SOLID</code>固体。</p>
+<p>常用边界类型包括：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">类型</th>
+<th align="center">意义</th>
+<th align="center">意义及在Fluent中需要指定的参数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>WALL</code></td>
+<td align="center">壁面</td>
+<td align="center">可指定切向速度分量和热边界条件</td>
+</tr>
+<tr class="even">
+<td align="center"><code>AXIS</code></td>
+<td align="center">轴</td>
+<td align="center">必须与X轴重合，无条件</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>MASS_FLOW_INLET</code></td>
+<td align="center">质量入口</td>
+<td align="center">指定流入质量流速，不可压流中可用速度入口代替</td>
+</tr>
+<tr class="even">
+<td align="center"><code>VELOCITY_INLET</code></td>
+<td align="center">速度入口</td>
+<td align="center">指定流入流速</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>PRESSURE_INLET</code></td>
+<td align="center">压力入口</td>
+<td align="center">指定流入口的总压</td>
+</tr>
+<tr class="even">
+<td align="center"><code>OUTFLOW</code></td>
+<td align="center">出口</td>
+<td align="center">模拟前未知情况的出口，不可用于可压流动</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>PRESSURE_OUTLET</code></td>
+<td align="center">压力出口</td>
+<td align="center">指定流出口的静压</td>
+</tr>
+<tr class="even">
+<td align="center"><code>INTERIOR</code>,<code>INTERNAL</code></td>
+<td align="center">内部界面</td>
+<td align="center">划分网格等使用的辅助面，一个面，两侧网格匹配</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>INTERFACE</code></td>
+<td align="center">界面</td>
+<td align="center">配对的两个面，在不同的网格间交换信息</td>
+</tr>
+</tbody>
+</table>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -112,7 +253,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/机械/">机械</a>
+  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/模拟/">模拟</a>
   </div>
 
 </div>
@@ -121,7 +262,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/12/16/机械设计基础复习笔记/" data-title="机械设计基础复习笔记 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  <div data-url="http://yoursite.com/2019/03/04/GAMBIT学习笔记/" data-title="GAMBIT学习笔记 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -135,18 +276,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/12/17/Ubuntu子系统的安装与配置/" title="Ubuntu for Windows子系统（WSL）的安装与配置">
+ <a href="/2019/03/04/Fluent学习笔记/" title="Fluent学习笔记">
   <strong>上一篇：</strong><br/>
   <span>
-  Ubuntu for Windows子系统（WSL）的安装与配置</span>
+  Fluent学习笔记</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/12/16/Hello-World/"  title="Hello, World! 博客的诞生">
+<a href="/2019/02/23/流体力学/"  title="流体力学">
  <strong>下一篇：</strong><br/> 
- <span>Hello, World! 博客的诞生
+ <span>流体力学
 </span>
 </a>
 </div>
@@ -171,7 +312,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#本体"><span class="toc-number">1.</span> <span class="toc-text">&#x672C;&#x4F53;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于笔记的撰写"><span class="toc-number">2.</span> <span class="toc-text">&#x5173;&#x4E8E;&#x7B14;&#x8BB0;&#x7684;&#x64B0;&#x5199;</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#几何绘制"><span class="toc-number">1.</span> <span class="toc-text">&#x51E0;&#x4F55;&#x7ED8;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect-disconnect的用法"><span class="toc-number">1.1.</span> <span class="toc-text"><code>Connect / Disconnect</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入几何图形"><span class="toc-number">1.2.</span> <span class="toc-text">&#x5BFC;&#x5165;&#x51E0;&#x4F55;&#x56FE;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-face的用法"><span class="toc-number">1.3.</span> <span class="toc-text"><code>Form Face</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题"><span class="toc-number">1.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网格划分"><span class="toc-number">2.</span> <span class="toc-text">&#x7F51;&#x683C;&#x5212;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-dislink的用法"><span class="toc-number">2.1.</span> <span class="toc-text"><code>Link / Dislink</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh的用法"><span class="toc-number">2.2.</span> <span class="toc-text"><code>Mesh</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boundary-layer的设置"><span class="toc-number">2.3.</span> <span class="toc-text"><code>Boundary Layer</code>&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题-1"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元边界类型设定"><span class="toc-number">3.</span> <span class="toc-text">&#x5355;&#x5143;/&#x8FB9;&#x754C;&#x7C7B;&#x578B;&#x8BBE;&#x5B9A;</span></a></li></ol>
  
   </div>
 
