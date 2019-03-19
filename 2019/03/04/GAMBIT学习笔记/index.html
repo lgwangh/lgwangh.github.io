@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="学习GAMBIT时的一些问题。 几何绘制 Connect / Disconnect的用法 以二维为例，在通过Split操作用线或面将面分隔开时，产生的两个面默认是保持网格连续性的，也就是说他们共用一条（或几条）边。对他们的共用边使用Disconnect Edges，可以将共用边拆成（部分）重合的两条，不再保持网格连续。放过来可以用Connect Edges连接两个面，这会删除重合边中的一条。相比之">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T07:59:03.367Z">
+<meta property="og:updated_time" content="2019-03-17T12:03:07.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GAMBIT学习笔记">
 <meta name="twitter:description" content="学习GAMBIT时的一些问题。 几何绘制 Connect / Disconnect的用法 以二维为例，在通过Split操作用线或面将面分隔开时，产生的两个面默认是保持网格连续性的，也就是说他们共用一条（或几条）边。对他们的共用边使用Disconnect Edges，可以将共用边拆成（部分）重合的两条，不再保持网格连续。放过来可以用Connect Edges连接两个面，这会删除重合边中的一条。相比之">
@@ -94,7 +94,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#几何绘制"><span class="toc-number">1.</span> <span class="toc-text">&#x51E0;&#x4F55;&#x7ED8;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect-disconnect的用法"><span class="toc-number">1.1.</span> <span class="toc-text"><code>Connect / Disconnect</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入几何图形"><span class="toc-number">1.2.</span> <span class="toc-text">&#x5BFC;&#x5165;&#x51E0;&#x4F55;&#x56FE;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-face的用法"><span class="toc-number">1.3.</span> <span class="toc-text"><code>Form Face</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题"><span class="toc-number">1.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网格划分"><span class="toc-number">2.</span> <span class="toc-text">&#x7F51;&#x683C;&#x5212;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-dislink的用法"><span class="toc-number">2.1.</span> <span class="toc-text"><code>Link / Dislink</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh的用法"><span class="toc-number">2.2.</span> <span class="toc-text"><code>Mesh</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boundary-layer的设置"><span class="toc-number">2.3.</span> <span class="toc-text"><code>Boundary Layer</code>&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题-1"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元边界类型设定"><span class="toc-number">3.</span> <span class="toc-text">&#x5355;&#x5143;/&#x8FB9;&#x754C;&#x7C7B;&#x578B;&#x8BBE;&#x5B9A;</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#几何绘制"><span class="toc-number">1.</span> <span class="toc-text">&#x51E0;&#x4F55;&#x7ED8;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect-disconnect的用法"><span class="toc-number">1.1.</span> <span class="toc-text"><code>Connect / Disconnect</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入几何图形"><span class="toc-number">1.2.</span> <span class="toc-text">&#x5BFC;&#x5165;&#x51E0;&#x4F55;&#x56FE;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-face的用法"><span class="toc-number">1.3.</span> <span class="toc-text"><code>Form Face</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题"><span class="toc-number">1.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网格划分"><span class="toc-number">2.</span> <span class="toc-text">&#x7F51;&#x683C;&#x5212;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-dislink的用法"><span class="toc-number">2.1.</span> <span class="toc-text"><code>Link / Dislink</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh的用法"><span class="toc-number">2.2.</span> <span class="toc-text"><code>Mesh</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boundary-layer的设置"><span class="toc-number">2.3.</span> <span class="toc-text"><code>Boundary Layer</code>&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题-1"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元边界类型设定"><span class="toc-number">3.</span> <span class="toc-text">&#x5355;&#x5143;/&#x8FB9;&#x754C;&#x7C7B;&#x578B;&#x8BBE;&#x5B9A;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本用法"><span class="toc-number">4.</span> <span class="toc-text">&#x811A;&#x672C;&#x7528;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础语法"><span class="toc-number">4.1.</span> <span class="toc-text">&#x57FA;&#x7840;&#x8BED;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑控制"><span class="toc-number">4.2.</span> <span class="toc-text">&#x903B;&#x8F91;&#x63A7;&#x5236;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-number">4.3.</span> <span class="toc-text">&#x547D;&#x4EE4;</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -243,8 +243,36 @@
 <td align="center">界面</td>
 <td align="center">配对的两个面，在不同的网格间交换信息</td>
 </tr>
+<tr class="even">
+<td align="center"><code>SYMMETRY</code></td>
+<td align="center">对称</td>
+<td align="center">对称关系，意味着法向速度为0，各物理量梯度为0，也可用于粘性流动中的零剪切壁面/自由表面</td>
+</tr>
 </tbody>
 </table>
+<h1 id="脚本用法">脚本用法</h1>
+<p>GAMBIT在保存文件时会生成同名的<code>.jou</code>文件，也就是脚本文件。可以通过<code>File -&gt; Run Journal</code>运行。另外，可以通过<code>File -&gt; Clean Journal</code>清理脚本，去除无意义的代码。</p>
+<h2 id="基础语法">基础语法</h2>
+<p>变量类型基本上只有<code>String, Integer, Real</code>，各种对象的<code>label</code>其实都是个字符串。</p>
+<p>变量声明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$length = 0.1</span><br></pre></td></tr></table></figure>
+<p>列表声明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">declare $points[1 : 3]</span><br><span class="line">$points[1] = 1.0</span><br><span class="line">$points[2] = 0.0</span><br><span class="line">$points[3] = 0.0</span><br></pre></td></tr></table></figure>
+<p>支持的数学符号：<code>+  -  *  /  ^</code>，以及大量数学函数。</p>
+<p>支持的关系、逻辑算符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">符号   .gt.   .ge.   .lt.   .le.   .eq.   .ne.   .and.   .or.   .not.</span><br><span class="line">含义    &gt;      &gt;=     &lt;      &lt;=     ==     !=     and     or     not</span><br></pre></td></tr></table></figure>
+<p>以<code>/</code>开头的行被认为是注释。</p>
+<p>其他详见此页面<a href="https://www.sharcnet.ca/Software/Gambit/html/users_guide/ug0b.htm#exp" class="uri" target="_blank" rel="noopener">https://www.sharcnet.ca/Software/Gambit/html/users_guide/ug0b.htm#exp</a>。</p>
+<h2 id="逻辑控制">逻辑控制</h2>
+<p>if语句，没有<code>else if</code>选项，不过可以手动嵌套：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if cond (X)       / X: 返回布尔值的表达式</span><br><span class="line">    COMMANDS      / </span><br><span class="line">[else             / 可选</span><br><span class="line">    COMMANDS]     /</span><br><span class="line">endif             /</span><br></pre></td></tr></table></figure>
+<p>do循环，其实混合了<code>for</code>循环和<code>do</code>循环：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">do para &quot;$P&quot; [init I] cond (X) [incr N]  / $P: 循环计数变量，必须预先声明过</span><br><span class="line">    COMMANDS                             / I:  $P的起始值，默认为1</span><br><span class="line">enddo                                    / X:  表达式, 为false时即结束循环</span><br><span class="line">                                         / N:  增量步长</span><br></pre></td></tr></table></figure>
+<p>在do循环中也可以使用<code>break</code>和<code>next</code>。</p>
+<h2 id="命令">命令</h2>
+<p>一般来说命令格式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Operator [Keyword [Variables]]   / Operator一般为两个单词，表示操作，如vertex reflect</span><br><span class="line">         [Keyword [Variables]]   / Keyword也就是GUI界面中的各种选项，分必选和可选</span><br><span class="line">         [Keyword [Variables]]   / Variables参数</span><br></pre></td></tr></table></figure>
+<p>具体的很复杂，实际上就看看录制出来的<code>.jou</code>文件学习一下就行，具体参考见<a href="https://www.sharcnet.ca/Software/Gambit/html/command_reference/crtoc.htm" class="uri" target="_blank" rel="noopener">https://www.sharcnet.ca/Software/Gambit/html/command_reference/crtoc.htm</a>。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -312,7 +340,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#几何绘制"><span class="toc-number">1.</span> <span class="toc-text">&#x51E0;&#x4F55;&#x7ED8;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect-disconnect的用法"><span class="toc-number">1.1.</span> <span class="toc-text"><code>Connect / Disconnect</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入几何图形"><span class="toc-number">1.2.</span> <span class="toc-text">&#x5BFC;&#x5165;&#x51E0;&#x4F55;&#x56FE;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-face的用法"><span class="toc-number">1.3.</span> <span class="toc-text"><code>Form Face</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题"><span class="toc-number">1.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网格划分"><span class="toc-number">2.</span> <span class="toc-text">&#x7F51;&#x683C;&#x5212;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-dislink的用法"><span class="toc-number">2.1.</span> <span class="toc-text"><code>Link / Dislink</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh的用法"><span class="toc-number">2.2.</span> <span class="toc-text"><code>Mesh</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boundary-layer的设置"><span class="toc-number">2.3.</span> <span class="toc-text"><code>Boundary Layer</code>&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题-1"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元边界类型设定"><span class="toc-number">3.</span> <span class="toc-text">&#x5355;&#x5143;/&#x8FB9;&#x754C;&#x7C7B;&#x578B;&#x8BBE;&#x5B9A;</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#几何绘制"><span class="toc-number">1.</span> <span class="toc-text">&#x51E0;&#x4F55;&#x7ED8;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#connect-disconnect的用法"><span class="toc-number">1.1.</span> <span class="toc-text"><code>Connect / Disconnect</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导入几何图形"><span class="toc-number">1.2.</span> <span class="toc-text">&#x5BFC;&#x5165;&#x51E0;&#x4F55;&#x56FE;&#x5F62;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form-face的用法"><span class="toc-number">1.3.</span> <span class="toc-text"><code>Form Face</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题"><span class="toc-number">1.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网格划分"><span class="toc-number">2.</span> <span class="toc-text">&#x7F51;&#x683C;&#x5212;&#x5206;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#link-dislink的用法"><span class="toc-number">2.1.</span> <span class="toc-text"><code>Link / Dislink</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mesh的用法"><span class="toc-number">2.2.</span> <span class="toc-text"><code>Mesh</code>&#x7684;&#x7528;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#boundary-layer的设置"><span class="toc-number">2.3.</span> <span class="toc-text"><code>Boundary Layer</code>&#x7684;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#杂项问题-1"><span class="toc-number">2.4.</span> <span class="toc-text">&#x6742;&#x9879;&#x95EE;&#x9898;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#单元边界类型设定"><span class="toc-number">3.</span> <span class="toc-text">&#x5355;&#x5143;/&#x8FB9;&#x754C;&#x7C7B;&#x578B;&#x8BBE;&#x5B9A;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#脚本用法"><span class="toc-number">4.</span> <span class="toc-text">&#x811A;&#x672C;&#x7528;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础语法"><span class="toc-number">4.1.</span> <span class="toc-text">&#x57FA;&#x7840;&#x8BED;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逻辑控制"><span class="toc-number">4.2.</span> <span class="toc-text">&#x903B;&#x8F91;&#x63A7;&#x5236;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-number">4.3.</span> <span class="toc-text">&#x547D;&#x4EE4;</span></a></li></ol></li></ol>
  
   </div>
 
@@ -332,7 +360,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -366,11 +394,11 @@
 			
 		
 			
-				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
 			
 		
 			
@@ -382,11 +410,15 @@
 			
 		
 			
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
 			
 		
 			
@@ -394,7 +426,7 @@
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 		</ul>
