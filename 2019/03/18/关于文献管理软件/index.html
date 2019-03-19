@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/截屏2019_03_19-001.png">
 <meta property="og:image" content="http://yoursite.com/images/截屏2019_03_19-003.png">
-<meta property="og:updated_time" content="2019-03-19T09:29:45.904Z">
+<meta property="og:updated_time" content="2019-03-19T11:47:41.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于文献管理软件">
 <meta name="twitter:description" content="之前一直在用学校买的NoteExpress，还凑活事。然而自打把这破软件推荐给同学之后，它就出毛病了，全文下载也不能用，浏览器插件也挂了。 所以现在只能找个新的。理想的软件是这样的：  不要钱 对中文文献有良好支持（太菜了，还需要看中文文献） 最多只需要用到浏览器一次，也就是说，要么浏览器保存题录→软件全文下载，要么浏览器下载PDF→软件从中识别题录，总之不能两者都需要下载 能够内部打开PDF，并">
@@ -97,7 +97,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#测试结果"><span class="toc-number">1.</span> <span class="toc-text">&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zotero配置与插件"><span class="toc-number">2.</span> <span class="toc-text">Zotero&#x914D;&#x7F6E;&#x4E0E;&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设置"><span class="toc-number">2.1.</span> <span class="toc-text">&#x57FA;&#x672C;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云端同步"><span class="toc-number">2.2.</span> <span class="toc-text">&#x4E91;&#x7AEF;&#x540C;&#x6B65;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-number">2.3.</span> <span class="toc-text">&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zotfile"><span class="toc-number">2.3.1.</span> <span class="toc-text">ZotFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-here"><span class="toc-number">2.3.2.</span> <span class="toc-text">Markdown Here</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">2.3.3.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#测试结果"><span class="toc-number">1.</span> <span class="toc-text">&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zotero配置与插件"><span class="toc-number">2.</span> <span class="toc-text">Zotero&#x914D;&#x7F6E;&#x4E0E;&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设置"><span class="toc-number">2.1.</span> <span class="toc-text">&#x57FA;&#x672C;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云端同步"><span class="toc-number">2.2.</span> <span class="toc-text">&#x4E91;&#x7AEF;&#x540C;&#x6B65;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识结构"><span class="toc-number">2.3.</span> <span class="toc-text">&#x77E5;&#x8BC6;&#x7ED3;&#x6784;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-number">2.4.</span> <span class="toc-text">&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zotfile"><span class="toc-number">2.4.1.</span> <span class="toc-text">ZotFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-here"><span class="toc-number">2.4.2.</span> <span class="toc-text">Markdown Here</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">2.4.3.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
@@ -202,6 +202,23 @@
 </tbody>
 </table>
 <p>最终选择了坚果云的WebDAV，配置方法见<a href="http://help.jianguoyun.com/?p=3168" class="uri" target="_blank" rel="noopener">http://help.jianguoyun.com/?p=3168</a>。使用这种方法无须启动坚果云，减少了内存的占用和开机时间。不过这种方法导致文件夹名称看不懂，很难直接从网盘中读取附件，所以安卓端需要额外的软件：<span class="math inline">\(\text{ZotEz}^2\)</span>。启动软件时需要选择云端数据库，在这里不需要选WebDAV项，直接用Zotero账号登录即可。</p>
+<h2 id="知识结构">知识结构</h2>
+<p><a href="https://www.yangzhiping.com/tech/zotero1.html" target="_blank" rel="noopener">阳志平的网志</a>中提供了一份较为全面的Zotero教程，他在其中提到：</p>
+<blockquote>
+<p>作为对Tag系统的改良。在Zotero中，我们不推荐将Tag作为分类使用，而更多当做【印象】使用！请记住，Tag始终会随着时间而动荡甚至走向崩溃！所以，更重要的是，你当时当下对该文档的【印象】，而不是【分类】！</p>
+<p>那么，如何更好分类？</p>
+<ul>
+<li>以基本属性作为分类，基本属性是你可以很快归类的，不太会随时间动荡的；</li>
+<li>再使用搜索代替随时间动荡的内容；</li>
+<li>不再将Tag作为【分类】属性；而是当下【印象】工具。</li>
+</ul>
+</blockquote>
+<p>Zotero重知识管理的三重结构：</p>
+<ul>
+<li>分类：很简单，点击<code>新建分类</code>即可</li>
+<li>搜索：右键选择<code>我的文库</code>，然后<code>新建搜索</code>即可定义并保存搜索，相当于会自动更新的文件夹</li>
+<li>标签：默认在导入题录时会按照关键字自动加tag，不希望的话可以在<code>编辑 -&gt; 首选项 -&gt; 常规 -&gt; 杂项</code>中改掉。可以给标签赋予颜色和快捷键（最多9个）：在标签云中右键选择标签，选择“指派颜色”即可。具有颜色的标签会表现为标题前的色块，十分醒目。我目前设置的标签有：未读、重要、需引用。</li>
+</ul>
 <h2 id="插件">插件</h2>
 <p>需要先从网上下载到<code>.xpi</code>文件，然后在<code>工具 -&gt; 插件</code>选择安装。</p>
 <h3 id="zotfile">ZotFile</h3>
@@ -286,7 +303,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#测试结果"><span class="toc-number">1.</span> <span class="toc-text">&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zotero配置与插件"><span class="toc-number">2.</span> <span class="toc-text">Zotero&#x914D;&#x7F6E;&#x4E0E;&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设置"><span class="toc-number">2.1.</span> <span class="toc-text">&#x57FA;&#x672C;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云端同步"><span class="toc-number">2.2.</span> <span class="toc-text">&#x4E91;&#x7AEF;&#x540C;&#x6B65;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-number">2.3.</span> <span class="toc-text">&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zotfile"><span class="toc-number">2.3.1.</span> <span class="toc-text">ZotFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-here"><span class="toc-number">2.3.2.</span> <span class="toc-text">Markdown Here</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">2.3.3.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#测试结果"><span class="toc-number">1.</span> <span class="toc-text">&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zotero配置与插件"><span class="toc-number">2.</span> <span class="toc-text">Zotero&#x914D;&#x7F6E;&#x4E0E;&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本设置"><span class="toc-number">2.1.</span> <span class="toc-text">&#x57FA;&#x672C;&#x8BBE;&#x7F6E;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#云端同步"><span class="toc-number">2.2.</span> <span class="toc-text">&#x4E91;&#x7AEF;&#x540C;&#x6B65;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#知识结构"><span class="toc-number">2.3.</span> <span class="toc-text">&#x77E5;&#x8BC6;&#x7ED3;&#x6784;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-number">2.4.</span> <span class="toc-text">&#x63D2;&#x4EF6;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zotfile"><span class="toc-number">2.4.1.</span> <span class="toc-text">ZotFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#markdown-here"><span class="toc-number">2.4.2.</span> <span class="toc-text">Markdown Here</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">2.4.3.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
@@ -324,19 +341,11 @@
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/物理/" title="物理">物理<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模拟/" title="模拟">模拟<sup>2</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
@@ -344,7 +353,15 @@
 			
 		
 			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>2</sup></a></li>
 			
 		
 			
@@ -356,7 +373,11 @@
 			
 		
 			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 			
@@ -364,15 +385,11 @@
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 		</ul>
