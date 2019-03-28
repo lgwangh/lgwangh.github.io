@@ -11,15 +11,18 @@
     
 
     
-    <meta name="keywords" content="笔记,模拟">
+    <meta name="description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 暂且按下不表。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置">
+<meta name="keywords" content="笔记,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fluent学习笔记">
 <meta property="og:url" content="http://yoursite.com/2019/03/04/Fluent学习笔记/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 暂且按下不表。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-05T08:40:37.987Z">
+<meta property="og:updated_time" content="2019-03-28T17:15:13.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fluent学习笔记">
+<meta name="twitter:description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 暂且按下不表。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置">
 
     
     
@@ -91,11 +94,66 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#求解条件的选择"><span class="toc-number">1.</span> <span class="toc-text">&#x6C42;&#x89E3;&#x6761;&#x4EF6;&#x7684;&#x9009;&#x62E9;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tui操作"><span class="toc-number">2.</span> <span class="toc-text">TUI&#x64CD;&#x4F5C;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">2.1.</span> <span class="toc-text">&#x6570;&#x636E;&#x7C7B;&#x578B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scheme的常见语法糖"><span class="toc-number">2.2.</span> <span class="toc-text">Scheme&#x7684;&#x5E38;&#x89C1;&#x8BED;&#x6CD5;&#x7CD6;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见问题"><span class="toc-number">3.</span> <span class="toc-text">&#x5E38;&#x89C1;&#x95EE;&#x9898;</span></a></li></ol>
 		
 		</div>
 		
-		
+		<p>基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒</p>
+<p>在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。</p>
+<h1 id="求解条件的选择">求解条件的选择</h1>
+<p>暂且按下不表。</p>
+<h1 id="tui操作">TUI操作</h1>
+<p>其实TUI不怎么常用，但是记录操作的宏文件<code>.jou</code>文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置参数，<code>.jou</code>中则需要一次给齐。</p>
+<p>TUI中的命令以类似目录树的形式存储，也就是说，创建一对<code>interface</code>的命令是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; /define/mesh-interfaces/create</span><br></pre></td></tr></table></figure>
+<p>之后再跟上对应的参数。特别的，由于Fluent基于Scheme写成，凡是被括号完全包起来的行将被视为Scheme语句，例如驱使GUI界面完成<code>Check Mesh</code>的动作：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">cx-gui-do</span> cx-activate-item <span class="string">"MenuBar*MeshMenu*Check"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Scheme是函数式语言Lisp的一门方言，基本语法就是</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (function arg1 arg2 ...)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>就连接受返回值的变量也是当参数给出的。</p>
+<p>定义变量和函数采用同样的语法，例如定义<span class="math inline">\(y\triangleq\sqrt{1-x^2}\)</span>:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (define (y x) (sqrt (-1.0 (* x x))))</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>一些注意事项：</p>
+<ul>
+<li><code>;</code>开头的行为注释</li>
+<li><code>!</code>开头的行为shell命令</li>
+<li><code>,</code>不能作为分隔符，而是代表默认值</li>
+<li>很多命令可以用缩写（Abbreviation）或者别名（Alias）</li>
+</ul>
+<h2 id="数据类型">数据类型</h2>
+<ul>
+<li>Numbers：不需要在意整数与浮点，例如<code>-1.2E-5, #b11111, #x1f</code></li>
+<li>Booleans：主要用在各种确认的位置，<code>yes</code>=<code>y</code>，<code>no</code>=<code>n</code></li>
+<li>Strings：用双引号包裹</li>
+<li>Filenames：就是一种字符串，但是在不含空格时可以不带引号，但是这可能在某些时候与变量名混淆</li>
+<li>Lists：其实Scheme中的一切都是列表，列表以一个空列表为结尾<code>'()</code></li>
+</ul>
+<h2 id="scheme的常见语法糖">Scheme的常见语法糖</h2>
+<ul>
+<li><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">let</span></span> (<span class="name">var</span> val) exp1 exp2 ...)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>定义局部变量，即把<code>val</code>赋值给<code>var</code>，只对<code>exp1</code>、<code>exp2</code>……有效</p>
+<ul>
+<li><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">lambda</span></span> (var ...) exp1 exp2 ...)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>匿名函数</p>
+<ul>
+<li><p><code>'</code>表示引用，即不进行解析，原样传值，如<code>'(+ 2 3)</code></p></li>
+<li><p>分支结构：</p></li>
+<li><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name"><span class="builtin-name">abs</span></span> n)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">0</span>)</span><br><span class="line">        (<span class="name"><span class="builtin-name">-</span></span> <span class="number">0</span> n)</span><br><span class="line">        n))</span><br></pre></td></tr></table></figure></li>
+<li><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name"><span class="builtin-name">abs</span></span> n)            <span class="comment">; 翻译成Python：</span></span><br><span class="line">    (<span class="name"><span class="builtin-name">cond</span></span>                  <span class="comment">; if n == 0:</span></span><br><span class="line">        ((<span class="name"><span class="builtin-name">=</span></span> n <span class="number">0</span>) <span class="number">0</span>)        <span class="comment">;     return 0</span></span><br><span class="line">        ((<span class="name"><span class="builtin-name">&lt;</span></span> n <span class="number">0</span>) (<span class="name"><span class="builtin-name">-</span></span> <span class="number">0</span> n))  <span class="comment">; elif n &lt; 0:</span></span><br><span class="line">        (<span class="name"><span class="builtin-name">else</span></span> n)))         <span class="comment">;     return 0 - n</span></span><br><span class="line">                           <span class="comment">; else:</span></span><br><span class="line">                           <span class="comment">;     return n</span></span><br></pre></td></tr></table></figure></li>
+<li><p>此外，还有类似于C中<code>switch</code>的：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">case</span></span> (<span class="name"><span class="builtin-name">+</span></span> x y)</span><br><span class="line">      ((<span class="name">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">7</span> <span class="number">9</span>) <span class="string">"odd"</span>)</span><br><span class="line">      ((<span class="name">0</span> <span class="number">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">8</span>) <span class="string">"even"</span>)</span><br><span class="line">      (<span class="name"><span class="builtin-name">else</span></span> <span class="string">"out of range"</span>))</span><br></pre></td></tr></table></figure></li>
+<li><p>循环结构：娘炮才用循环，真男人就要用递归（不是）。以阶乘为例，简单的递归导致每一层函数都加载在内存中；采用自带返回值的“尾递归”，Scheme会将其处理为循环，不占资源，例如：</p></li>
+</ul>
+<p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact-tail</span> n)</span><br><span class="line">    (<span class="name">fact-rec</span> n n))</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">fact-rec</span> n p)</span><br><span class="line">    (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">=</span></span> n <span class="number">1</span>)</span><br><span class="line">        p</span><br><span class="line">        (<span class="name"><span class="builtin-name">let</span></span> ((<span class="name">m</span> (<span class="name"><span class="builtin-name">-</span></span> n <span class="number">1</span>)))</span><br><span class="line">            (<span class="name">fact-rec</span> m (<span class="name"><span class="builtin-name">*</span></span> p m)))))</span><br></pre></td></tr></table></figure></p>
+<p>其实还有一个<code>do</code>循环的方法，但不比递归好懂……对于列表操作，有两个简单方法<code>map</code>和<code>for-each</code>，二者略有区别（“Map stores the return values of each call to the function, while for-each does not”）……但我没看懂</p>
+<p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; (map (lambda (x) (* x 2)) '(1 2 3 4 5 6))</span><br><span class="line">(<span class="name">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">8</span> <span class="number">10</span> <span class="number">12</span>)</span><br><span class="line">&gt; (for-each (lambda (x)</span><br><span class="line">       (<span class="name"><span class="builtin-name">display</span></span> (<span class="name"><span class="builtin-name">*</span></span> x <span class="number">2</span>))</span><br><span class="line">       (newline))</span><br><span class="line">  '(1 2 3 4 5 6))</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"><span class="number">12</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="常见问题">常见问题</h1>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -163,7 +221,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#求解条件的选择"><span class="toc-number">1.</span> <span class="toc-text">&#x6C42;&#x89E3;&#x6761;&#x4EF6;&#x7684;&#x9009;&#x62E9;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tui操作"><span class="toc-number">2.</span> <span class="toc-text">TUI&#x64CD;&#x4F5C;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">2.1.</span> <span class="toc-text">&#x6570;&#x636E;&#x7C7B;&#x578B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scheme的常见语法糖"><span class="toc-number">2.2.</span> <span class="toc-text">Scheme&#x7684;&#x5E38;&#x89C1;&#x8BED;&#x6CD5;&#x7CD6;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见问题"><span class="toc-number">3.</span> <span class="toc-text">&#x5E38;&#x89C1;&#x95EE;&#x9898;</span></a></li></ol>
  
   </div>
 
@@ -183,7 +241,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -201,7 +259,7 @@
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>3</sup></a></li>
+				<li><a href="/tags/物理/" title="物理">物理<sup>4</sup></a></li>
 			
 		
 			
@@ -209,7 +267,7 @@
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
 			
 		
 			
@@ -217,19 +275,11 @@
 			
 		
 			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/模拟/" title="模拟">模拟<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 			
@@ -237,7 +287,7 @@
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 			
@@ -249,7 +299,15 @@
 			
 		
 			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
 			
 		
 		</ul>

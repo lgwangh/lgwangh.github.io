@@ -1,0 +1,785 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>计算流体动力学 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="主要参考了文献[4] 1、[5] 2。但是要注意，很多模型有多种形式，在书中难免有出入，最终还是要以模拟软件采用的为准（对于FLUENT而言就是Fluent Theory Guide3）。 控制方程离散化 有限差分法（FDM） 主要思想为：差商代替微商，递推代替积分，从而完全使用有限的网格节点代替连续的求解域。例如对于一维情况，可设想\((x,t)\)构成网格，而物理量均离散化到各点上（差商代替微">
+<meta name="keywords" content="模拟,物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算流体动力学">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/计算流体动力学/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="主要参考了文献[4] 1、[5] 2。但是要注意，很多模型有多种形式，在书中难免有出入，最终还是要以模拟软件采用的为准（对于FLUENT而言就是Fluent Theory Guide3）。 控制方程离散化 有限差分法（FDM） 主要思想为：差商代替微商，递推代替积分，从而完全使用有限的网格节点代替连续的求解域。例如对于一维情况，可设想\((x,t)\)构成网格，而物理量均离散化到各点上（差商代替微">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-28T17:34:09.583Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算流体动力学">
+<meta name="twitter:description" content="主要参考了文献[4] 1、[5] 2。但是要注意，很多模型有多种形式，在书中难免有出入，最终还是要以模拟软件采用的为准（对于FLUENT而言就是Fluent Theory Guide3）。 控制方程离散化 有限差分法（FDM） 主要思想为：差商代替微商，递推代替积分，从而完全使用有限的网格节点代替连续的求解域。例如对于一维情况，可设想\((x,t)\)构成网格，而物理量均离散化到各点上（差商代替微">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/03/23/计算流体动力学/" title="计算流体动力学" itemprop="url">计算流体动力学</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2019-03-23T08:22:01.000Z" itemprop="datePublished"> 发表于 2019-03-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#控制方程离散化"><span class="toc-number">1.</span> <span class="toc-text">&#x63A7;&#x5236;&#x65B9;&#x7A0B;&#x79BB;&#x6563;&#x5316;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#有限差分法fdm"><span class="toc-number">1.1.</span> <span class="toc-text">&#x6709;&#x9650;&#x5DEE;&#x5206;&#x6CD5;&#xFF08;FDM&#xFF09;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有限元法fem"><span class="toc-number">1.2.</span> <span class="toc-text">&#x6709;&#x9650;&#x5143;&#x6CD5;&#xFF08;FEM&#xFF09;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有限体积法fvm"><span class="toc-number">1.3.</span> <span class="toc-text">&#x6709;&#x9650;&#x4F53;&#x79EF;&#x6CD5;&#xFF08;FVM&#xFF09;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#simple算法"><span class="toc-number">2.</span> <span class="toc-text">SIMPLE&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#交错网格"><span class="toc-number">2.1.</span> <span class="toc-text">&#x4EA4;&#x9519;&#x7F51;&#x683C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simple算法的步骤"><span class="toc-number">2.2.</span> <span class="toc-text">SIMPLE&#x7B97;&#x6CD5;&#x7684;&#x6B65;&#x9AA4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进"><span class="toc-number">2.3.</span> <span class="toc-text">&#x6539;&#x8FDB;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三维湍流模型"><span class="toc-number">3.</span> <span class="toc-text">&#x4E09;&#x7EF4;&#x6E4D;&#x6D41;&#x6A21;&#x578B;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标准ktext-varepsilon模型3"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6807;&#x51C6;<span class="math inline">\(k\text{-}\varepsilon\)</span>&#x6A21;&#x578B;<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#近壁面的处理"><span class="toc-number">3.2.</span> <span class="toc-text">&#x8FD1;&#x58C1;&#x9762;&#x7684;&#x5904;&#x7406;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进的ktext-varepsilon模型"><span class="toc-number">3.3.</span> <span class="toc-text">&#x6539;&#x8FDB;&#x7684;<span class="math inline">\(k\text{-}\varepsilon\)</span>&#x6A21;&#x578B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reynolds应力方程模型rsm"><span class="toc-number">3.4.</span> <span class="toc-text">Reynolds&#x5E94;&#x529B;&#x65B9;&#x7A0B;&#x6A21;&#x578B;&#xFF08;RSM&#xFF09;</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>主要参考了文献[4] <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>、[5] <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。但是要注意，很多模型有多种形式，在书中难免有出入，最终还是要以模拟软件采用的为准（对于FLUENT而言就是Fluent Theory Guide<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>）。</p>
+<h1 id="控制方程离散化">控制方程离散化</h1>
+<h2 id="有限差分法fdm">有限差分法（FDM）</h2>
+<p>主要思想为：差商代替微商，递推代替积分，从而完全使用有限的网格节点代替连续的求解域。例如对于一维情况，可设想<span class="math inline">\((x,t)\)</span>构成网格，而物理量均离散化到各点上（差商代替微商），关键在于找出格点之间的关系（递推关系）。差分方程可以是双层/多层。可以是显式/隐式，但必须满足三项条件：</p>
+<ul>
+<li>相容性：步长<span class="math inline">\(h\to0\)</span>时，查分方程逼近微分方程</li>
+<li>收敛性：查分方程的真解逼近微分方程的精确解</li>
+<li>稳定性：差分方程的近似解与真解间的误差有界</li>
+</ul>
+<p>例如，一维狭缝摩擦流的速度场满足抛物线形方程<span class="math inline">\(\frac{\partial u}{\partial t}=\nu\frac{\partial^2 u}{\partial y^2}\)</span>，其中<span class="math inline">\(\nu\)</span>为运动粘度。将<span class="math inline">\((x_i,t_n)\)</span>处的格点速度记为<span class="math inline">\(u_i^n\)</span>，若取空间步长为<span class="math inline">\(\Delta x\)</span>，时间步长为<span class="math inline">\(\Delta t\)</span>，则<strong>差分方程</strong>为 <span class="math display">\[
+\frac{u_i^{n+1}-u_i^n}{\Delta t}=\nu\frac{u_{i+1}^n-2u_i^n+u_{i-1}^n}{\Delta x^2}
+\]</span> 已知<strong>初始条件</strong>即<span class="math inline">\(u_0\)</span>，<strong>边界条件</strong>即<span class="math inline">\(u^0\)</span>与<span class="math inline">\(u^N\)</span>，则可得出递推公式： <span class="math display">\[
+\begin{pmatrix}
+u_1^{n+1}\\
+u_2^{n+1}\\
+\vdots\\
+u_{I-2}^{n+1}\\
+u_{I-1}^{n+1}
+\end{pmatrix}=
+\begin{pmatrix}
+\frac{\nu\Delta t}{\Delta x^2} &amp; 1-\frac{2\nu\Delta t}{\Delta x^2} &amp; \frac{\nu\Delta t}{\Delta x^2} &amp; \cdots &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; \frac{\nu\Delta t}{\Delta x^2} &amp; 1-\frac{2\nu\Delta t}{\Delta x^2} &amp; \cdots &amp; 0 &amp; 0 &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots &amp; \vdots\\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; 1-\frac{2\nu\Delta t}{\Delta x^2} &amp; \frac{\nu\Delta t}{\Delta x^2} &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; \cdots &amp; \frac{\nu\Delta t}{\Delta x^2} &amp; 1-\frac{2\nu\Delta t}{\Delta x^2} &amp; \frac{\nu\Delta t}{\Delta x^2}
+\end{pmatrix}
+\begin{pmatrix}
+u_0^{n}\\
+u_1^{n}\\
+u_2^{n}\\
+\vdots\\
+u_{I-2}^{n}\\
+u_{I-1}^{n}\\
+u_{I}^{n}
+\end{pmatrix}
+\]</span> 该差分式的稳定性依赖于时间步长，在<span class="math inline">\(\Delta t\le\frac{\Delta x^2}{2\nu}\)</span>时结果稳定。</p>
+<h2 id="有限元法fem">有限元法（FEM）</h2>
+<p>主要思想为：同样划分网格，仅在网格节点储存值，但是使用基于网格节点值的插值函数（主要与形函数有关）代表连续的求解域，更为合理，在固体力学中广泛使用。详见<a href="https://computational-materials-science-notes.readthedocs.io/zh_CN/latest/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95.html" title="Read the Docs" target="_blank" rel="noopener">有限元学习笔记</a>。</p>
+<h2 id="有限体积法fvm">有限体积法（FVM）</h2>
+<p>主要思想为：同样划分网格，仅在网格节点储存值，之后在每个格点周围划分<strong>控制体积</strong>，形成一种交错状的网格。在每个控制体积中，以控制方程（特定物理量的守恒方程）为基础推导出代数方程；控制体积之间的壁面上的情况则通过插值得出。因而有限体积法先天性满足守恒关系。</p>
+<p>以一维稳态情况为例，对于某物理量<span class="math inline">\(\phi\)</span>，其控制方程为（来源于N-S方程）： <span class="math display">\[
+\frac{\mathrm{d}(\rho u \phi)}{\mathrm{d}x}=\frac{\mathrm{d}}{\mathrm{d}x}\left(\Gamma\frac{\mathrm{d}\phi}{\mathrm{d}x}\right)+S
+\]</span> 其中<span class="math inline">\(\phi\)</span>可以是速度、温度、湍动能，在连续性方程中还可以是<span class="math inline">\(1\)</span>；<span class="math inline">\(\Gamma,S\)</span>为与之对应的广义扩散系数和广义源项。</p>
+<p>记格点<span class="math inline">\(P​\)</span>的两侧界面分别为<span class="math inline">\(w,e​\)</span>，两侧格点分别为<span class="math inline">\(W,E​\)</span>。则界面上的物理量可用两侧节点上的物理量插值得出，即<span class="math inline">\(\phi_w=f(\phi_W,\phi_P)​\)</span>。为简化，设<span class="math inline">\(S​\)</span>为线性，<span class="math inline">\(S=S_C+S_P \phi_P​\)</span>，控制方程最终可化为： <span class="math display">\[
+a_P\phi_P=a_W\phi_W+a_E\phi_E+b
+\]</span> 其中<span class="math inline">\(b=S_C\Delta x\)</span>，而其他三个参数的形式取决于插值方式，有以下几种：</p>
+<ul>
+<li><p>中心差分格式：<span class="math inline">\(\phi_w=\frac{\phi_W+\phi_P}{2}\)</span>，条件稳定，扩散项中一般采用，不适合对流项</p></li>
+<li><p>一阶迎风格式：界面物理量等于对流上游节点的物理量，即 <span class="math display">\[
+  \left\{
+  \begin{aligned}
+  \phi_w=\phi_W,\phi_e=\phi_P\qquad u_w&gt;0\ \ \mathrm{and}\ \ u_e&gt;0\\
+  \phi_w=\phi_P,\phi_e=\phi_E\qquad u_w&lt;0\ \ \mathrm{and}\ \ u_e&lt;0
+  \end{aligned}
+  \right.
+  \]</span> 绝对稳定，但精度为一阶</p></li>
+<li><p>混合格式、指数格式、乘方格式等等</p></li>
+<li><p>高阶插值，需要使用更多节点，例如二阶迎风，在<span class="math inline">\(u_w&gt;0\ \ \mathrm{and}\ \ u_e&gt;0\)</span>时， <span class="math display">\[
+  \phi_w=\frac{3}{2}\phi_W-\frac{1}{2}\phi_{WW},\phi_e=\frac{3}{2}\phi_E-\frac{1}{2}\phi_{EE}
+  \]</span> 绝对稳定，精度较一阶高，但仍有假扩散。改进的QUICK格式更加优越，绝对稳定，假扩散小。</p></li>
+</ul>
+<p>对于瞬态问题，要考虑时间积分，同样有插值问题（统一节点的心值与旧值之间），最常用的是全隐式，此时离散方程表达为： <span class="math display">\[
+a_P\phi_P=a_W\phi_W+a_E\phi_E+a_P^0\phi_P^0+b
+\]</span> 需要对每个时间步列出线性方程组求解。</p>
+<p>对于多维情况，控制方程为 <span class="math display">\[
+\frac{\partial(\rho \phi)}{\partial t}+\mathrm{div}(\rho\pmb u \phi)=\mathrm{div}(\Gamma\:\mathrm{grad}\:\phi)+S
+\]</span> 离散方程通式为 <span class="math display">\[
+a_P\phi_P=\sum a_{nb}\phi_{nb}+b
+\]</span> <span class="math inline">\(nb\)</span>表示周围节点，对于瞬态问题<span class="math inline">\(b\)</span>包括了<span class="math inline">\(a_P^0\phi_P^0\)</span>，系数<span class="math inline">\(a\)</span>取决于控制体积界面上的<span class="math inline">\(F=\rho u,D=\frac{\Gamma}{\delta x}\)</span>以及<span class="math inline">\(\Delta V,\Delta t\)</span>。</p>
+<p>有限体积法有四条原则：</p>
+<ol style="list-style-type: decimal">
+<li>控制体积界面上物理量表达式连续</li>
+<li>各系数<span class="math inline">\(a\)</span>均为正数</li>
+<li><span class="math inline">\(S_P&lt;0\)</span></li>
+<li><span class="math inline">\(b=0\)</span>时，<span class="math inline">\(a_P=\sum a_{nb}\)</span></li>
+</ol>
+<h1 id="simple算法">SIMPLE算法</h1>
+<blockquote>
+<p>Semi-Implicit Method for Pressure Linked Equations，求解压力耦合方程的半隐式方法，并不是什么图森破的算法。</p>
+</blockquote>
+<p>在有限体积法中，若已知流场函数，其他物理量均可用离散控制方程得出；然而若将<span class="math inline">\(\pmb u\)</span>本身带入离散控制方程，会得出三个动量方程和一个连续性方程，其中<span class="math inline">\(u,v,w,p\)</span>相互耦合，采用耦合式解法联立求解耗时过长，因而产生了分离式解法，顺序、逐个的求解各变量代数方程组。其中包括消去<span class="math inline">\(p\)</span>的非原始变量法，但是壁面条件难以给定；最常用的是基于“猜测-修正”迭代过程的SIMPLE算法<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>。</p>
+<h2 id="交错网格">交错网格</h2>
+<p>使用普通网格计算流场时，压力梯度为 <span class="math display">\[
+\frac{\partial p}{\partial x}=\frac{p_E-p_W}{2\delta x}
+\]</span> 这样无法检测出高频震荡的压力波。因此采用交错网格，即标量（包括<span class="math inline">\(p\)</span>）使用主控制体积，<span class="math inline">\(u\)</span>的控制体积在<span class="math inline">\(x\)</span>方向上与其错位半格，<span class="math inline">\(v\)</span>的控制体积在<span class="math inline">\(y\)</span>方向上与其错位半格，这样<span class="math inline">\(\frac{\partial p}{\partial x}=\frac{p_E-p_P}{(\delta x)_e}\)</span>.</p>
+<p>采用交错网格对动量方程离散时，标量储存在主控制体积节点上，速度分量储存在各自的错位节点上，因而<span class="math inline">\(F,D\)</span>都要采用新的编号系统计算。另外边界上的错位控制体积会变大。</p>
+<h2 id="simple算法的步骤">SIMPLE算法的步骤</h2>
+<p>以二维情况为例：</p>
+<ol style="list-style-type: decimal">
+<li><p>假定一个速度分布，记为<span class="math inline">\(u^0,v^0\)</span>，依此计算动量离散方程中的系数及常数项</p></li>
+<li><p>假定一个压力场<span class="math inline">\(p^*\)</span></p></li>
+<li><p>依次求解两个动量方程，得<span class="math inline">\(u^*,v^*\)</span>，动量方程为 <span class="math display">\[
+   \left\{
+   \begin{aligned}
+   a_eu_e=\sum a_{nb}u_{nb}+b+(p_P-p_E)A_e\\
+   a_nv_n=\sum a_{nb}v_{nb}+b+(p_P-p_N)A_n\\
+   \end{aligned}
+   \right.
+   \]</span></p></li>
+</ol>
+<blockquote>
+<p>然而我并没有看明白<span class="math inline">\(a_w,a_e,a_n,a_s\)</span>该怎么求</p>
+</blockquote>
+<ol start="4" style="list-style-type: decimal">
+<li><p>求解压力修正值方程，得<span class="math inline">\(p&#39;\)</span>。压力修正值方程为 <span class="math display">\[
+   a_pp_P&#39;=a_Ep_E&#39;+a_Wp_W&#39;+a_Np_N&#39;+a_Sp_S&#39;+b\\
+   \mathrm{where}\quad
+   b=\frac{(\rho_P^0-\rho_P)\Delta x\Delta y}{\Delta t}+(\rho_wu_w^*-\rho_eu_e^*)\Delta y+(\rho_su_s^*-\rho_nu_n^*)\Delta x
+   \]</span></p></li>
+<li><p>根据<span class="math inline">\(p&#39;\)</span>修正速度，得<span class="math inline">\(u,v\)</span>，速度修正公式为 <span class="math display">\[
+   \left\{
+   \begin{aligned}
+   u_e=u_e^*+\frac{A_e}{a_e}(p_P&#39;-p_E&#39;)\\
+   v_n=v_n^*+\frac{A_n}{a_n}(p_P&#39;-p_N&#39;)
+   \end{aligned}
+   \right.
+   \]</span></p></li>
+<li><p>若有通过源项等与速度场耦合的物理量<span class="math inline">\(\phi\)</span>，则根据<span class="math inline">\(u,v\)</span>求解<span class="math inline">\(\phi\)</span></p></li>
+<li><p>利用改进后的速度场重新计算动量离散方程的系数，并用改进后的压力场作为下一层迭代计算的初值，重复上述步骤，直到获得收敛的解。</p></li>
+</ol>
+<h2 id="改进">改进</h2>
+<ol style="list-style-type: decimal">
+<li><p>SIMPLEC（SIMPLE Consistent）算法<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>：将速度修正公式变为 <span class="math display">\[
+   u_e=u_e^*+\frac{A_e}{a_e-\sum a_{nb}}(p_P&#39;-p_E&#39;)
+   \]</span> 收敛特性远优于SIMPLE</p></li>
+<li><p>基于同位网格的SIMPLE算法：只需要一套网格，采用新的界面速度插值公式以克服2-<span class="math inline">\(\delta\)</span>压差的问题</p></li>
+<li><p>基于非结构网格的SIMPLE算法：此时主要需要考虑节点连线与控制体积界面斜交的问题</p></li>
+</ol>
+<h1 id="三维湍流模型">三维湍流模型</h1>
+<p>雷诺数较高时，由层流转变为湍流，湍流瞬时速度<span class="math inline">\(u=\bar u+u&#39;\)</span>可认为是时均速度与随机脉动量的叠加。在湍流计算中，我们真正关心的不是随机脉动量，而是时均项，因而推导出时均形式的N-S方程，即Reynolds方程（采用张量的爱因斯坦求和约定，忘了？去看<a href="https://lgwangh.github.io/2018/04/18/%E5%BC%A0%E9%87%8F%E5%9F%BA%E7%A1%80/#%E7%88%B1%E5%9B%A0%E6%96%AF%E5%9D%A6%E6%B1%82%E5%92%8C%E7%BA%A6%E5%AE%9A" target="_blank" rel="noopener">笔记</a> ）：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial(\rho \overline{u}_i)}{\partial t}+
+\frac{\partial(\rho \overline{u}_i\overline{u}_j)}{\partial x_j}&amp;=
+-\frac{\partial\overline{p}}{\partial x_i}+
+\frac{\partial}{\partial x_j}\left(
+\mu\frac{\partial\overline{u}_i}{\partial x_j}
+-\rho\overline{u_i&#39;u_j&#39;}\right)\\
+\frac{\partial(\rho \overline{\phi})}{\partial t}+
+\frac{\partial(\rho \overline{u}_j\overline{\phi})}{\partial x_j}&amp;=
+\frac{\partial}{\partial x_j}\left(
+\Gamma\frac{\partial\overline{\phi}}{\partial x_j}
+-\rho\overline{u_j&#39;\phi&#39;}\right)+S
+\end{aligned}
+\]</span></p>
+<p>由于引入了代表湍流脉动影响的Reynolds应力项<span class="math inline">\(-\rho\overline{u_i&#39;u_j&#39;}\)</span>，仅靠上述方程无法封闭，需要附加关系式。可以通过对以上式子进行运算，再取时均，获得关于Reynolds应力的偏微分方程，这种方法称为Reynolds应力方程法。另一种方法不直接处理Reynolds应力，而是引入了湍流粘性系数<span class="math inline">\(\mu_t\)</span>，称为湍流粘性系数法。仿照层流的本构方程，建立Reynolds应力模型（其中的物理量默认为时均量）：</p>
+<p><span class="math display">\[
+-\rho\overline{u_i&#39;u_j&#39;}=
+\mu_t\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}\right)
+-\frac23(\rho k+\mu_t\mathrm{div}\:\pmb u)\delta_{ij}
+\]</span></p>
+<blockquote>
+<p>值得指出，虽然此式并无相应的物理基础，从纯学术的观点来看并不正确，但是以该式为基础的一些湍流模型仍能获得不少有实用意义的结果，因而工程计算中仍广为采用<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>。</p>
+</blockquote>
+<p>其中<span class="math inline">\(k\)</span>为单位质量流体湍流脉动动能： <span class="math display">\[
+k=\frac12(\overline{u&#39;^2}+\overline{v&#39;^2}+\overline{w&#39;^2})
+\]</span> 对于其他物理量，类似于<span class="math inline">\(\mu_t\)</span>可以引入<span class="math inline">\(\Gamma_t\)</span>，于是计算湍流的关键变为将<span class="math inline">\(\mu_t\)</span>与湍流时均量联系起来。方法包括零方程模型（即混合长度模型，仅使用代数方程）、一方程模型（引入<span class="math inline">\(k\)</span>的输运方程），以及广泛使用的两方程模型（<span class="math inline">\(k\text{-}\varepsilon\)</span>模型）。</p>
+<h2 id="标准ktext-varepsilon模型3">标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></h2>
+<p>引入脉动动能耗散率<span class="math inline">\(\varepsilon\)</span>，即小尺度涡的机械能转化为内能的速率： <span class="math display">\[
+\varepsilon=\frac\mu\rho\overline{\left(\frac{\partial u_i&#39;}{\partial x_k}\right)\left(\frac{\partial u_i&#39;}{\partial x_k}\right)}
+\]</span> 则<span class="math inline">\(\mu_t=\rho C_\mu\frac{k^2}{\varepsilon}\)</span>，其中<span class="math inline">\(C_\mu\)</span>为经验常数。这样可以得出<span class="math inline">\(k\)</span>与<span class="math inline">\(\varepsilon\)</span>各自的控制方程，其中包含多个参数，FLUENT中默认为：</p>
+<p><span class="math display">\[
+C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sigma_\varepsilon=1.3
+\]</span> 与其他物理量的控制方程相比，可发现所有控制方程都满足此形式： <span class="math display">\[
+\frac{\partial(\rho \phi)}{\partial t}+\mathrm{div}(\rho\pmb u \phi)=\mathrm{div}(\Gamma\:\mathrm{grad}\:\phi)+S
+\]</span> 根据<span class="math inline">\(\phi\)</span>的不同，扩散系数<span class="math inline">\(\Gamma\)</span>和源项<span class="math inline">\(S\)</span>不同，参见文献文献[5]P122<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>。</p>
+<p>对于该模型的适用性，要注意以下几点：</p>
+<ul>
+<li>对默认参数不要抱太高希望，这些常数也不是总是适合，有时需要修改</li>
+<li>标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型是针对充分发展的湍流（即高雷诺数）的，不适用于层流和壁面附近的流动</li>
+<li>标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型假定<span class="math inline">\(\mu_t\)</span>为各向同性，因而对于强旋流、弯曲流线流等情况会出现失真</li>
+</ul>
+<h2 id="近壁面的处理">近壁面的处理</h2>
+<p>在壁面附近粘性占主导，分为三层：粘性底层、过渡层和湍流充分发展的对数律层，不适用标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型，有两种方法处理：一是保持网格，采用半经验公式将壁面物理量与湍流核心区的物理量关联起来；另一种方法采用低雷诺数<span class="math inline">\(k\text{-}\varepsilon\)</span>模型求解，这要求越靠近壁面网格越细。</p>
+<ol style="list-style-type: decimal">
+<li>壁面函数法<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>：不考虑粘性底层和过渡层，确保壁面处第一个内节点在对数律层，此时无量纲的速度<span class="math inline">\(u^+\)</span>（考虑了<span class="math inline">\(k\)</span>和壁面切应力<span class="math inline">\(\tau_W\)</span>）、无量纲的温度<span class="math inline">\(T^+\)</span>（考虑了<span class="math inline">\(k\)</span>和热流密度<span class="math inline">\(q_W\)</span>）均关于广义坐标<span class="math inline">\(y^+\)</span>满足对数律。</li>
+</ol>
+<p>之后按照对数律即可确定<span class="math inline">\(\tau_W,q_W\)</span>，结合壁面上的速度<span class="math inline">\(u_W\)</span>以及温度<span class="math inline">\(T_W\)</span>，可得到当量粘性系数<span class="math inline">\(\mu_t\)</span>以及当量导热系数<span class="math inline">\(\lambda_t\)</span>： <span class="math display">\[
+   \tau_W=\mu_t\frac{u_P-u_W}{y_P},\ q_W=\lambda_t\frac{T_P-T_W}{y_P}
+   \]</span> 将<span class="math inline">\(\mu_t,\lambda_t\)</span>带入<span class="math inline">\(k\)</span>方程，边界条件一般取为<span class="math inline">\(\left(\frac{\partial k}{\partial y}\right)_W=0\)</span>，即可求解第一个内节点出的<span class="math inline">\(k\)</span>方程。而<span class="math inline">\(\varepsilon\)</span>方程的边界条件难以确定，一般采用其他模型解出。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>低雷诺数<span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a><a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>：对原本的<span class="math inline">\(k\text{-}\varepsilon\)</span>模型进行了三方面修正，使控制方程中扩散系数同时包括湍流扩散系数和分子扩散系数两部分；使系数考虑了湍流雷诺数<span class="math inline">\(\mathit{Re}_t=\frac{\rho k^2}{\mu\varepsilon}\)</span>的影响；在<span class="math inline">\(k\)</span>方程中考虑到了壁面附近湍流脉动动能耗散的各向异性。固壁上的边界条件为<span class="math inline">\(k=\varepsilon=0\)</span>。根据不同的附加项构造，有多种模型。</li>
+</ol>
+<h2 id="改进的ktext-varepsilon模型">改进的<span class="math inline">\(k\text{-}\varepsilon\)</span>模型</h2>
+<ol style="list-style-type: decimal">
+<li><p>RNG <span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>：对脉动频谱进行滤波，在大尺度运动和修正后的黏度项体现小尺度的影响，从而使小尺度运动有系统地从控制方程中去除。该模型通过修正湍流粘性系数，考虑了平均流动中的旋转及旋流，并且引入了主流的时均应变率： <span class="math display">\[
+   S_{ij}=\frac12\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}\right)
+   \]</span></p></li>
+<li><p>Realizable <span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>：时均应变率特别大时，标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型中会出现负的正应力，因此修正<span class="math inline">\(C_\mu\)</span>，使其不再是常数，而是与应变率联系起来： <span class="math display">\[
+   C_\mu=\frac1{A_0+A_sU^*\frac k\varepsilon}\\
+   \mathrm{where} \left\{
+   \begin{aligned}
+   A_0&amp;=4.0\\
+   A_s&amp;=\sqrt6\cos\left[\frac13\arccos(\sqrt6W)\right]\\
+   W&amp;=\frac{S_{ij}S_{jk}S_{ki}}{\overline S^3}\\
+   \overline S&amp;=\sqrt{S_{ij}S_{ij}}\\
+   U^*&amp;=\sqrt{S_{ij}S_{ij}+\widetilde\Omega_{ij}\widetilde\Omega_{ij}}\\
+   \widetilde\Omega_{ij}&amp;=\Omega_{ij}-2\varepsilon_{ijk}\omega_k\\
+   \Omega_{ij}&amp;=\overline{\Omega}_{ij}-\varepsilon_{ijk}\omega_k
+   \end{aligned}
+   \right.
+   \]</span></p></li>
+</ol>
+<blockquote>
+<p><span class="math inline">\(\sqrt{S_{ij}S_{ij}}\)</span>之类的迷惑行为是原文写法，猜测只是<span class="math inline">\(|S_{ij}|\)</span>的委婉表示方式……</p>
+</blockquote>
+<p>其中<span class="math inline">\(\widetilde\Omega_{ij}\)</span>是从角速度为<span class="math inline">\(\omega_k\)</span>的参考系中观察到的时均转动速率，体现了旋转的影响，比标准<span class="math inline">\(k\text{-}\varepsilon​\)</span>模型更为有效。</p>
+<p>注意这两种改进模型也都是只适合于高雷诺数的。</p>
+<h2 id="reynolds应力方程模型rsm">Reynolds应力方程模型（RSM）</h2>
+<p>为了克服<span class="math inline">\(k\text{-}\varepsilon​\)</span>模型中的问题，需要对<span class="math inline">\(-\rho\overline{u_i&#39;u_j&#39;}​\)</span>直接建立控制方程求解。有多种形式的RSM，FLUENT中采用的是12方程模型。由于根据时均化法则<span class="math inline">\(\overline{u_i&#39;u_j&#39;}=\overline{u_iu_j}-\overline{u}_i\overline{u}_j​\)</span>，因此对<span class="math inline">\(\overline{u_iu_j}​\)</span>和<span class="math inline">\(\overline{u}_i\overline{u}_j​\)</span>的控制方程进行操作，即可得到Reynolds应力的控制方程，但是同时又引入了三阶时均量<span class="math inline">\(\overline{u_i&#39;u_j&#39;u_k&#39;}​\)</span>以及压力脉动值<span class="math inline">\(p&#39;​\)</span>，必须补充模型将其与时均量以及低阶量联系起来。最终得到的方程中：</p>
+<ul>
+<li>12个未知量：4个时均量（<span class="math inline">\(u,v,w,p\)</span>）、6个Reynolds应力（<span class="math inline">\(\overline{u&#39;^2},\overline{v&#39;^2},\overline{w&#39;^2},\overline{u&#39;v&#39;},\overline{v&#39;w&#39;},\overline{w&#39;u&#39;}\)</span>）、湍流脉动动能<span class="math inline">\(k\)</span>及其耗散率<span class="math inline">\(\varepsilon\)</span></li>
+<li>12个方程：每个未知量都有自己的控制方程，他们相互耦合，联立之后可以求解</li>
+</ul>
+<p>RSM也属于高雷诺数模型，在壁面需要用壁面函数或低雷诺数RSM。相较于<span class="math inline">\(k\text{-}\varepsilon\)</span>模型，RSM能够考虑到一些各向异性效应，但对于一般回流流动并不优于<span class="math inline">\(k\text{-}\varepsilon\)</span>模型且计算量大，不过还是有许多文献认为RSM颇具潜力。</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>陶文铨. 数值传热学[M]. 第2版. 西安交通大学出版社, 2001.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>王福军. 计算流体动力学分析——CFD软件原理与应用[M]. 清华大学出版社, 2004.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>AHMAD T, PLEE S L, MYERS J P. Fluent Theory Guide[J]. 2013.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>PATANKAR S V, SPALDING D B. A calculation procedure for heat, mass and momentum transfer in three-dimensional parabolic flows[J]. International Journal of Heat and Mass Transfer, 1972, 15(10): 1787–1806.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>VAN DOORMAAL J P, RAITHBY G D. Enhancements of the SIMPLE method for predicting incompressible fluid flows[J]. Numerical heat transfer, 1984, 7(2): 147–163.<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>陶文铨. 数值传热学[M]. 第2版. 西安交通大学出版社, 2001.<a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p>LAUNDER B E, SPALDING D B. The numerical computation of turbulent flows[J]. Computer Methods in Applied Mechanics and Engineering, 1974, 3(2): 269–289.<a href="#fnref7">↩</a></p></li>
+<li id="fn8"><p>王福军. 计算流体动力学分析——CFD软件原理与应用[M]. 清华大学出版社, 2004.<a href="#fnref8">↩</a></p></li>
+<li id="fn9"><p>LAUNDER B E, SPALDING D B. The numerical computation of turbulent flows[J]. Computer Methods in Applied Mechanics and Engineering, 1974, 3(2): 269–289.<a href="#fnref9">↩</a></p></li>
+<li id="fn10"><p>JONES W P, LAUNDER B. The calculation of low-Reynolds-number phenomena with a two-equation model of turbulence[J]. International Journal of Heat and Mass Transfer, 1973, 16(6): 1119–1130.<a href="#fnref10">↩</a></p></li>
+<li id="fn11"><p>JONES W P, LAUNDER B E. The prediction of laminarization with a two-equation model of turbulence[J]. International journal of heat and mass transfer, 1972, 15(2): 301–314.<a href="#fnref11">↩</a></p></li>
+<li id="fn12"><p>YAKHOT V, ORSZAG S A. Renormalization group analysis of turbulence. I. Basic theory[J]. Journal of Scientific Computing, 1986, 1(1): 3–51.<a href="#fnref12">↩</a></p></li>
+<li id="fn13"><p>SHIH T-H, LIOU W W, SHABBIR A等. A new k-ϵ eddy viscosity model for high reynolds number turbulent flows[J]. Computers &amp; Fluids, 1995, 24(3): 227–238.<a href="#fnref13">↩</a></p></li>
+</ol>
+</div>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/模拟/">模拟</a><a href="/tags/物理/">物理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2019/03/23/计算流体动力学/" data-title="计算流体动力学 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/03/18/关于文献管理软件/"  title="关于文献管理软件">
+ <strong>下一篇：</strong><br/> 
+ <span>关于文献管理软件
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#控制方程离散化"><span class="toc-number">1.</span> <span class="toc-text">&#x63A7;&#x5236;&#x65B9;&#x7A0B;&#x79BB;&#x6563;&#x5316;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#有限差分法fdm"><span class="toc-number">1.1.</span> <span class="toc-text">&#x6709;&#x9650;&#x5DEE;&#x5206;&#x6CD5;&#xFF08;FDM&#xFF09;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有限元法fem"><span class="toc-number">1.2.</span> <span class="toc-text">&#x6709;&#x9650;&#x5143;&#x6CD5;&#xFF08;FEM&#xFF09;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有限体积法fvm"><span class="toc-number">1.3.</span> <span class="toc-text">&#x6709;&#x9650;&#x4F53;&#x79EF;&#x6CD5;&#xFF08;FVM&#xFF09;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#simple算法"><span class="toc-number">2.</span> <span class="toc-text">SIMPLE&#x7B97;&#x6CD5;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#交错网格"><span class="toc-number">2.1.</span> <span class="toc-text">&#x4EA4;&#x9519;&#x7F51;&#x683C;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simple算法的步骤"><span class="toc-number">2.2.</span> <span class="toc-text">SIMPLE&#x7B97;&#x6CD5;&#x7684;&#x6B65;&#x9AA4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进"><span class="toc-number">2.3.</span> <span class="toc-text">&#x6539;&#x8FDB;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三维湍流模型"><span class="toc-number">3.</span> <span class="toc-text">&#x4E09;&#x7EF4;&#x6E4D;&#x6D41;&#x6A21;&#x578B;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标准ktext-varepsilon模型3"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6807;&#x51C6;<span class="math inline">\(k\text{-}\varepsilon\)</span>&#x6A21;&#x578B;<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#近壁面的处理"><span class="toc-number">3.2.</span> <span class="toc-text">&#x8FD1;&#x58C1;&#x9762;&#x7684;&#x5904;&#x7406;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进的ktext-varepsilon模型"><span class="toc-number">3.3.</span> <span class="toc-text">&#x6539;&#x8FDB;&#x7684;<span class="math inline">\(k\text{-}\varepsilon\)</span>&#x6A21;&#x578B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reynolds应力方程模型rsm"><span class="toc-number">3.4.</span> <span class="toc-text">Reynolds&#x5E94;&#x529B;&#x65B9;&#x7A0B;&#x6A21;&#x578B;&#xFF08;RSM&#xFF09;</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>11</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
