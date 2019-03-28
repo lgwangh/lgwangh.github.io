@@ -11,18 +11,18 @@
     
 
     
-    <meta name="description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 暂且按下不表。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置">
+    <meta name="description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 参见计算流体动力学。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互">
 <meta name="keywords" content="笔记,模拟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fluent学习笔记">
 <meta property="og:url" content="http://yoursite.com/2019/03/04/Fluent学习笔记/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
-<meta property="og:description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 暂且按下不表。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置">
+<meta property="og:description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 参见计算流体动力学。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T17:15:13.121Z">
+<meta property="og:updated_time" content="2019-03-28T17:55:17.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fluent学习笔记">
-<meta name="twitter:description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 暂且按下不表。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置">
+<meta name="twitter:description" content="基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒 在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。 求解条件的选择 参见计算流体动力学。 TUI操作 其实TUI不怎么常用，但是记录操作的宏文件.jou文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互">
 
     
     
@@ -101,7 +101,7 @@
 		<p>基本操作步骤是非常程式化的，已经记得很清楚了，不需要写了（懒</p>
 <p>在几何正确的情况下，对于模拟质量影响最大的是网格和求解条件。网格主要在网格软件中控制（Gambit）；而求解条件，比如湍流模型的设置、数值算法的设置则是计算流体力学方面的内容。</p>
 <h1 id="求解条件的选择">求解条件的选择</h1>
-<p>暂且按下不表。</p>
+<p>参见<a href="https://lgwangh.github.io/2019/03/23/%E8%AE%A1%E7%AE%97%E6%B5%81%E4%BD%93%E5%8A%A8%E5%8A%9B%E5%AD%A6/" title="埃雅仁迪尔之星" target="_blank" rel="noopener">计算流体动力学</a>。</p>
 <h1 id="tui操作">TUI操作</h1>
 <p>其实TUI不怎么常用，但是记录操作的宏文件<code>.jou</code>文件的语法与TUI是一致的，只需注意：TUI中的操作可以交互的设置参数，<code>.jou</code>中则需要一次给齐。</p>
 <p>TUI中的命令以类似目录树的形式存储，也就是说，创建一对<code>interface</code>的命令是这样的：</p>
@@ -275,19 +275,27 @@
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 			
@@ -299,15 +307,7 @@
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
 			
 		
 		</ul>
