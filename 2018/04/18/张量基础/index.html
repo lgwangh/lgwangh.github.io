@@ -12,14 +12,14 @@
 
     
     <meta name="description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
-<meta name="keywords" content="笔记,python,数据分析,物理">
+<meta name="keywords" content="python,数据分析,笔记,物理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="张量基础与 Numpy 应用">
 <meta property="og:url" content="http://yoursite.com/2018/04/18/张量基础/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-22T13:25:11.311Z">
+<meta property="og:updated_time" content="2019-04-21T09:58:12.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="张量基础与 Numpy 应用">
 <meta name="twitter:description" content="所谓张量，是坐标变换下不变的量，也就是说，必须有一种坐标变换关系与之对应。 常见的张量：  0阶：常见形式为标量，温度、势等； 1阶：常见形式为矢量，力、速度等； 2阶：常见形式为矩阵，应力、应变等； 3阶：应力梯度等； 4阶：弹性模量等。  张量在力学中十分常用，而 Numpy 对张量运算和矩阵运算都有支持，需要小心使用。 张量与矩阵  矩阵：矩阵就是一种二维的数据结构，长宽任意，与坐标变换没有">
@@ -128,36 +128,36 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left">用法</th>
-<th align="left">爱因斯坦记法</th>
-<th align="left">注解</th>
+<th>用法</th>
+<th>爱因斯坦记法</th>
+<th>注解</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>c = einsum('i,i',a,b)</code></td>
-<td align="left"><span class="math inline">\(c=a_ib_i\)</span></td>
-<td align="left"></td>
+<td><code>c = einsum('i,i',a,b)</code></td>
+<td><span class="math inline">\(c=a_ib_i\)</span></td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left"><code>c = einsum('ii',a)</code></td>
-<td align="left"><span class="math inline">\(c=a_{ii}\)</span></td>
-<td align="left">迹，相当于<code>trace(a)</code></td>
+<td><code>c = einsum('ii',a)</code></td>
+<td><span class="math inline">\(c=a_{ii}\)</span></td>
+<td>迹，相当于<code>trace(a)</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>c = einsum('ii-&gt;i',a)</code></td>
-<td align="left"><span class="math inline">\(c_j=a_{ii}\)</span></td>
-<td align="left">缩并，非标准的标记，理论上是<code>ii-&gt;j</code></td>
+<td><code>c = einsum('ii-&gt;i',a)</code></td>
+<td><span class="math inline">\(c_j=a_{ii}\)</span></td>
+<td>缩并，非标准的标记，理论上是<code>ii-&gt;j</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>c = einsum('ij-&gt;i',a)</code></td>
-<td align="left"><span class="math inline">\(c_i=\sum_ja_{ij}\)</span></td>
-<td align="left">单向求和，非标准的标记</td>
+<td><code>c = einsum('ij-&gt;i',a)</code></td>
+<td><span class="math inline">\(c_i=\sum_ja_{ij}\)</span></td>
+<td>单向求和，非标准的标记</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>c = einsum(a,[0,1],b,[1,0])</code></td>
-<td align="left"><span class="math inline">\(c=a_{ij}b_{ji}\)</span></td>
-<td align="left">相当于用数字代替了脚标</td>
+<td><code>c = einsum(a,[0,1],b,[1,0])</code></td>
+<td><span class="math inline">\(c=a_{ij}b_{ji}\)</span></td>
+<td>相当于用数字代替了脚标</td>
 </tr>
 </tbody>
 </table>
@@ -179,41 +179,41 @@
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">名称</th>
-<th align="left">整体表示法</th>
-<th align="left">爱因斯坦表示法</th>
-<th align="left">Numpy 函数</th>
-<th align="left">注解</th>
+<th>名称</th>
+<th>整体表示法</th>
+<th>爱因斯坦表示法</th>
+<th>Numpy 函数</th>
+<th>注解</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">张量积</td>
-<td align="left"><span class="math inline">\(\mathbf{C}=\mathbf{AB}\)</span></td>
-<td align="left"><span class="math inline">\(C_{ijkl}=A_{ij}B_{kl}\)</span></td>
-<td align="left"><code>tensordot(A,B,0)</code></td>
-<td align="left">阶数为二者之和</td>
+<td>张量积</td>
+<td><span class="math inline">\(\mathbf{C}=\mathbf{AB}\)</span></td>
+<td><span class="math inline">\(C_{ijkl}=A_{ij}B_{kl}\)</span></td>
+<td><code>tensordot(A,B,0)</code></td>
+<td>阶数为二者之和</td>
 </tr>
 <tr class="even">
-<td align="left">内积/点积</td>
-<td align="left"><span class="math inline">\(\mathbf{C}=\mathbf{A}\cdot\mathbf{B}\)</span></td>
-<td align="left"><span class="math inline">\(C_{ij}=A_{ik}B_{kj}\)</span></td>
-<td align="left"><code>tensordot(A,B,1)</code>或<code>A @ B</code></td>
-<td align="left">二阶相当于矩阵相乘</td>
+<td>内积/点积</td>
+<td><span class="math inline">\(\mathbf{C}=\mathbf{A}\cdot\mathbf{B}\)</span></td>
+<td><span class="math inline">\(C_{ij}=A_{ik}B_{kj}\)</span></td>
+<td><code>tensordot(A,B,1)</code>或<code>A @ B</code></td>
+<td>二阶相当于矩阵相乘</td>
 </tr>
 <tr class="odd">
-<td align="left">克罗内克积</td>
-<td align="left"><span class="math inline">\(\mathbf{C}=\mathbf{A}\otimes\mathbf{B}\)</span></td>
-<td align="left"><span class="math inline">\(\mathbf{C}=[A_{ij}\mathbf{B}]\)</span></td>
-<td align="left"><code>kron(A,B)</code></td>
-<td align="left">相当于张量积展开</td>
+<td>克罗内克积</td>
+<td><span class="math inline">\(\mathbf{C}=\mathbf{A}\otimes\mathbf{B}\)</span></td>
+<td><span class="math inline">\(\mathbf{C}=[A_{ij}\mathbf{B}]\)</span></td>
+<td><code>kron(A,B)</code></td>
+<td>相当于张量积展开</td>
 </tr>
 <tr class="even">
-<td align="left">二次点积</td>
-<td align="left"><span class="math inline">\(C=\mathbf{A}:\mathbf{B}\)</span></td>
-<td align="left"><span class="math inline">\(C=A_{ij}B_{ij}\)</span></td>
-<td align="left"><code>tensordot(A,B,2)</code></td>
-<td align="left">仅用于二阶；交换律</td>
+<td>二次点积</td>
+<td><span class="math inline">\(C=\mathbf{A}:\mathbf{B}\)</span></td>
+<td><span class="math inline">\(C=A_{ij}B_{ij}\)</span></td>
+<td><code>tensordot(A,B,2)</code></td>
+<td>仅用于二阶；交换律</td>
 </tr>
 </tbody>
 </table>
@@ -222,48 +222,48 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left">名称</th>
-<th align="left">矩阵/向量表示</th>
-<th align="left">对应张量运算</th>
-<th align="left">Numpy 函数</th>
-<th align="left">注解</th>
+<th>名称</th>
+<th>矩阵/向量表示</th>
+<th>对应张量运算</th>
+<th>Numpy 函数</th>
+<th>注解</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">矩阵乘法</td>
-<td align="left"><span class="math inline">\(\mathbf{AB}\)</span></td>
-<td align="left">内积</td>
-<td align="left"><code>matmul(A,B)</code></td>
-<td align="left"></td>
+<td>矩阵乘法</td>
+<td><span class="math inline">\(\mathbf{AB}\)</span></td>
+<td>内积</td>
+<td><code>matmul(A,B)</code></td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left">矩阵外积</td>
-<td align="left"><span class="math inline">\(\mathbf{A}\circ\mathbf{B}\)</span></td>
-<td align="left">克罗内克积</td>
-<td align="left"><code>kron(A,B)</code></td>
-<td align="left">形状与克罗内克不同</td>
+<td>矩阵外积</td>
+<td><span class="math inline">\(\mathbf{A}\circ\mathbf{B}\)</span></td>
+<td>克罗内克积</td>
+<td><code>kron(A,B)</code></td>
+<td>形状与克罗内克不同</td>
 </tr>
 <tr class="odd">
-<td align="left">矢量内积</td>
-<td align="left"><span class="math inline">\(\vec{a}\cdot\vec{b}\Leftrightarrow\vec{a}^T\vec{b}\)</span></td>
-<td align="left">内积</td>
-<td align="left"><code>inner(a,b)</code></td>
-<td align="left"></td>
+<td>矢量内积</td>
+<td><span class="math inline">\(\vec{a}\cdot\vec{b}\Leftrightarrow\vec{a}^T\vec{b}\)</span></td>
+<td>内积</td>
+<td><code>inner(a,b)</code></td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left">矢量叉积</td>
-<td align="left"><span class="math inline">\(\vec{a}\times\vec{b}\)</span></td>
-<td align="left">无</td>
-<td align="left"><code>cross(a,b)</code></td>
-<td align="left">一般用于一阶张量</td>
+<td>矢量叉积</td>
+<td><span class="math inline">\(\vec{a}\times\vec{b}\)</span></td>
+<td>无</td>
+<td><code>cross(a,b)</code></td>
+<td>一般用于一阶张量</td>
 </tr>
 <tr class="odd">
-<td align="left">矢量外积</td>
-<td align="left"><span class="math inline">\(\vec{a}\circ\vec{b}\Leftrightarrow\vec{a}\vec{b}^T\)</span></td>
-<td align="left">张量积</td>
-<td align="left"><code>outer(a,b)</code></td>
-<td align="left"></td>
+<td>矢量外积</td>
+<td><span class="math inline">\(\vec{a}\circ\vec{b}\Leftrightarrow\vec{a}\vec{b}^T\)</span></td>
+<td>张量积</td>
+<td><code>outer(a,b)</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -292,26 +292,26 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left">函数操作</th>
-<th align="left">运算</th>
-<th align="left">阶数</th>
+<th>函数操作</th>
+<th>运算</th>
+<th>阶数</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">梯度</td>
-<td align="left"><span class="math inline">\(\mathrm{grad}\ \mathbf{A}=\mathbf{A}\vec{\nabla}\)</span></td>
-<td align="left">N+1</td>
+<td>梯度</td>
+<td><span class="math inline">\(\mathrm{grad}\ \mathbf{A}=\mathbf{A}\vec{\nabla}\)</span></td>
+<td>N+1</td>
 </tr>
 <tr class="even">
-<td align="left">散度</td>
-<td align="left"><span class="math inline">\(\mathrm{div}\ \mathbf{A}=\mathbf{A}\cdot\vec{\nabla}\)</span></td>
-<td align="left">N-1</td>
+<td>散度</td>
+<td><span class="math inline">\(\mathrm{div}\ \mathbf{A}=\mathbf{A}\cdot\vec{\nabla}\)</span></td>
+<td>N-1</td>
 </tr>
 <tr class="odd">
-<td align="left">旋度</td>
-<td align="left"><span class="math inline">\(\mathrm{rot}\ \mathbf{A}=\mathbf{A}\times\vec{\nabla}\)</span>（矢量叉积）</td>
-<td align="left">N</td>
+<td>旋度</td>
+<td><span class="math inline">\(\mathrm{rot}\ \mathbf{A}=\mathbf{A}\times\vec{\nabla}\)</span>（矢量叉积）</td>
+<td>N</td>
 </tr>
 </tbody>
 </table>
@@ -331,7 +331,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/物理/">物理</a>
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/笔记/">笔记</a><a href="/tags/物理/">物理</a>
   </div>
 
 </div>
@@ -410,7 +410,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -432,11 +432,11 @@
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
@@ -452,7 +452,7 @@
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 			
@@ -460,11 +460,15 @@
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
@@ -472,11 +476,7 @@
 			
 		
 			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 		</ul>

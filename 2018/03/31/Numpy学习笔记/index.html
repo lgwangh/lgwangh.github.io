@@ -12,14 +12,14 @@
 
     
     <meta name="description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrix Numpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
-<meta name="keywords" content="笔记,python,数据分析">
+<meta name="keywords" content="python,数据分析,笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Numpy学习笔记">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/Numpy学习笔记/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrix Numpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-04-01T06:22:57.848Z">
+<meta property="og:updated_time" content="2019-04-21T09:58:12.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Numpy学习笔记">
 <meta name="twitter:description" content="python是好文明！——虽然图书馆总是不肯买python数据分析的书，一大把matlab教程锃光瓦亮的摆在那里。 问题总是层出不穷的，要学会搜索，Numpy 手册搜索页面传送门 。 数据结构：array 与 matrix Numpy 中有两种数组：array 和 matrix，后者是前者的子类，继承了大部分操作。在用户手册上建议大家使用 array ，不过 matrix 在线性代数方面更为方便。">
@@ -107,46 +107,46 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
-<th align="left">array</th>
-<th align="left">matrix</th>
+<th></th>
+<th>array</th>
+<th>matrix</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">维度</td>
-<td align="left">1~，根据括号层数，可能下降 ①</td>
-<td align="left">2</td>
+<td>维度</td>
+<td>1~，根据括号层数，可能下降 ①</td>
+<td>2</td>
 </tr>
 <tr class="even">
-<td align="left">矩阵乘法</td>
-<td align="left"><del><code>np.matmul(A,B)</code>或<code>A.dot(B)</code></del><code>A @ B</code> ②</td>
-<td align="left"><code>A*B</code></td>
+<td>矩阵乘法</td>
+<td><del><code>np.matmul(A,B)</code>或<code>A.dot(B)</code></del><code>A @ B</code> ②</td>
+<td><code>A*B</code></td>
 </tr>
 <tr class="odd">
-<td align="left">按位乘法</td>
-<td align="left"><code>A*B</code>，遵循<strong>广播法则</strong> ③</td>
-<td align="left"><code>np.multiply(A,B)</code></td>
+<td>按位乘法</td>
+<td><code>A*B</code>，遵循<strong>广播法则</strong> ③</td>
+<td><code>np.multiply(A,B)</code></td>
 </tr>
 <tr class="even">
-<td align="left">矩阵乘方</td>
-<td align="left"><code>np.linalg.matrix_power(A,k)</code></td>
-<td align="left"><code>A**k</code></td>
+<td>矩阵乘方</td>
+<td><code>np.linalg.matrix_power(A,k)</code></td>
+<td><code>A**k</code></td>
 </tr>
 <tr class="odd">
-<td align="left">按位乘方</td>
-<td align="left"><code>A**B</code>,<code>B</code>不能包含负整数 ④</td>
-<td align="left"><code>np.power(A,B)</code></td>
+<td>按位乘方</td>
+<td><code>A**B</code>,<code>B</code>不能包含负整数 ④</td>
+<td><code>np.power(A,B)</code></td>
 </tr>
 <tr class="even">
-<td align="left">其他按位运算</td>
-<td align="left">遵循<strong>广播法则</strong></td>
-<td align="left">遵循<strong>广播法则</strong></td>
+<td>其他按位运算</td>
+<td>遵循<strong>广播法则</strong></td>
+<td>遵循<strong>广播法则</strong></td>
 </tr>
 <tr class="odd">
-<td align="left">逆矩阵</td>
-<td align="left"><code>np.linalg.inv(A)</code></td>
-<td align="left"><code>A**-1</code>或<code>A.I</code></td>
+<td>逆矩阵</td>
+<td><code>np.linalg.inv(A)</code></td>
+<td><code>A**-1</code>或<code>A.I</code></td>
 </tr>
 </tbody>
 </table>
@@ -167,51 +167,51 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
-<th align="left">array</th>
-<th align="left">matrix</th>
+<th></th>
+<th>array</th>
+<th>matrix</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>[NxN]</code>单位矩阵</td>
-<td align="left"><code>eye(N)</code></td>
-<td align="left"><code>matlib.eye(N)</code></td>
+<td><code>[NxN]</code>单位矩阵</td>
+<td><code>eye(N)</code></td>
+<td><code>matlib.eye(N)</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>[MxN]</code>空矩阵</td>
-<td align="left"><code>empty([M,N])</code></td>
-<td align="left"><code>matlib.empty([M,N])</code></td>
+<td><code>[MxN]</code>空矩阵</td>
+<td><code>empty([M,N])</code></td>
+<td><code>matlib.empty([M,N])</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>[MxN]</code>零矩阵</td>
-<td align="left"><code>zeros([M,N])</code></td>
-<td align="left"><code>matlib.zeros([M,N])</code></td>
+<td><code>[MxN]</code>零矩阵</td>
+<td><code>zeros([M,N])</code></td>
+<td><code>matlib.zeros([M,N])</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>[MxN]</code>全1矩阵</td>
-<td align="left"><code>ones([M,N])</code></td>
-<td align="left"><code>matlib.ones([M,N])</code></td>
+<td><code>[MxN]</code>全1矩阵</td>
+<td><code>ones([M,N])</code></td>
+<td><code>matlib.ones([M,N])</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>[MxN]</code>全a矩阵</td>
-<td align="left"><code>full([M,N],a)</code></td>
-<td align="left">无</td>
+<td><code>[MxN]</code>全a矩阵</td>
+<td><code>full([M,N],a)</code></td>
+<td>无</td>
 </tr>
 <tr class="even">
-<td align="left"><code>[MxN]</code>随机矩阵</td>
-<td align="left"><code>random.rand(M,N)</code></td>
-<td align="left"><code>matlib.rand(M,N)</code>或<code>matlib.rand([M,N])</code></td>
+<td><code>[MxN]</code>随机矩阵</td>
+<td><code>random.rand(M,N)</code></td>
+<td><code>matlib.rand(M,N)</code>或<code>matlib.rand([M,N])</code></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>[MxN]</code>正态随机矩阵</td>
-<td align="left"><code>random.randn(M,N)</code></td>
-<td align="left"><code>matlib.randn(M,N)</code>或<code>matlib.randn([M,N])</code></td>
+<td><code>[MxN]</code>正态随机矩阵</td>
+<td><code>random.randn(M,N)</code></td>
+<td><code>matlib.randn(M,N)</code>或<code>matlib.randn([M,N])</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>[MxN]</code>随机整数矩阵</td>
-<td align="left"><code>random.rand(low,hight,[M,N])</code></td>
-<td align="left">无</td>
+<td><code>[MxN]</code>随机整数矩阵</td>
+<td><code>random.rand(low,hight,[M,N])</code></td>
+<td>无</td>
 </tr>
 </tbody>
 </table>
@@ -223,36 +223,36 @@
 <table>
 <thead>
 <tr class="header">
-<th align="left">函数</th>
-<th align="left">等价于</th>
-<th align="left">注释</th>
+<th>函数</th>
+<th>等价于</th>
+<th>注释</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>np.matmul(A,B)-&gt;ndarray</code></td>
-<td align="left"><code>A @ B</code></td>
-<td align="left">矩阵乘法，参数不能是标量</td>
+<td><code>np.matmul(A,B)-&gt;ndarray</code></td>
+<td><code>A @ B</code></td>
+<td>矩阵乘法，参数不能是标量</td>
 </tr>
 <tr class="even">
-<td align="left"><code>A.dot(B),np.dot(A,B)-&gt;ndarray</code></td>
-<td align="left"><code>A @ B</code></td>
-<td align="left">参数中的一个可以是标量</td>
+<td><code>A.dot(B),np.dot(A,B)-&gt;ndarray</code></td>
+<td><code>A @ B</code></td>
+<td>参数中的一个可以是标量</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>np.inner(m,n)-&gt;num</code></td>
-<td align="left"><code>m @ n.T</code></td>
-<td align="left">可用于高维，但数学意义不明</td>
+<td><code>np.inner(m,n)-&gt;num</code></td>
+<td><code>m @ n.T</code></td>
+<td>可用于高维，但数学意义不明</td>
 </tr>
 <tr class="even">
-<td align="left"><code>np.outer(m,n)-&gt;ndarray</code></td>
-<td align="left"><code>m.T @ n</code></td>
-<td align="left"></td>
+<td><code>np.outer(m,n)-&gt;ndarray</code></td>
+<td><code>m.T @ n</code></td>
+<td></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>np.vdot(m,n)-&gt;num</code></td>
-<td align="left"><code>m.conjugate() @ n.T</code></td>
-<td align="left">复共轭内积，不应用于高维</td>
+<td><code>np.vdot(m,n)-&gt;num</code></td>
+<td><code>m.conjugate() @ n.T</code></td>
+<td>复共轭内积，不应用于高维</td>
 </tr>
 </tbody>
 </table>
@@ -303,7 +303,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a>
+  <span></span> <a href="/tags/python/">python</a><a href="/tags/数据分析/">数据分析</a><a href="/tags/笔记/">笔记</a>
   </div>
 
 </div>
@@ -382,7 +382,7 @@
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -404,11 +404,11 @@
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
@@ -424,7 +424,7 @@
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 			
@@ -432,11 +432,15 @@
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
@@ -444,11 +448,7 @@
 			
 		
 			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 		</ul>

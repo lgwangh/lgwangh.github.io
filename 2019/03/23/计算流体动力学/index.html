@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="主要参考了文献[4] 1、[5] 2。但是要注意，很多模型有多种形式，在书中难免有出入，最终还是要以模拟软件采用的为准（对于FLUENT而言就是Fluent Theory Guide3）。 控制方程离散化 有限差分法（FDM） 主要思想为：差商代替微商，递推代替积分，从而完全使用有限的网格节点代替连续的求解域。例如对于一维情况，可设想\((x,t)\)构成网格，而物理量均离散化到各点上（差商代替微">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T17:34:09.583Z">
+<meta property="og:updated_time" content="2019-04-21T09:58:12.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算流体动力学">
 <meta name="twitter:description" content="主要参考了文献[4] 1、[5] 2。但是要注意，很多模型有多种形式，在书中难免有出入，最终还是要以模拟软件采用的为准（对于FLUENT而言就是Fluent Theory Guide3）。 控制方程离散化 有限差分法（FDM） 主要思想为：差商代替微商，递推代替积分，从而完全使用有限的网格节点代替连续的求解域。例如对于一维情况，可设想\((x,t)\)构成网格，而物理量均离散化到各点上（差商代替微">
@@ -254,7 +254,7 @@ a_P\phi_P=\sum a_{nb}\phi_{nb}+b
 </blockquote>
 <p>其中<span class="math inline">\(k\)</span>为单位质量流体湍流脉动动能： <span class="math display">\[
 k=\frac12(\overline{u&#39;^2}+\overline{v&#39;^2}+\overline{w&#39;^2})
-\]</span> 对于其他物理量，类似于<span class="math inline">\(\mu_t\)</span>可以引入<span class="math inline">\(\Gamma_t\)</span>，于是计算湍流的关键变为将<span class="math inline">\(\mu_t\)</span>与湍流时均量联系起来。方法包括零方程模型（即混合长度模型，仅使用代数方程）、一方程模型（引入<span class="math inline">\(k\)</span>的输运方程），以及广泛使用的两方程模型（<span class="math inline">\(k\text{-}\varepsilon\)</span>模型）。</p>
+\]</span> 对于其他物理量，类似于<span class="math inline">\(\mu_t​\)</span>可以引入<span class="math inline">\(\Gamma_t​\)</span>，于是计算湍流的关键变为将<span class="math inline">\(\mu_t​\)</span>与湍流时均量联系起来。方法包括零方程模型（即混合长度模型，仅使用代数方程）、一方程模型（引入<span class="math inline">\(k​\)</span>的输运方程），以及广泛使用的两方程模型（<span class="math inline">\(k\text{-}\varepsilon​\)</span>模型）。</p>
 <h2 id="标准ktext-varepsilon模型3">标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a></h2>
 <p>引入脉动动能耗散率<span class="math inline">\(\varepsilon\)</span>，即小尺度涡的机械能转化为内能的速率： <span class="math display">\[
 \varepsilon=\frac\mu\rho\overline{\left(\frac{\partial u_i&#39;}{\partial x_k}\right)\left(\frac{\partial u_i&#39;}{\partial x_k}\right)}
@@ -279,14 +279,14 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
    \tau_W=\mu_t\frac{u_P-u_W}{y_P},\ q_W=\lambda_t\frac{T_P-T_W}{y_P}
    \]</span> 将<span class="math inline">\(\mu_t,\lambda_t\)</span>带入<span class="math inline">\(k\)</span>方程，边界条件一般取为<span class="math inline">\(\left(\frac{\partial k}{\partial y}\right)_W=0\)</span>，即可求解第一个内节点出的<span class="math inline">\(k\)</span>方程。而<span class="math inline">\(\varepsilon\)</span>方程的边界条件难以确定，一般采用其他模型解出。</p>
 <ol start="2" style="list-style-type: decimal">
-<li>低雷诺数<span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a><a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>：对原本的<span class="math inline">\(k\text{-}\varepsilon\)</span>模型进行了三方面修正，使控制方程中扩散系数同时包括湍流扩散系数和分子扩散系数两部分；使系数考虑了湍流雷诺数<span class="math inline">\(\mathit{Re}_t=\frac{\rho k^2}{\mu\varepsilon}\)</span>的影响；在<span class="math inline">\(k\)</span>方程中考虑到了壁面附近湍流脉动动能耗散的各向异性。固壁上的边界条件为<span class="math inline">\(k=\varepsilon=0\)</span>。根据不同的附加项构造，有多种模型。</li>
+<li>低雷诺数<span class="math inline">\(k\text{-}\varepsilon​\)</span>模型<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a><a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>：对原本的<span class="math inline">\(k\text{-}\varepsilon​\)</span>模型进行了三方面修正，使控制方程中扩散系数同时包括湍流扩散系数和分子扩散系数两部分；使系数考虑了湍流雷诺数<span class="math inline">\(\mathit{Re}_t=\frac{\rho k^2}{\mu\varepsilon}​\)</span>的影响；在<span class="math inline">\(k​\)</span>方程中考虑到了壁面附近湍流脉动动能耗散的各向异性。固壁上的边界条件为<span class="math inline">\(k=\varepsilon=0​\)</span>。根据不同的附加项构造，有多种模型。</li>
 </ol>
 <h2 id="改进的ktext-varepsilon模型">改进的<span class="math inline">\(k\text{-}\varepsilon\)</span>模型</h2>
 <ol style="list-style-type: decimal">
 <li><p>RNG <span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>：对脉动频谱进行滤波，在大尺度运动和修正后的黏度项体现小尺度的影响，从而使小尺度运动有系统地从控制方程中去除。该模型通过修正湍流粘性系数，考虑了平均流动中的旋转及旋流，并且引入了主流的时均应变率： <span class="math display">\[
    S_{ij}=\frac12\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}\right)
    \]</span></p></li>
-<li><p>Realizable <span class="math inline">\(k\text{-}\varepsilon\)</span>模型<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>：时均应变率特别大时，标准<span class="math inline">\(k\text{-}\varepsilon\)</span>模型中会出现负的正应力，因此修正<span class="math inline">\(C_\mu\)</span>，使其不再是常数，而是与应变率联系起来： <span class="math display">\[
+<li><p>Realizable <span class="math inline">\(k\text{-}\varepsilon​\)</span>模型<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>：时均应变率特别大时，标准<span class="math inline">\(k\text{-}\varepsilon​\)</span>模型中会出现负的正应力，因此修正<span class="math inline">\(C_\mu​\)</span>，使其不再是常数，而是与应变率联系起来： <span class="math display">\[
    C_\mu=\frac1{A_0+A_sU^*\frac k\varepsilon}\\
    \mathrm{where} \left\{
    \begin{aligned}
@@ -361,6 +361,14 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2019/04/21/换电脑数据迁移的麻烦事/" title="换电脑数据迁移的麻烦事">
+  <strong>上一篇：</strong><br/>
+  <span>
+  换电脑数据迁移的麻烦事</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2019/03/18/关于文献管理软件/"  title="关于文献管理软件">
@@ -410,7 +418,7 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -432,11 +440,11 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
@@ -452,7 +460,7 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 			
@@ -460,11 +468,15 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
@@ -472,11 +484,7 @@ C_{1\varepsilon}=1.44,\ C_{2\varepsilon}=1.92\ ,C_\mu=0.09,\ \sigma_k=1.0,\ \sig
 			
 		
 			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 		</ul>
