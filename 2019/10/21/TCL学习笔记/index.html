@@ -1,0 +1,696 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>TCL学习笔记 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="Fluent是用Scheme编的，Marc是用Fortran编的，Hypermesh是用的TCL，这都是什么鬼东西…… 配置 1apt install tcl 安装完成后，可以得到解释器tclsh，可以直接运行交互式解释器（命令提示符为%），也可以用于运行程序文件。另外，也可以在程序文件开头指明解释器： 1#!/usr/bin/tclsh 基础 基本规则 TCL 是一种类似shell的命令式语言，">
+<meta name="keywords" content="笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TCL学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/10/21/TCL学习笔记/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="Fluent是用Scheme编的，Marc是用Fortran编的，Hypermesh是用的TCL，这都是什么鬼东西…… 配置 1apt install tcl 安装完成后，可以得到解释器tclsh，可以直接运行交互式解释器（命令提示符为%），也可以用于运行程序文件。另外，也可以在程序文件开头指明解释器： 1#!/usr/bin/tclsh 基础 基本规则 TCL 是一种类似shell的命令式语言，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-25T07:21:04.309Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TCL学习笔记">
+<meta name="twitter:description" content="Fluent是用Scheme编的，Marc是用Fortran编的，Hypermesh是用的TCL，这都是什么鬼东西…… 配置 1apt install tcl 安装完成后，可以得到解释器tclsh，可以直接运行交互式解释器（命令提示符为%），也可以用于运行程序文件。另外，也可以在程序文件开头指明解释器： 1#!/usr/bin/tclsh 基础 基本规则 TCL 是一种类似shell的命令式语言，">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/10/21/TCL学习笔记/" title="TCL学习笔记" itemprop="url">TCL学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2019-10-21T05:12:52.000Z" itemprop="datePublished"> 发表于 2019-10-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-number">1.</span> <span class="toc-text">&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基础"><span class="toc-number">2.</span> <span class="toc-text">&#x57FA;&#x7840;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本规则"><span class="toc-number">2.1.</span> <span class="toc-text">&#x57FA;&#x672C;&#x89C4;&#x5219;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量置换"><span class="toc-number">2.2.</span> <span class="toc-text">&#x53D8;&#x91CF;&#x7F6E;&#x6362;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令置换"><span class="toc-number">2.3.</span> <span class="toc-text">&#x547D;&#x4EE4;&#x7F6E;&#x6362;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">2.4.</span> <span class="toc-text">&#x5E38;&#x7528;&#x547D;&#x4EE4;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑控制"><span class="toc-number">3.</span> <span class="toc-text">&#x903B;&#x8F91;&#x63A7;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">3.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch"><span class="toc-number">3.2.</span> <span class="toc-text">switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#while"><span class="toc-number">3.3.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for和foreach"><span class="toc-number">3.4.</span> <span class="toc-text">for&#x548C;foreach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#过程函数"><span class="toc-number">4.</span> <span class="toc-text">&#x8FC7;&#x7A0B;&#xFF08;&#x51FD;&#x6570;&#xFF09;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量作用域"><span class="toc-number">4.1.</span> <span class="toc-text">&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺省参数"><span class="toc-number">4.2.</span> <span class="toc-text">&#x7F3A;&#x7701;&#x53C2;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变数量参数"><span class="toc-number">4.3.</span> <span class="toc-text">&#x53D8;&#x6570;&#x91CF;&#x53C2;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">4.4.</span> <span class="toc-text">&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">5.</span> <span class="toc-text">&#x6570;&#x636E;&#x7ED3;&#x6784;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字典"><span class="toc-number">5.1.</span> <span class="toc-text">&#x5B57;&#x5178;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-number">5.2.</span> <span class="toc-text">&#x5217;&#x8868;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">6.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件"><span class="toc-number">6.1.</span> <span class="toc-text">&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它命令"><span class="toc-number">6.2.</span> <span class="toc-text">&#x5176;&#x5B83;&#x547D;&#x4EE4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展"><span class="toc-number">6.3.</span> <span class="toc-text">&#x6269;&#x5C55;</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>Fluent是用Scheme编的，Marc是用Fortran编的，Hypermesh是用的TCL，这都是什么鬼东西……</p>
+<h1 id="配置">配置</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install tcl</span><br></pre></td></tr></table></figure>
+<p>安装完成后，可以得到解释器<code>tclsh</code>，可以直接运行交互式解释器（命令提示符为<code>%</code>），也可以用于运行程序文件。另外，也可以在程序文件开头指明解释器：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/tclsh</span></span><br></pre></td></tr></table></figure>
+<h1 id="基础">基础</h1>
+<h2 id="基本规则">基本规则</h2>
+<p>TCL 是一种类似shell的命令式语言，各种语句都是<code>command arg1 arg2 ...</code>的形式，其中所有参数都被视为字符串，</p>
+<ol style="list-style-type: decimal">
+<li><p>TCL会先对字符串进行置换，再进行分析处理。置换包括变量置换、命令置换和转义字符置换。另外，<code>&quot;&quot;</code>也可以用于表示含空白字符的字符串，<code>{}</code>则表示原始字符串，其中不会发生任何置换。</p></li>
+<li><p>在TCL中，换行和<code>;</code>都表示一句命令结束；<code>#</code>开头的行为注释，因此行内注释需要这样：</p></li>
+</ol>
+<p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">some command <span class="comment">;# 这是注释</span></span><br></pre></td></tr></table></figure></p>
+<ol start="3" style="list-style-type: decimal">
+<li>对于空白比较敏感，例如<code>if{...}</code>是不对的，因为<code>if{</code>会被认为是一个命令，必须用<code>if {...}</code>。</li>
+</ol>
+<h2 id="变量置换">变量置换</h2>
+<p>变量名称较为随便，可包括各种奇怪符号，但是为了变量替换的方便，建议只使用字母、数字和下划线。无需变量声明，使用<code>set</code>赋值，使用<code>$</code>进行<strong>变量置换</strong>从而取值：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">%<span class="keyword">set</span> a <span class="number">1</span>       <span class="comment">;# a = 1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">%<span class="keyword">set</span> b a       <span class="comment">;# 由于参数默认为字符串，因而是 b ="a"</span></span><br><span class="line">a</span><br><span class="line">%<span class="keyword">set</span> c $a      <span class="comment">;# $a 被置换为 a 的值 1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">%<span class="keyword">set</span> d $a+<span class="number">2</span>    <span class="comment">;# 尽管 $a 替换了，总体还是字符串，并不会求值</span></span><br><span class="line"><span class="number">1</span>+<span class="number">2</span></span><br><span class="line">% <span class="keyword">set</span> b $a + <span class="number">2</span> <span class="comment">;# 空格的存在导致报错</span></span><br><span class="line">wrong # args: should be <span class="string">"set varName ?newValue?"</span></span><br><span class="line">%<span class="keyword">set</span> a<span class="number">.2</span> <span class="number">4</span>     <span class="comment">;# 奇怪的变量名也可以（尽管不建议）</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line">%<span class="keyword">unset</span> c d     <span class="comment">;# 删除变量 c, d，无返回</span></span><br></pre></td></tr></table></figure>
+<p><code>$</code>变量将<code>$</code>之后直到第一个非字母、数字和下划线字符（以及圆括号）之前的字符视为变量名，因而<code>$a.2</code>会变成<code>1.2</code>；稳妥的方式是使用<code>${a.1}</code>。</p>
+<h2 id="命令置换">命令置换</h2>
+<p><code>[]</code>内的内容会被认为是一条命令进行运行，其实就类似于匿名函数。两点注意：<code>[]</code>内必须是一或多条完整命令，最后一条的结果被作为输出；<code>[]</code>可以嵌套：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">%<span class="keyword">set</span> m [$a+<span class="number">2</span>]               <span class="comment">;# $a+2 并不是完整命令</span></span><br><span class="line">invalid command name <span class="string">"1+2"</span></span><br><span class="line">%<span class="keyword">set</span> m [<span class="keyword">expr</span> $a+<span class="number">2</span>]          <span class="comment">;# expr 为求值命令</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">%<span class="keyword">set</span> n [<span class="keyword">expr</span> <span class="number">7</span>*($a-<span class="number">2</span>)]      <span class="comment">;# 基本四则运算</span></span><br><span class="line"><span class="number">-7</span></span><br><span class="line">%<span class="keyword">set</span> n [<span class="keyword">expr</span> <span class="number">7</span>*[<span class="keyword">expr</span> $a-<span class="number">2</span>]] <span class="comment">;# []的嵌套</span></span><br><span class="line"><span class="number">-7</span></span><br><span class="line">%<span class="keyword">set</span> y [<span class="keyword">expr</span> $a+<span class="number">9</span>; <span class="keyword">set</span> k <span class="number">3</span>] <span class="comment">;# 多条语句</span></span><br><span class="line"><span class="number">3</span></span><br></pre></td></tr></table></figure>
+<h2 id="常用命令">常用命令</h2>
+<ol style="list-style-type: decimal">
+<li><p><code>puts aim text</code> ：将<code>text</code>输出至<code>aim</code>（可以是文件ID、<code>stdout</code>）；可以省略<code>aim</code>参数，则默认输出至<code>stdout</code>。</p></li>
+<li><p><code>expr formula</code> ：返回算式<code>formula</code>的值，算式中数字/变量与运算符之间的空格没有影响。</p></li>
+<li><p><code>append var text</code> ：把<code>text</code>追加到变量<code>var</code>之后，返回<code>var</code>。</p></li>
+<li><p><code>incr var_int int</code> ：即<code>var_int += int</code>，返回<code>var_int</code>，<code>var_int</code>和<code>int</code>都必须可被识别为整数。若省略<code>int</code>，则相当于<code>var_int++</code>。</p></li>
+<li><p>关系符号：<code>&lt;  &gt;  &lt;=  &gt;=  ==  !=</code>，注意还是必须用到<code>expr</code>才能得到值，值为<code>1</code>或<code>0</code>。</p></li>
+<li><p>数学函数：写法类似C，例如</p></li>
+</ol>
+<p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">expr</span> <span class="number">2</span> + sin($a)</span><br><span class="line"><span class="number">2.8414709848078967</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="逻辑控制">逻辑控制</h1>
+<h2 id="if">if</h2>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> &#123;$x &gt; <span class="number">0</span>&#125; &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125; elseif &#123;$x == <span class="number">1</span>&#125; &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意空格，注意花括号的左边要留在上一行，不然会被认为语句已结束。</p>
+<h2 id="switch">switch</h2>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> options <span class="keyword">string</span> &#123;</span><br><span class="line">    pattern0 -           <span class="comment">;# - 表示与后一个相同</span></span><br><span class="line">    pattern1 &#123;body1&#125;</span><br><span class="line">    pattern2 &#123;body2&#125;</span><br><span class="line">    default &#123;body3&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>options</code>表示匹配方式，可以为<code>-exact</code>精确匹配、<code>-glob</code>广泛匹配、<code>-regexp</code>正则表达式匹配；可以省略，默认为<code>-glob</code>。</p>
+<h2 id="while">while</h2>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> &#123;$i &lt;= n&#125; &#123;</span><br><span class="line">    <span class="keyword">set</span> k [<span class="keyword">expr</span> $k + $i]</span><br><span class="line">    <span class="keyword">incr</span> i <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>while</code>命令结束后返回空字符串。</p>
+<h2 id="for和foreach">for和foreach</h2>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> &#123;<span class="keyword">set</span> i <span class="number">1</span>&#125; &#123;$i &lt; n&#125; &#123;<span class="keyword">incr</span> i <span class="number">1</span>&#125; &#123;</span><br><span class="line">    <span class="keyword">set</span> k [<span class="keyword">expr</span> $k + $i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>for</code>命令结束后返回空字符串。</p>
+<p><code>foreach</code>是针对列表的，类似于python的<code>for i in a</code>：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> sum <span class="number">0</span></span><br><span class="line"><span class="keyword">foreach</span> i $a &#123;</span><br><span class="line">    <span class="keyword">set</span> sum [<span class="keyword">expr</span> $sum + $a]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也可以实现多重的列表循环：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> i &#123;a b c&#125; &#123;i k&#125; &#123;d e f g&#125; &#123;</span><br><span class="line">    <span class="keyword">lappend</span> x $i $j $k</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最终<code>x</code>的值为<code>a b e b f g c {} {}</code>。</p>
+<h1 id="过程函数">过程（函数）</h1>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">proc</span><span class="title"> add</span> &#123;x y&#125; &#123;</span><br><span class="line">    <span class="keyword">set</span> m [<span class="keyword">expr</span> $x + $y]</span><br><span class="line">    <span class="keyword">return</span> $m</span><br><span class="line">&#125;</span><br><span class="line">add <span class="number">1</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>不用<code>return</code>的话，以最后一条语句的结果作为返回值。</p>
+<h2 id="变量作用域">变量作用域</h2>
+<p>TCL很奇怪，全局变量的作用与不包括过程内部，如果要在过程内引用全局变量，要使用<code>global</code>：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> a <span class="number">4</span></span><br><span class="line"><span class="keyword">proc</span><span class="title"> sample</span> &#123;x&#125; &#123;</span><br><span class="line">    <span class="keyword">global</span> a</span><br><span class="line">    <span class="keyword">incr</span> a</span><br><span class="line">    <span class="keyword">set</span> m [<span class="keyword">expr</span> $a + $x]</span><br><span class="line">    <span class="keyword">return</span> $m</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缺省参数">缺省参数</h2>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">proc</span><span class="title"> add</span> &#123;x &#123;y <span class="number">2</span>&#125; &#123;z <span class="number">3</span>&#125;&#125; &#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">expr</span> $x + $y + $z]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="变数量参数">变数量参数</h2>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">proc</span><span class="title"> add</span> &#123; val1 args &#125; &#123;</span><br><span class="line">    <span class="keyword">set</span> sum $val1</span><br><span class="line">    <span class="keyword">foreach</span> i $args &#123; <span class="keyword">incr</span> sum $i &#125; <span class="keyword">return</span> $sum &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="引用">引用</h2>
+<p>通过<code>upvar</code>，可以访问到函数参数对应的原变量，类似于C中的引用：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">proc</span><span class="title"> temp</span> &#123; arg &#125; &#123;</span><br><span class="line">    <span class="keyword">upvar</span> $arg b</span><br><span class="line">    <span class="keyword">set</span> b [<span class="keyword">expr</span> $b+<span class="number">2</span>] </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">proc</span><span class="title"> myexp</span> &#123; var &#125; &#123;</span><br><span class="line">    <span class="keyword">set</span> a <span class="number">4</span> </span><br><span class="line">    temp a </span><br><span class="line">    <span class="keyword">return</span> [<span class="keyword">expr</span> $var + $a] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则<code>myexp 7</code>输出<code>13</code>。</p>
+<h1 id="数据结构">数据结构</h1>
+<h2 id="字典">字典</h2>
+<p>一般被称为数组，其实是字典，支持两重的变量置换：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">set</span> day(monday) <span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line">% <span class="keyword">set</span> day(friday) <span class="number">5</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line">% <span class="keyword">set</span> a monday</span><br><span class="line">monday</span><br><span class="line">% <span class="keyword">set</span> b $day(monday)</span><br><span class="line">1</span><br><span class="line">% <span class="keyword">set</span> c $day($a)</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>可以用<code>array</code>命令对字典进行操作，常用包括：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字典元素个数</span></span><br><span class="line"><span class="keyword">array</span> size arrayName</span><br><span class="line"><span class="comment"># 返回符合 pattern 的键的列表，若省略 pattern 则返回所有键</span></span><br><span class="line"><span class="keyword">array</span> names arrayName pattern</span><br></pre></td></tr></table></figure>
+<h2 id="列表">列表</h2>
+<p>可包含任意的字符串或子列表，可以直接用花括号声明或者用<code>list</code>命令，注意用空格而不是逗号分隔：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">set</span> a &#123;&#125;</span><br><span class="line">% <span class="keyword">set</span> b &#123;c g <span class="number">6</span> .&#125;</span><br><span class="line">c g <span class="number">6</span> .</span><br><span class="line">% <span class="keyword">set</span> c [<span class="keyword">list</span> <span class="number">1</span> <span class="number">3</span> &#123;<span class="number">4</span> q&#125; $b]</span><br><span class="line"><span class="number">1</span> <span class="number">3</span> &#123;<span class="number">4</span> q&#125; &#123;c g <span class="number">6</span> .&#125;</span><br></pre></td></tr></table></figure>
+<p>访问数组元素需要使用<code>lindex list indexNumber</code>命令，注意第一变量需要是<code>$x</code>而不是<code>x</code>，下标从0开始：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">puts</span> [<span class="keyword">lindex</span> [<span class="keyword">lindex</span> $c <span class="number">3</span>] <span class="number">2</span>]</span><br><span class="line"><span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>其它命令：</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">llength</span> &#123;<span class="number">1</span> <span class="number">2</span> &#123;<span class="number">3</span> <span class="number">4</span>&#125;&#125;    <span class="comment">;# 元素个数</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">% # <span class="keyword">linsert</span> <span class="keyword">list</span> indexNumber value</span><br><span class="line">% # 把 value 插入到 index 号元素之前，返回新列表</span><br><span class="line">% <span class="keyword">linsert</span> &#123;<span class="number">2</span> <span class="number">3</span> <span class="number">6</span>&#125; <span class="number">1</span> &#123;<span class="number">7</span> <span class="number">8</span>&#125;</span><br><span class="line">&#123;<span class="number">2</span> &#123;<span class="number">7</span> <span class="number">8</span>&#125; <span class="number">3</span> <span class="number">6</span>&#125;</span><br><span class="line">% <span class="keyword">linsert</span> b <span class="number">1</span> mm</span><br><span class="line">b mm</span><br><span class="line">% <span class="keyword">linsert</span> $b <span class="number">1</span> mm <span class="comment">;# 第一参数是 list 而不是变量名</span></span><br><span class="line">c mm g <span class="number">6</span> .</span><br><span class="line">% # <span class="keyword">lappend</span> listName value</span><br><span class="line">% # 把 value 追加到列表最后（若该名字的列表不存在则创建它），返回新列表</span><br><span class="line">% <span class="keyword">lappend</span> $b <span class="number">0</span> <span class="number">9</span></span><br><span class="line"><span class="number">0</span> <span class="number">9</span></span><br><span class="line">% <span class="keyword">lappend</span> $b <span class="number">0</span> <span class="number">9</span> <span class="comment">;# 第一参数是变量名而不是list</span></span><br><span class="line">c g <span class="number">6</span> . <span class="number">0</span> <span class="number">9</span></span><br><span class="line">% <span class="keyword">lappend</span> $b &#123;<span class="number">0</span> <span class="number">9</span>&#125;</span><br><span class="line">c g <span class="number">6</span> . <span class="number">0</span> <span class="number">9</span> &#123;<span class="number">0</span> <span class="number">9</span>&#125;</span><br><span class="line">% # <span class="keyword">lrange</span> <span class="keyword">list</span> first last</span><br><span class="line">% # 列表切片，包含两端；last 可以是 end</span><br><span class="line">% <span class="keyword">lrange</span> &#123;<span class="number">1</span> <span class="number">7</span> <span class="number">8</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>&#125; <span class="number">2</span> <span class="number">5</span></span><br><span class="line"><span class="number">8</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span></span><br><span class="line">% <span class="keyword">lrange</span> &#123;<span class="number">1</span> <span class="number">7</span> <span class="number">8</span> <span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>&#125; <span class="number">3</span> end</span><br><span class="line"><span class="number">2</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<h1 id="其他">其他</h1>
+<h2 id="文件">文件</h2>
+<ol style="list-style-type: decimal">
+<li><code>open fileFullName access</code>：以<code>access</code>方式打开<code>file</code>，返回文件标识符。打开方式包括：</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center">参数</th>
+<th align="center">打开方式</th>
+<th align="center">对文件的要求</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><code>r</code></td>
+<td align="center">只读</td>
+<td align="center">文件已存在</td>
+</tr>
+<tr class="even">
+<td align="center"><code>r+</code></td>
+<td align="center">读写</td>
+<td align="center">文件已存在</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>w</code></td>
+<td align="center">只写</td>
+<td align="center">已存在则清空文件，否则创建文件</td>
+</tr>
+<tr class="even">
+<td align="center"><code>w+</code></td>
+<td align="center">读写</td>
+<td align="center">已存在则清空文件，否则创建文件</td>
+</tr>
+<tr class="odd">
+<td align="center"><code>a</code></td>
+<td align="center">追加</td>
+<td align="center">文件已存在</td>
+</tr>
+<tr class="even">
+<td align="center"><code>a+</code></td>
+<td align="center">只读</td>
+<td align="center">文件已存在，否则创建文件</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li><p><code>close fileID</code>：关闭<code>file</code>，返回空字符串。</p></li>
+<li><p><code>gets fileID varName</code>：读取<code>file</code>的下一行，赋给<code>var</code>，返回字符数。</p></li>
+<li><p><code>read -nonewline fileID</code>：读取并返回<code>file</code>所剩的全部内容。</p></li>
+<li><p><code>puts fileID string</code>：把字符串写入<code>file</code>，结尾添加换行符（采用<code>-nonewline</code>参数禁止）。<code>fileID</code>也可以是<code>stdin, stdout, stderr</code>，省略则默认为<code>stdout</code>。</p></li>
+<li><p><code>flush fileID</code>：把缓冲区的数据写入文件中，一般在<code>close</code>时会自动<code>flush</code>。</p></li>
+<li><p><code>pwd</code> 和 <code>cd</code>：类似bash命令，分别是获取当前路径与切换路径。</p></li>
+</ol>
+<h2 id="其它命令">其它命令</h2>
+<ol style="list-style-type: decimal">
+<li><code>eval</code>：把所有参数以空格隔开组成一个脚本，如</li>
+</ol>
+<p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">eval</span> <span class="keyword">set</span> a <span class="number">2</span> ; <span class="keyword">set</span> b <span class="number">4</span></span><br><span class="line"><span class="number">4</span></span><br></pre></td></tr></table></figure></p>
+<ol start="2" style="list-style-type: decimal">
+<li><code>source</code>：读入文件并将其作为脚本求值，注意使用<code>/</code>而不是<code>\</code>：</li>
+</ol>
+<p><figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">% <span class="keyword">source</span> e:/tcl/hello.tcl</span><br><span class="line">Hello</span><br></pre></td></tr></table></figure></p>
+<h2 id="扩展">扩展</h2>
+<p>TCL支持的数据类型较少，也不能面向对象编程，incr TCL（捏他C++）解决了这一问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install itcl</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/笔记/">笔记</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2019/10/21/TCL学习笔记/" data-title="TCL学习笔记 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/03/23/计算流体动力学/"  title="计算流体动力学">
+ <strong>下一篇：</strong><br/> 
+ <span>计算流体动力学
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#配置"><span class="toc-number">1.</span> <span class="toc-text">&#x914D;&#x7F6E;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基础"><span class="toc-number">2.</span> <span class="toc-text">&#x57FA;&#x7840;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本规则"><span class="toc-number">2.1.</span> <span class="toc-text">&#x57FA;&#x672C;&#x89C4;&#x5219;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量置换"><span class="toc-number">2.2.</span> <span class="toc-text">&#x53D8;&#x91CF;&#x7F6E;&#x6362;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令置换"><span class="toc-number">2.3.</span> <span class="toc-text">&#x547D;&#x4EE4;&#x7F6E;&#x6362;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-number">2.4.</span> <span class="toc-text">&#x5E38;&#x7528;&#x547D;&#x4EE4;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑控制"><span class="toc-number">3.</span> <span class="toc-text">&#x903B;&#x8F91;&#x63A7;&#x5236;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#if"><span class="toc-number">3.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#switch"><span class="toc-number">3.2.</span> <span class="toc-text">switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#while"><span class="toc-number">3.3.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for和foreach"><span class="toc-number">3.4.</span> <span class="toc-text">for&#x548C;foreach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#过程函数"><span class="toc-number">4.</span> <span class="toc-text">&#x8FC7;&#x7A0B;&#xFF08;&#x51FD;&#x6570;&#xFF09;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量作用域"><span class="toc-number">4.1.</span> <span class="toc-text">&#x53D8;&#x91CF;&#x4F5C;&#x7528;&#x57DF;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缺省参数"><span class="toc-number">4.2.</span> <span class="toc-text">&#x7F3A;&#x7701;&#x53C2;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变数量参数"><span class="toc-number">4.3.</span> <span class="toc-text">&#x53D8;&#x6570;&#x91CF;&#x53C2;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#引用"><span class="toc-number">4.4.</span> <span class="toc-text">&#x5F15;&#x7528;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据结构"><span class="toc-number">5.</span> <span class="toc-text">&#x6570;&#x636E;&#x7ED3;&#x6784;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字典"><span class="toc-number">5.1.</span> <span class="toc-text">&#x5B57;&#x5178;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表"><span class="toc-number">5.2.</span> <span class="toc-text">&#x5217;&#x8868;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">6.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件"><span class="toc-number">6.1.</span> <span class="toc-text">&#x6587;&#x4EF6;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它命令"><span class="toc-number">6.2.</span> <span class="toc-text">&#x5176;&#x5B83;&#x547D;&#x4EE4;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#扩展"><span class="toc-number">6.3.</span> <span class="toc-text">&#x6269;&#x5C55;</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

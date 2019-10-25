@@ -11,18 +11,18 @@
     
 
     
-    <meta name="description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{v}, \pmb{P}\)为关于\((x, y, z, t)\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量和体积压缩系数 \[   E_V=\frac{1}{\beta_p}=-V\frac{\mathr">
+    <meta name="description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 然后发现研究生还要接着学…… 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{u}, \pmb{P}​\)为关于\((x, y, z, t)​\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量\(E_V\)和等温体积压缩系数\(\beta_p\) \[">
 <meta name="keywords" content="笔记,物理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="流体力学">
 <meta property="og:url" content="http://yoursite.com/2019/02/23/流体力学/index.html">
 <meta property="og:site_name" content="埃雅仁迪尔之星">
-<meta property="og:description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{v}, \pmb{P}\)为关于\((x, y, z, t)\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量和体积压缩系数 \[   E_V=\frac{1}{\beta_p}=-V\frac{\mathr">
+<meta property="og:description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 然后发现研究生还要接着学…… 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{u}, \pmb{P}​\)为关于\((x, y, z, t)​\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量\(E_V\)和等温体积压缩系数\(\beta_p\) \[">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-21T09:58:12.694Z">
+<meta property="og:updated_time" content="2019-10-25T07:23:31.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="流体力学">
-<meta name="twitter:description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{v}, \pmb{P}\)为关于\((x, y, z, t)\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量和体积压缩系数 \[   E_V=\frac{1}{\beta_p}=-V\frac{\mathr">
+<meta name="twitter:description" content="为了毕设开始学习留级流体力学( •̥́ ˍ •̀ ) 然后发现研究生还要接着学…… 流体的力学性质 流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是\(\rho, \pmb{u}, \pmb{P}​\)为关于\((x, y, z, t)​\)的连续函数。 流体的力学特性包括：  流动性 可压缩性：体弹模量\(E_V\)和等温体积压缩系数\(\beta_p\) \[">
 
     
     
@@ -99,21 +99,27 @@
 		</div>
 		
 		<p>为了毕设开始学习<del>留级</del>流体力学( •̥́ ˍ •̀ )</p>
+<p>然后发现研究生还要接着学……</p>
 <h1 id="流体的力学性质">流体的力学性质</h1>
-<p>流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是<span class="math inline">\(\rho, \pmb{v}, \pmb{P}\)</span>为关于<span class="math inline">\((x, y, z, t)\)</span>的连续函数。</p>
+<p>流体力学采用连续介质模型，具有三个特点：质量连续，运动连续，内应力连续。也就是<span class="math inline">\(\rho, \pmb{u}, \pmb{P}​\)</span>为关于<span class="math inline">\((x, y, z, t)​\)</span>的连续函数。</p>
 <p>流体的力学特性包括：</p>
 <ul>
 <li><p>流动性</p></li>
-<li><p>可压缩性：体弹模量和体积压缩系数 <span class="math display">\[
+<li><p>可压缩性：体弹模量<span class="math inline">\(E_V\)</span>和等温体积压缩系数<span class="math inline">\(\beta_p\)</span> <span class="math display">\[
   E_V=\frac{1}{\beta_p}=-V\frac{\mathrm{d}p}{\mathrm{d}V}
   \]</span></p></li>
-<li><p>黏滞性：表现为内摩擦力，许多流体满足牛顿黏流定律，对于速度场为<span class="math inline">\(\pmb{u}=\pmb{u}(x, y, z, t)​\)</span>的流体，在垂直于<span class="math inline">\(y​\)</span>向的平面上，切应力 <span class="math display">\[
-  \pmb\tau=\mu\frac{\partial\pmb u}{\partial y}
-  \]</span> 其中<span class="math inline">\(\mu​\)</span>为动力黏度，单位为<span class="math inline">\(\mathrm{Pa\cdot s}​\)</span>。液体黏度随温度升高而减小，气体黏度随温度升高而增加，定义运动粘度<span class="math inline">\(\nu=\frac{\mu}{\rho}​\)</span>。<span class="math inline">\(\mu=0​\)</span>则为理想流体。对于非牛顿流体，黏度与速度梯度有关，不是物性参数，因而不满足此定律。</p></li>
+<li><p>热胀性：等压热膨胀系数 <span class="math display">\[
+  \beta_t=\frac 1 V\frac{\mathrm d V}{\mathrm d T}
+  \]</span></p></li>
+<li><p>粘滞性：表现为内摩擦力，许多流体满足牛顿粘流定律，对于速度场为<span class="math inline">\(\pmb{u}=\pmb{u}(x, y, z, t)​\)</span>的流体，在垂直于<span class="math inline">\(y​\)</span>向的平面上，切应力 <span class="math display">\[
+  \tau_{yx}=-\mu\frac{\partial u_x}{\partial y}
+  \]</span> 其中<span class="math inline">\(\mu\)</span>为动力粘度，单位为<span class="math inline">\(\mathrm{Pa\cdot s}\)</span>。液体粘度随温度升高而减小，气体粘度随温度升高而增加，对于液态合金液，共晶成分时粘度最低。定义运动粘度<span class="math inline">\(\nu=\frac{\mu}{\rho}\)</span>，运动粘度是动量传输的度量，又称动量扩散系数。<span class="math inline">\(\mu=0\)</span>则为理想流体。对于非牛顿流体，粘度与速度梯度有关，不是物性参数，因而不满足此定律。</p></li>
 </ul>
-<p>黏滞性的另一表现为无滑移条件，即流体与壁面无相对滑动。</p>
+<p>推而广之，有粘度张量 <span class="math display">\[
+  \tau_{ij}=-\mu\left(\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}-\frac{2}{3}\delta_{ij}\nabla u\right)
+  \]</span> 粘滞性的另一表现为无滑移条件，即流体与壁面无相对滑动。</p>
 <ul>
-<li>表面张力：表面张力处处垂直于流体线并切于液面，<span class="math inline">\(f=\sigma l\)</span>，其中<span class="math inline">\(\sigma\)</span>为表面张力系数。对于曲面液面，会因此产生压力差 <span class="math display">\[
+<li>表面张力：表面张力处处垂直于流体线并切于液面，<span class="math inline">\(f=\sigma l​\)</span>，其中<span class="math inline">\(\sigma​\)</span>为表面张力系数。对于曲面液面，会因此产生压力差 <span class="math display">\[
   \Delta p=\sigma\left(\frac{1}{R_1}+\frac{1}{R_2}\right)
   \]</span> <span class="math inline">\(R_1,R_2\)</span>是通过曲面上一点的任意一对正交法切线的曲率半径（可证明对于确定的点而言是常数）。由此会产生毛细现象，对于直径<span class="math inline">\(r\)</span>的毛细管，若液面与管壁夹角为<span class="math inline">\(\theta\)</span>，则毛细管内页面高出外侧 <span class="math display">\[
   h=\frac{2\sigma\cos\theta}{\rho g r}
@@ -127,32 +133,34 @@
   \pmb{r}=x\mathbf{i}+y\mathbf{j}+z\mathbf{k}=\pmb{r}(a,b,c,t)
   \]</span> 则流场的各种物理量都可表示成<span class="math inline">\((a,b,c,t)\)</span>的函数</p></li>
 <li><p>欧拉法，着眼于确定空间点上的流体流动，采用速度场作为基础 <span class="math display">\[
-  \pmb{v}=v_x\mathbf{i}+v_y\mathbf{j}+v_z\mathbf{k}=\pmb{v}(x,y,z,t)
+  \pmb{u}=u_x\mathbf{i}+u_y\mathbf{j}+u_z\mathbf{k}=\pmb{u}(x,y,z,t)
   \]</span> 则流场的各种物理量都可表示成<span class="math inline">\((x,y,z,t)\)</span>的函数</p></li>
 </ul>
 <p>两种方法可以互换：</p>
 <ul>
 <li>拉<span class="math inline">\(\to​\)</span>欧：从<span class="math inline">\(\pmb r=\pmb r(a,b,c,t)​\)</span>反解出<span class="math inline">\((a,b,c)=\pmb r^{-1}(x,y,z,t)​\)</span>，再带回<span class="math inline">\(\phi=\phi(a,b,c,t)​\)</span></li>
-<li>欧<span class="math inline">\(\to​\)</span>拉：从微分方程组<span class="math inline">\(\pmb v=\left(\frac{\mathrm{d}x}{\mathrm{d}t},\frac{\mathrm{d}y}{\mathrm{d}t},\frac{\mathrm{d}z}{\mathrm{d}t}\right)=\pmb v(x,y,z,t)​\)</span>解出<span class="math inline">\((x,y,z)=\pmb r(c_1,c_2,c_3,t)​\)</span>，根据<span class="math inline">\(t=t_0​\)</span>时<span class="math inline">\((x,y,z)=(x_0,y_0,z_0)​\)</span>确定积分常数<span class="math inline">\(c_1,c_2,c_3​\)</span>，再代回<span class="math inline">\(\phi=\phi(x,y,z,t)​\)</span></li>
+<li>欧<span class="math inline">\(\to​\)</span>拉：从微分方程组<span class="math inline">\(\pmb u=\left(\frac{\mathrm{d}x}{\mathrm{d}t},\frac{\mathrm{d}y}{\mathrm{d}t},\frac{\mathrm{d}z}{\mathrm{d}t}\right)=\pmb u(x,y,z,t)​\)</span>解出<span class="math inline">\((x,y,z)=\pmb r(c_1,c_2,c_3,t)​\)</span>，根据<span class="math inline">\(t=t_0​\)</span>时<span class="math inline">\((x,y,z)=(x_0,y_0,z_0)​\)</span>确定积分常数<span class="math inline">\(c_1,c_2,c_3​\)</span>，再代回<span class="math inline">\(\phi=\phi(x,y,z,t)​\)</span></li>
 </ul>
 <h2 id="质点导数">质点导数</h2>
-<p>流体质点的物理量相对时间的变化率。对于拉格朗日法，物理量<span class="math inline">\(\phi=\phi(a,b,c,t)​\)</span>的质点导数就是<span class="math inline">\(\frac{\partial \phi(a,b,c,t)}{\partial t}​\)</span>，但是对于欧拉法不是。定义质点导数算子 <span class="math display">\[
-\frac{\mathrm{D}}{\mathrm{D}t}=\underbrace{\frac{\partial}{\partial t}}_{局部项}+\underbrace{v_x\frac{\partial}{\partial x}+v_y\frac{\partial}{\partial y}+v_z\frac{\partial}{\partial z}}_{对流项}
-\]</span> 则物理量<span class="math inline">\(\phi=\phi(x,y,z,t)\)</span>的质点导数为<span class="math inline">\(\frac{\mathrm{D} \phi(x,y,z,t)}{\mathrm{D} t}\)</span></p>
+<p>流体质点的物理量相对时间的变化率。对于拉格朗日法，物理量<span class="math inline">\(\phi=\phi(a,b,c,t)​\)</span>的质点导数就是<span class="math inline">\(\frac{\mathrm d \phi}{\mathrm d t}=\frac{\partial \phi}{\partial t}​\)</span>，但是对于欧拉法不是。定义质点导数算子 <span class="math display">\[
+\frac{\mathrm{D}}{\mathrm{D}t}=\underbrace{\frac{\partial}{\partial t}}_{局部项}+\underbrace{u_x\frac{\partial}{\partial x}+u_y\frac{\partial}{\partial y}+u_z\frac{\partial}{\partial z}}_{对流项}=\frac{\partial}{\partial t}+(\pmb{u}\cdot\nabla)
+\]</span> 则物理量<span class="math inline">\(\phi=\phi(x,y,z,t)​\)</span>的质点导数为<span class="math inline">\(\frac{\mathrm d \phi}{\mathrm d t}=\frac{\mathrm{D} \phi}{\mathrm{D} t}​\)</span></p>
+<p>例如对于加速度，局部项（当地加速度）</p>
 <h2 id="迹线和流线">迹线和流线</h2>
-<p>流体质点的运动轨迹曲线称为迹线。拉格朗日法即为迹线参数方程，从中消去<span class="math inline">\(t\)</span>即为迹线方程；而欧拉法需要先换成拉格朗日法。</p>
+<p>流体质点的运动轨迹曲线称为迹线。拉格朗日法即为迹线参数方程，从中消去<span class="math inline">\(t​\)</span>即为迹线方程；而欧拉法需要先换成拉格朗日法。</p>
 <p>而流线如同电场线、磁感线，流线微分方程 <span class="math display">\[
-\frac{\mathrm{d}x}{v_x}=\frac{\mathrm{d}y}{v_y}=\frac{\mathrm{d}z}{v_z}
-\]</span> 在积分时将<span class="math inline">\(t\)</span>作为常数。在稳态流动条件下（<span class="math inline">\(\frac{\partial \phi(x,y,z,t)}{\partial t}=0\)</span>），流线与迹线重合。</p>
-<p>流线包围成的管状曲面称为流管，在流管上再做两截面<span class="math inline">\(A_1,A_2\)</span>，则构成封闭曲面，在稳态条件下，总流体通量为0，类似于电场的高斯定理，管流具有连续性方程 <span class="math display">\[
-\iint_{A_1}\rho_1(\pmb v_1\cdot\mathrm{d}\pmb A_1)=\iint_{A_2}\rho_2(\pmb v_2\cdot\mathrm{d}\pmb A_2)
+\frac{\mathrm{d}x}{u_x}=\frac{\mathrm{d}y}{u_y}=\frac{\mathrm{d}z}{u_z}
+\]</span> 在积分时将<span class="math inline">\(t​\)</span>作为常数。在稳态流动条件下（<span class="math inline">\(\frac{\partial \phi(x,y,z,t)}{\partial t}=0​\)</span>），流线与迹线重合。</p>
+<p>流线包围成的管状曲面称为流管，流管内所有流线组成流束，在流管上再做两截面<span class="math inline">\(A_1,A_2\)</span>，则构成封闭曲面，在稳态条件下，总流体通量为0，类似于电场的高斯定理，管流具有连续性方程 <span class="math display">\[
+Q=\iint_{A_1}\rho(\pmb u\cdot\mathrm{d}\pmb A)=\iint_{A_2}\rho(\pmb u\cdot\mathrm{d}\pmb A)
 \]</span> 对于工程中的实际管流，简化为 <span class="math display">\[
-A_1 \rho_{1m}v_{1m}=A_2 \rho_{2m}v_{2m}
+A_1 \rho_{1m}u_{1m}=A_2 \rho_{2m}u_{2m}
 \]</span> 其中<span class="math inline">\(A\)</span>为管道横截面积，<span class="math inline">\(\rho_m,v_m\)</span>为管道截面上流体平均密度和平均速度。</p>
+<p>单位时间内，通过单位面积的流体所传递的动量的称为动量通量，为矢量，等于粘度张量在该面的分量。</p>
 <h2 id="流体的运动与变形">流体的运动与变形</h2>
 <p>流体微元团的运动可分解为三种：</p>
 <ul>
-<li><p>平移速度<span class="math inline">\(\pmb v\)</span></p></li>
+<li><p>平移速度<span class="math inline">\(\pmb u​\)</span></p></li>
 <li><p>转动速度 <span class="math display">\[
   \begin{aligned}
   \pmb\omega&amp;=\frac 1 2\mathrm{rot}\:\pmb v=\frac 1 2\pmb\nabla\times\pmb v\\
@@ -169,7 +177,7 @@ A_1 \rho_{1m}v_{1m}=A_2 \rho_{2m}v_{2m}
 </ul>
 <h2 id="流体的流动与阻力">流体的流动与阻力</h2>
 <p>圆管中流体的雷诺数 <span class="math display">\[
-Re=\frac{\rho u_m D}{\mu}
+Re=\frac{\rho u_m D}{\mu}\propto\frac{惯性力}{粘性力}
 \]</span> 其中<span class="math inline">\(u_m\)</span>为平均速度。雷诺数越小流体脉动越小： <span class="math display">\[
 Re\left\{
 \begin{aligned}
@@ -178,12 +186,22 @@ Re\left\{
 &amp;&gt;4000&amp; 湍流
 \end{aligned}
 \right.
+\quad另一说法\quad
+Re\left\{
+\begin{aligned}
+&amp;&lt;2320&amp; 层流\\
+&amp;2320\sim13000&amp; 过渡流\\
+&amp;&gt;13000&amp; 湍流
+\end{aligned}
+\right.
 \]</span></p>
 <ul>
-<li>层流：远离进口的管道街面上速度分布为抛物线形，<span class="math inline">\(u=u_\max\left(1-\frac{r^2}{R^2}\right),u_\max=2u_m​\)</span></li>
-<li>湍流：流体微团大尺度随机脉动，速度分布近似圆台，<span class="math inline">\(u_\max\approx1.25u_m\)</span></li>
+<li>层流：远离进口的管道截面上速度分布为抛物线形，<span class="math inline">\(u=u_\max\left(1-\frac{r^2}{R^2}\right),u_\max=\frac{pR^2}{4\mu l}=2u_m​\)</span>，其中<span class="math inline">\(p​\)</span>为进口压力，<span class="math inline">\(l​\)</span>为管长</li>
+<li>湍流：流体微团大尺度随机脉动，速度分布近似圆台，经验上<span class="math inline">\(u=u_{\max}(\frac {R-r} R)^{1/n},u_\max\approx1.25u_m​\)</span>，<span class="math inline">\(n​\)</span>随雷诺数增加而增加</li>
 </ul>
-<p>固壁边界对流体流动产生阻力<span class="math inline">\(F_D\)</span>，包括正应力产生的形状阻力<span class="math inline">\(F_p\)</span>和切应力产生的摩擦阻力<span class="math inline">\(F_f\)</span>： <span class="math display">\[
+<p>对于非圆管中的流动，将<span class="math inline">\(D​\)</span>替换为等效水力半径<span class="math inline">\(R​\)</span>： <span class="math display">\[
+R=\frac{流体有效截面积}{与流体接触的固体周长}
+\]</span> 固壁边界对流体流动产生阻力<span class="math inline">\(F_D\)</span>，包括正应力产生的形状阻力<span class="math inline">\(F_p\)</span>和切应力产生的摩擦阻力<span class="math inline">\(F_f\)</span>： <span class="math display">\[
 \begin{aligned}
 F_D=C_D\frac{\rho u_0^2}{2}A_D\\
 F_p=C_p\frac{\rho u_0^2}{2}A_D\\
@@ -208,7 +226,7 @@ F_f=C_f\frac{\rho u_0^2}{2}A_f
   \]</span></p></li>
 </ul>
 <h1 id="流体静力学">流体静力学</h1>
-<p>作用在流体上的力可分为质量力（重力、惯性力）和表面力。记单位质量力为<span class="math inline">\(\pmb f\)</span>，则体积为<span class="math inline">\(V\)</span>的流体上的总质量力为 <span class="math display">\[
+<p>作用在流体上的力可分为质量力（重力、惯性力、惯性离心力）和表面力。记单位质量力为<span class="math inline">\(\pmb f\)</span>，则体积为<span class="math inline">\(V\)</span>的流体上的总质量力为 <span class="math display">\[
 \pmb F_m=\iiint_V\rho \pmb f\:\mathrm d V
 \]</span> 记单位表面力为<span class="math inline">\(\pmb p_n=\pmb \sigma_n+\pmb \tau_n\)</span>，则总表面力为 <span class="math display">\[
 \pmb F_A=\iint_A \pmb p_n\:\mathrm d A
@@ -244,22 +262,22 @@ F_x=p_aA+\rho g\int_0^Hhw\:\mathrm d h
 <tbody>
 <tr class="odd">
 <td align="center">质量守恒</td>
-<td align="center"><span class="math inline">\(\iint_{\rm cs}\rho(\pmb v\cdot\mathrm d\pmb A)++\frac{\mathrm d m_{\rm cv}}{\mathrm d t}=0\)</span></td>
+<td align="center"><span class="math inline">\(\iint_{\rm cs}\rho(\pmb u\cdot\mathrm d\pmb A)++\frac{\mathrm d m_{\rm cv}}{\mathrm d t}=0\)</span></td>
 <td align="center"><span class="math inline">\(q_{mo}-q_{mi}=0\)</span></td>
 </tr>
 <tr class="even">
 <td align="center">动量守恒</td>
-<td align="center"><span class="math inline">\(\sum \pmb F=\iint_{\rm cs}\rho\pmb v(\pmb v\cdot\mathrm d\pmb A)+\frac{\mathrm d}{\mathrm d t}\iiint_{\rm cv}\rho\pmb v \:\mathrm d V\)</span></td>
+<td align="center"><span class="math inline">\(\sum \pmb F=\iint_{\rm cs}\rho\pmb u(\pmb u\cdot\mathrm d\pmb A)+\frac{\mathrm d}{\mathrm d t}\iiint_{\rm cv}\rho\pmb u \:\mathrm dV\)</span></td>
 <td align="center"><span class="math inline">\(\sum \pmb F=(\pmb v_o -\pmb v_i)q_{m}\)</span></td>
 </tr>
 <tr class="odd">
 <td align="center">动量矩守恒</td>
-<td align="center"><span class="math inline">\(\sum \pmb M=\iint_{\rm cs}\rho(\pmb r\times\pmb v)(\pmb v\cdot\mathrm d\pmb A)+\frac{\mathrm d}{\mathrm d t}\iiint_{\rm cv}\rho(\pmb r\times\pmb v) \:\mathrm d V\)</span></td>
+<td align="center"><span class="math inline">\(\sum \pmb M=\iint_{\rm cs}\rho(\pmb r\times\pmb u)(\pmb u\cdot\mathrm d\pmb A)+\frac{\mathrm d}{\mathrm d t}\iiint_{\rm cv}\rho(\pmb r\times\pmb u) \:\mathrm d V\)</span></td>
 <td align="center">（二维）<span class="math inline">\(\sum M_z=(r_i v_i\sin\alpha_i-r_o v_o\sin\alpha_o)q_m\)</span></td>
 </tr>
 <tr class="even">
 <td align="center">能量守恒</td>
-<td align="center"><span class="math inline">\(\dot Q-\dot W=\iint_{\rm cs}e\rho(\pmb v\cdot\mathrm d A)+\frac{\mathrm d E_{\rm cv}}{\mathrm d t}\\E_{\rm cv}=\iiint_{\rm cv}\rho(u+\frac{v^2}{2}+gz)\:\mathrm d V\)</span></td>
+<td align="center"><span class="math inline">\(\dot Q-\dot W=\iint_{\rm cs}e\rho(\pmb u\cdot\mathrm d A)+\frac{\mathrm d E_{\rm cv}}{\mathrm d t}\\E_{\rm cv}=\iiint_{\rm cv}\rho(u+\frac{u^2}{2}+gz)\:\mathrm dV\)</span></td>
 <td align="center">伯努利方程</td>
 </tr>
 </tbody>
@@ -270,9 +288,9 @@ F_x=p_aA+\rho g\int_0^Hhw\:\mathrm d h
 \frac{\rho Q^2}{2A^2}+\rho g h+p=C
 \]</span></p>
 <h1 id="不可压缩流体的一维层流">不可压缩流体的一维层流</h1>
-<p>流体速度沿<span class="math inline">\(x\)</span>方向，且仅在<span class="math inline">\(y\)</span>方向有变化，即<span class="math inline">\(\pmb u=u_x(y)\mathbf i\)</span>。对微元分析，可知<span class="math inline">\(\rho=C,u_1=u_2,\sum F_x=0,\sum F_y=0\)</span>，即微元体所受质量力与表面力之和为0,。且微元表面法向力只有压力，没有附加粘性力，<span class="math inline">\(\frac{\partial \tau_{xy}}{\partial x}=0\)</span>。</p>
+<p>流体速度沿<span class="math inline">\(x​\)</span>方向，且仅在<span class="math inline">\(y​\)</span>方向有变化，即<span class="math inline">\(\pmb u=u_x(y)\mathbf i​\)</span>。对微元分析，可知<span class="math inline">\(\rho=C,u_1=u_2,\sum F_x=0,\sum F_y=0​\)</span>，即微元体所受质量力与表面力之和为0,。且微元表面法向力只有压力，没有附加粘性力，<span class="math inline">\(\frac{\partial \tau_{xy}}{\partial x}=0​\)</span>。</p>
 <h2 id="狭缝流动分析">狭缝流动分析</h2>
-<p>若黏度恒定，对于长 <span class="math inline">\(L\)</span>，宽<span class="math inline">\(D\)</span>，倾角为<span class="math inline">\(\beta\)</span>的狭缝，速度分布为 <span class="math display">\[
+<p>若粘度恒定，对于长 <span class="math inline">\(L\)</span>，宽<span class="math inline">\(D\)</span>，倾角为<span class="math inline">\(\beta\)</span>的狭缝，速度分布为 <span class="math display">\[
 \begin{aligned}
 &amp;u=-\frac{\Delta p^*y^2}{2\mu L}+\frac{C_1 y}{\mu}+C_2\\
 &amp;包括抛物线形的压差流-\frac{\Delta p^*y^2}{2\mu L}+\frac{D\Delta p^* y}{2\mu L}\\
@@ -313,17 +331,15 @@ F_x=p_aA+\rho g\int_0^Hhw\:\mathrm d h
 </tbody>
 </table>
 <h1 id="流体流动微分方程">流体流动微分方程</h1>
-<p>类似于塑性力学中的分析， 结合连续性方程、以应力表示的运动方程、牛顿流体的本构方程可得到黏性流体运动微分方程——耐维-斯托克斯方程，在常黏度条件下可表示为： <span class="math display">\[
+<p>类似于塑性力学中的分析， 结合连续性方程、以应力表示的运动方程、牛顿流体的本构方程可得到粘性流体运动微分方程——耐维-斯托克斯方程，在常粘度条件下可表示为： <span class="math display">\[
 \frac{\mathrm D\pmb v}{\mathrm D t}=\pmb f-\frac{1}{\rho}\left[\pmb \nabla p+\mu\pmb\nabla^2\pmb v+\frac{\mu}{3}\pmb\nabla(\pmb \nabla\cdot\pmb v)\right]
-\]</span> 对于不可压缩流体，又可以写为 <span class="math display">\[
-\underbrace{\frac{\partial \pmb v}{\partial t}}
-_{非定常项}
-+\underbrace{(\pmb v\cdot\pmb\nabla)\pmb v}
-_{对流项}
-=\underbrace{\pmb f-\frac{1}{\rho}\pmb \nabla p}
-_{源项(体积力、压差力)}
-+\underbrace{\frac{\mu}{\rho}\pmb\nabla^2\pmb v}
-_{扩散项}
+\]</span> 引入广义物理量<span class="math inline">\(\phi\)</span>、广义粘度<span class="math inline">\(\Gamma\)</span>、广义源项<span class="math inline">\(S\)</span>，又可以写为</p>
+<p><span class="math display">\[
+\label{equ:control}
+\underbrace{\vphantom{\frac()}\frac{\partial(\rho \phi)}{\partial t}}_{\text{瞬态项}}
++\underbrace{\vphantom{\frac()}\mathrm{div}(\rho\pmb u \phi)}_{\text{对流项}}
+=\underbrace{\vphantom{\frac()}\mathrm{div}(\Gamma\,\mathrm{grad}\,\phi)}_{\text{扩散项}}
++\underbrace{\vphantom{\frac()}S}_{\text{源项}}
 \]</span></p>
 <h1 id="不可压缩流体管内流动">不可压缩流体管内流动</h1>
 <p>雷诺数较高时，由层流转变为湍流，湍流瞬时速度<span class="math inline">\(u=\bar u+u&#39;\)</span>可认为是时均速度与随机脉动量的叠加。对于湍流一般采用半经验理论，将基于N-S方程进行时均化得到的雷诺方程与原N-S方程比较，可得到6个雷诺应力，其形式为<span class="math inline">\(-\rho\overline{v_i&#39;v_j&#39;}\)</span>，反映了湍流脉动对平均运动的附加影响。</p>
@@ -422,7 +438,7 @@ _{扩散项}
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -432,7 +448,7 @@ _{扩散项}
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/笔记/" title="笔记">笔记<sup>11</sup></a></li>
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>12</sup></a></li>
 			
 		
 			
@@ -444,11 +460,11 @@ _{扩散项}
 			
 		
 			
-				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
 			
 		
 			
@@ -464,7 +480,7 @@ _{扩散项}
 			
 		
 			
-				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
 			
 		
 			
@@ -472,15 +488,7 @@ _{扩散项}
 			
 		
 			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 			
@@ -488,7 +496,15 @@ _{扩散项}
 			
 		
 			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 		</ul>
