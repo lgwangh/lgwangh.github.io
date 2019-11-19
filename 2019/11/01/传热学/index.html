@@ -1,0 +1,675 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>传热学 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
+<meta name="keywords" content="笔记,物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="传热学">
+<meta property="og:url" content="http://yoursite.com/2019/11/01/传热学/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-15T10:38:38.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="传热学">
+<meta name="twitter:description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2019/11/01/传热学/" title="传热学" itemprop="url">传热学</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2019-11-01T09:11:18.000Z" itemprop="datePublished"> 发表于 2019-11-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传热方式"><span class="toc-number">1.</span> <span class="toc-text">&#x4F20;&#x70ED;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#稳态热传导"><span class="toc-number">2.</span> <span class="toc-text">&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导热微分方程"><span class="toc-number">2.1.</span> <span class="toc-text">&#x5BFC;&#x70ED;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一类条件的一维稳态导热问题"><span class="toc-number">2.2.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7C7B;&#x6761;&#x4EF6;&#x7684;&#x4E00;&#x7EF4;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#肋片导热"><span class="toc-number">2.3.</span> <span class="toc-text">&#x808B;&#x7247;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非稳态热传导"><span class="toc-number">3.</span> <span class="toc-text">&#x975E;&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#毕渥数"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6BD5;&#x6E25;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零维非稳态导热与集中参数法"><span class="toc-number">3.2.</span> <span class="toc-text">&#x96F6;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x4E0E;&#x96C6;&#x4E2D;&#x53C2;&#x6570;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一维非稳态导热"><span class="toc-number">3.3.</span> <span class="toc-text">&#x4E00;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单形状的多维非稳态导热"><span class="toc-number">3.4.</span> <span class="toc-text">&#x7B80;&#x5355;&#x5F62;&#x72B6;&#x7684;&#x591A;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#热传导数值模拟"><span class="toc-number">4.</span> <span class="toc-text">&#x70ED;&#x4F20;&#x5BFC;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对流传热基础"><span class="toc-number">5.</span> <span class="toc-text">&#x5BF9;&#x6D41;&#x4F20;&#x70ED;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相变对流传热"><span class="toc-number">6.</span> <span class="toc-text">&#x76F8;&#x53D8;&#x5BF9;&#x6D41;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#辐射传热"><span class="toc-number">7.</span> <span class="toc-text">&#x8F90;&#x5C04;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#传质基础"><span class="toc-number">8.</span> <span class="toc-text">&#x4F20;&#x8D28;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#耦合传热数值模拟"><span class="toc-number">9.</span> <span class="toc-text">&#x8026;&#x5408;&#x4F20;&#x70ED;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分区求解边界耦合"><span class="toc-number">9.1.</span> <span class="toc-text">&#x5206;&#x533A;&#x6C42;&#x89E3;&#x3001;&#x8FB9;&#x754C;&#x8026;&#x5408;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整场离散整场求解"><span class="toc-number">9.2.</span> <span class="toc-text">&#x6574;&#x573A;&#x79BB;&#x6563;&#x3001;&#x6574;&#x573A;&#x6C42;&#x89E3;</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。</p>
+<p>嗯，总之就是要学。</p>
+<h1 id="传热方式">传热方式</h1>
+<p>三种传热方式及其研究：</p>
+<ul>
+<li><p>热传导</p></li>
+<li><p>研究重点：固体传热</p></li>
+<li><p>基本定律：傅立叶定律（导热基本定律） <span class="math display">\[
+\pmb q = -\lambda\pmb\nabla T
+\]</span> 其中热流密度<span class="math inline">\(\pmb q\)</span>为单位时间通过单位面积的热量，单位<span class="math inline">\(\mathrm{W\cdot m^{-2}}\)</span>，热导率是一种热物性参数，单位为<span class="math inline">\(\mathrm{W\cdot (m\cdot K)^{-1}}\)</span>。</p></li>
+<li><p>热对流</p></li>
+<li><p>研究重点：流固之间的传热，即对流传热</p></li>
+<li><p>基本定律：牛顿冷却公式 <span class="math display">\[
+q=h\Delta T
+\]</span> 其中<span class="math inline">\(h\)</span>为表面换热系数，单位<span class="math inline">\(\mathrm{W\cdot (m^2\cdot K)^{-1}}\)</span>。<span class="math inline">\(h\)</span>与许多因素相关，包括流体的物性（<span class="math inline">\(\lambda, \eta, \rho, c_p\)</span>）、换热面形状和流速，很难确定。</p></li>
+<li><p>热辐射</p></li>
+<li><p>研究重点：黑体辐射</p></li>
+<li><p>基本定律：黑体辐射的斯特藩-玻尔兹曼公式： <span class="math display">\[
+\Phi= A \sigma T^4
+\]</span> 其中热流量<span class="math inline">\(\Phi\)</span>为单位时间通过的热量，斯特藩-玻尔兹曼常数<span class="math inline">\(\sigma=\frac{\pi^3k^4}{30c^2\hbar^3}\)</span>。但辐射传热不仅与辐射放热有关，也与吸收相关。</p></li>
+</ul>
+<h1 id="稳态热传导">稳态热传导</h1>
+<h2 id="导热微分方程">导热微分方程</h2>
+<p>傅立叶定律： <span class="math display">\[
+\Phi=-\lambda A\frac{\partial T}{\partial x}\ \Leftrightarrow\ \pmb q=-\lambda \pmb \nabla T
+\]</span> 类似于电阻，可定义热阻<span class="math inline">\(R=-\frac{\Delta T}{\Phi}\)</span>，其决定式为<span class="math inline">\(R=\frac{L}{kA}\)</span>。</p>
+<p>根据傅立叶定律，可以得出导热微分方程。一般认为微元密度和比热容不随时间变化，则表达式为： <span class="math display">\[
+\rho c_p\frac{\partial T}{\partial t}=\mathrm{div}(\lambda \ \mathrm{grad}\ T)+\dot{\Phi}
+\]</span> 其中<span class="math inline">\(\rho\)</span>为密度，<span class="math inline">\(c_p\)</span>为等容比热容，<span class="math inline">\(\dot\Phi\)</span>为微元内热源的生成热，即源项。可见，以温度为变量的N-S方程在流体静止状态下即退化为传热微分方程。</p>
+<p>两种简化：</p>
+<ul>
+<li><p>导热系数为常数，无源项时： <span class="math display">\[
+  \frac{\partial T}{\partial t}=a\nabla^2T
+  \]</span> 其中<span class="math inline">\(a=\frac{\lambda}{\rho c_p}\)</span>称为热扩散率。</p></li>
+<li><p>导热系数为常数，稳态下： <span class="math display">\[
+  \nabla^2T+\frac{\dot\Phi}{\lambda}=0
+  \]</span></p></li>
+</ul>
+<p>导热微分方程有三种定解条件：</p>
+<ol style="list-style-type: decimal">
+<li>第一类：规定边界温度，即<span class="math inline">\(T_w=f(t)\)</span></li>
+<li>第二类：规定边界热流密度，即<span class="math inline">\(-\lambda(\pmb\nabla T|_w)=f(t)\pmb n\)</span></li>
+<li>第三类：规定边界与周围介质的换热系数以及周围介质的温度，即<span class="math inline">\(-\lambda(\pmb\nabla T|_w)=h(t)(T_w-T_f(t))\pmb n\)</span></li>
+</ol>
+<h2 id="第一类条件的一维稳态导热问题">第一类条件的一维稳态导热问题</h2>
+<ul>
+<li><p>单层平壁：厚度为<span class="math inline">\(\delta\)</span>，<span class="math inline">\(T(0)=T_1,T(\delta)=T_2\)</span>，则温度分布与热流密度为 <span class="math display">\[
+  T=\frac{T_2-T_1}{\delta}x+T_1,\quad q=\frac{\lambda}{\delta}\Delta T
+  \]</span> 对于多层平壁，则是热阻串联，温度分布为分段线性函数。</p></li>
+<li><p>圆筒壁：内径<span class="math inline">\(r_1\)</span>，外径<span class="math inline">\(r_2\)</span>，<span class="math inline">\(T(r_1)=T_1,T(r_2)=T_2\)</span>，则温度分布为 <span class="math display">\[
+  T=T_1+\frac{T_2-T_1}{\ln\left(\frac{r_2}{r_1}\right)}\ln\left(\frac{r}{r_1}\right),\quad q=\frac{\lambda}{r}\frac{T_1-T_2}{\ln\left(\frac{r_2}{r_1}\right)}
+  \]</span> 圆筒壁热阻为<span class="math inline">\(R=\frac{\ln(r_2/r_1)}{2\pi\lambda l}\)</span></p></li>
+<li><p>球壳：类似的 <span class="math display">\[
+  T=T_2+\frac{T_1-T_2}{\frac{1}{r_1}-\frac{1}{r_2}}\left(\frac{1}{r}-\frac{1}{r_2}\right),\quad R=\frac{1}{4\pi\lambda}\left(\frac 1 r-\frac{1}{r_2}\right)
+  \]</span></p></li>
+</ul>
+<h2 id="肋片导热">肋片导热</h2>
+<p>肋片是一种增大换热面积的有效方法。考虑等截面直肋，有以下条件和简化假设：</p>
+<ol style="list-style-type: decimal">
+<li>肋片根部温度<span class="math inline">\(T(0)=T_0\)</span>，环境温度<span class="math inline">\(T_\infty\)</span></li>
+<li>导热系数<span class="math inline">\(\lambda\)</span>，表面换热系数<span class="math inline">\(h\)</span>均匀，横截面积<span class="math inline">\(A_c\)</span>，周长<span class="math inline">\(P\)</span></li>
+<li>肋片温度在垂直于纸面方向不变，由于表面换热热阻远大于内部导热热阻，因而温度在宽度方向也不变</li>
+<li>肋片顶端绝热，即边界条件<span class="math inline">\(\frac{\mathrm{d}T}{\mathrm{d}x}|_H=0\)</span></li>
+</ol>
+<p>将肋片侧面散热当作源项，则可以可以视为一维传热问题，导热方程为 <span class="math display">\[
+\frac{\mathrm{d^2}T}{\mathrm{d}x^2}=\frac{hP(T-T_\infty)}{\lambda A_c}
+\]</span> 解得 <span class="math display">\[
+T=\frac{\cosh[m(x-H)]}{\cosh(mH)}(T_0-T_\infty)+T_\infty,\quad\mathrm{where}\ \ m=\sqrt{\frac{hP}{\lambda A_c}}
+\]</span> 则从肋片散失的总热量为<span class="math inline">\(\Phi_{x=0}=\frac{hP}{m}\tanh(mH)(T_0-T_\infty)\)</span></p>
+<h1 id="非稳态热传导">非稳态热传导</h1>
+<h2 id="毕渥数">毕渥数</h2>
+<p>非稳态传热最常见的情况是<span class="math inline">\(t=0\)</span>时温度均匀，边界条件为第三类，这种情况下需要考虑导热热阻<span class="math inline">\(\frac l\lambda\)</span>与表面换热热阻<span class="math inline">\(\frac 1h\)</span>之比，即毕渥数<span class="math inline">\(Bi=\frac{lh}{\lambda}\)</span>。其中<span class="math inline">\(l\)</span>为特征长度，对于平板取半板厚。</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(Bi\to\infty\)</span>：表面换热热阻很小，因而表面温度迅速降到环境温度，内部温度逐渐下降</li>
+<li><span class="math inline">\(Bi\to0\)</span>：导热热阻很小，整体温度均匀，随时间整体下降</li>
+<li><span class="math inline">\(Bi\)</span>有限：过渡状态</li>
+</ol>
+<h2 id="零维非稳态导热与集中参数法">零维非稳态导热与集中参数法</h2>
+<p>当<span class="math inline">\(Bi\to0\)</span>时（工程中一般是<span class="math inline">\(Bi&lt;0.1\)</span>），固体内温度均匀，可认为温度仅是时间的函数，即将质量、热容汇集到一个点上，成为零维物体，这就是集中参数法。</p>
+<p>设任意形状的满足集中参数法条件的固体，体积为<span class="math inline">\(V\)</span>，表面积为<span class="math inline">\(A\)</span>，初始温度为<span class="math inline">\(T_0\)</span>，突然置于<span class="math inline">\(T_\infty\)</span>的环境中，表面换热系数<span class="math inline">\(h\)</span>为常数，则导热方程的解为： <span class="math display">\[
+\frac{T-T_\infty}{T_0-T_\infty}=\exp\left(-\frac{hA}{\rho c_pV}t\right),\quad \Phi=(T_o-T_\infty)hA\exp\left(-\frac{hA}{\rho c_pV}t\right)
+\]</span> 若定义特征长度<span class="math inline">\(l_c=\frac VA\)</span>，傅里叶数<span class="math inline">\(Fo=\frac{at}{l_c^2}\)</span>，过余温度<span class="math inline">\(\theta=T-T_\infty\)</span>，则 <span class="math display">\[
+\frac{\theta}{\theta_0}=\exp(-Bi\,\cdot\,Fo)
+\]</span> 该降温过程的时间常数<span class="math inline">\(t_c=\frac{\rho c_pV}{hA}\)</span>，经过一个时间常数，过余温度下降到初始过余温度的36.8%. 从开始到热平衡状态，总传热量<span class="math inline">\(Q_0=\rho c_p V(T_0-T_\infty)\)</span>.</p>
+<h2 id="一维非稳态导热">一维非稳态导热</h2>
+<p>以平板为例，厚<span class="math inline">\(2\delta\)</span>，第三类边界条件，两侧对称受热，则 <span class="math display">\[
+\frac{\theta}{\theta_0}=\sum_{n=1}^\infty\frac{4\sin\mu_n}{2\mu_n+\sin 2\mu_n}\exp(-\mu_n^2Fo)\cos(\mu_n\cdot\frac{x}{\delta})
+\]</span> 其中<span class="math inline">\(\mu_n\)</span>是方程<span class="math inline">\(\mu_n\tan\mu_n=Bi\)</span>的根。</p>
+<p>无穷级数是为了满足初始条件而引入的，当传热趋于稳定，初始条件的影响基本消失（即<strong>正规状况阶段</strong>），可简化为： <span class="math display">\[
+\frac{\theta}{\theta_0}=\frac{4\sin\mu_1}{2\mu_1+\sin 2\mu_1}\exp(-\mu_1^2Fo)\cos(\mu_1\cdot\frac{x}{\delta})
+\]</span> 注意此时时间与位置参数是可分离的。可见<span class="math inline">\(Bi\to0\)</span>时变为集中参数问题，<span class="math inline">\(Bi\to\infty\)</span>时变为第一类边界条件问题。</p>
+<p>对于一维半无限大物体，也可以得出解析解，在第一类边界条件下： <span class="math display">\[
+\frac{T-T_w}{T_0-T_w}=\mathrm{erf}\left(\frac{x}{2\sqrt{at}}\right),\quad q=\lambda\frac{T_w-T_0}{\sqrt{\pi at}}\exp\left(-\frac{x^2}{4at}\right)
+\]</span></p>
+<h2 id="简单形状的多维非稳态导热">简单形状的多维非稳态导热</h2>
+<p>定义无量纲温度<span class="math inline">\(\Theta=\frac{\theta}{\theta_0}\)</span>，则对于温度在长度方向不变的方形柱体、短圆柱体、长方体等简单固体，无量纲温度场等于各几何方向的一维分析解之积： <span class="math display">\[
+\Theta=\frac{\theta(x,y,z,t)}{\theta_0}=\Theta_{p1}(x,t)\cdot\Theta_{p2}(y,t)\cdot\Theta_{p3}(z,t)
+\]</span> 总传热百分数也具有类似关系： <span class="math display">\[
+\frac{Q}{Q_0}=\left.\frac{Q}{Q_0}\right|_1+\left.\frac{Q}{Q_0}\right|_2+\left.\frac{Q}{Q_0}\right|_3-\left.\frac{Q}{Q_0}\right|_1\left.\frac{Q}{Q_0}\right|_2-\left.\frac{Q}{Q_0}\right|_2\left.\frac{Q}{Q_0}\right|_3-\left.\frac{Q}{Q_0}\right|_3\left.\frac{Q}{Q_0}\right|_1
+\]</span></p>
+<h1 id="热传导数值模拟">热传导数值模拟</h1>
+<p>可以使用有限差分法、有限元法、有限体积法。一般固体使用有限元法，流体使用有限体积法，而二者之间的耦合则是流固耦合运算中的重要问题。</p>
+<p>网格毕渥数<span class="math inline">\(Bi_\Delta=\frac{h\Delta x}{\lambda}\)</span>，网格傅里叶数<span class="math inline">\(Fo_\Delta=\frac{a\Delta t}{\Delta x^2}\)</span>，对于一维问题，得出合理解的条件为 <span class="math display">\[
+Fo_\Delta\le\frac{1}{2+2Bi_\Delta}
+\]</span></p>
+<h1 id="对流传热基础">对流传热基础</h1>
+<p>关键是把表面换热系数和流体流速联系起来 <span class="math display">\[
+\frac{\partial (\rho T)}{\partial t}+\mathrm{div}(\rho\pmb u T)=\mathrm{div}(\frac{\lambda}{c_p}\,\mathrm{grad}\,T)+\frac{\partial Q}{\partial t}
+\]</span></p>
+<h1 id="相变对流传热">相变对流传热</h1>
+<h1 id="辐射传热">辐射传热</h1>
+<p>普朗克黑体辐射定律： <span class="math display">\[
+I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
+\]</span></p>
+<h1 id="传质基础">传质基础</h1>
+<h1 id="耦合传热数值模拟">耦合传热数值模拟</h1>
+<p>在许多过程中，热边界条件并不能事先确定，需要进行耦合传热分析。常用方法包括分区求解、边界耦合与整场离散、整场求解两种方法。</p>
+<h2 id="分区求解边界耦合">分区求解、边界耦合</h2>
+<p>具体步骤为：</p>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<h2 id="整场离散整场求解">整场离散、整场求解</h2>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/笔记/">笔记</a><a href="/tags/物理/">物理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2019/11/01/传热学/" data-title="传热学 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/10/21/TCL学习笔记/"  title="TCL学习笔记">
+ <strong>下一篇：</strong><br/> 
+ <span>TCL学习笔记
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传热方式"><span class="toc-number">1.</span> <span class="toc-text">&#x4F20;&#x70ED;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#稳态热传导"><span class="toc-number">2.</span> <span class="toc-text">&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导热微分方程"><span class="toc-number">2.1.</span> <span class="toc-text">&#x5BFC;&#x70ED;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一类条件的一维稳态导热问题"><span class="toc-number">2.2.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7C7B;&#x6761;&#x4EF6;&#x7684;&#x4E00;&#x7EF4;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#肋片导热"><span class="toc-number">2.3.</span> <span class="toc-text">&#x808B;&#x7247;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非稳态热传导"><span class="toc-number">3.</span> <span class="toc-text">&#x975E;&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#毕渥数"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6BD5;&#x6E25;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零维非稳态导热与集中参数法"><span class="toc-number">3.2.</span> <span class="toc-text">&#x96F6;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x4E0E;&#x96C6;&#x4E2D;&#x53C2;&#x6570;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一维非稳态导热"><span class="toc-number">3.3.</span> <span class="toc-text">&#x4E00;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单形状的多维非稳态导热"><span class="toc-number">3.4.</span> <span class="toc-text">&#x7B80;&#x5355;&#x5F62;&#x72B6;&#x7684;&#x591A;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#热传导数值模拟"><span class="toc-number">4.</span> <span class="toc-text">&#x70ED;&#x4F20;&#x5BFC;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对流传热基础"><span class="toc-number">5.</span> <span class="toc-text">&#x5BF9;&#x6D41;&#x4F20;&#x70ED;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相变对流传热"><span class="toc-number">6.</span> <span class="toc-text">&#x76F8;&#x53D8;&#x5BF9;&#x6D41;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#辐射传热"><span class="toc-number">7.</span> <span class="toc-text">&#x8F90;&#x5C04;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#传质基础"><span class="toc-number">8.</span> <span class="toc-text">&#x4F20;&#x8D28;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#耦合传热数值模拟"><span class="toc-number">9.</span> <span class="toc-text">&#x8026;&#x5408;&#x4F20;&#x70ED;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分区求解边界耦合"><span class="toc-number">9.1.</span> <span class="toc-text">&#x5206;&#x533A;&#x6C42;&#x89E3;&#x3001;&#x8FB9;&#x754C;&#x8026;&#x5408;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整场离散整场求解"><span class="toc-number">9.2.</span> <span class="toc-text">&#x6574;&#x573A;&#x79BB;&#x6563;&#x3001;&#x6574;&#x573A;&#x6C42;&#x89E3;</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>13</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2019 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
