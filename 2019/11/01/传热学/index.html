@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-15T10:38:38.908Z">
+<meta property="og:updated_time" content="2019-11-21T03:38:59.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="传热学">
 <meta name="twitter:description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
@@ -207,11 +207,17 @@ Fo_\Delta\le\frac{1}{2+2Bi_\Delta}
 <p>关键是把表面换热系数和流体流速联系起来 <span class="math display">\[
 \frac{\partial (\rho T)}{\partial t}+\mathrm{div}(\rho\pmb u T)=\mathrm{div}(\frac{\lambda}{c_p}\,\mathrm{grad}\,T)+\frac{\partial Q}{\partial t}
 \]</span></p>
+<p>温度边界层与速度边界层的厚度没有绝对关系</p>
 <h1 id="相变对流传热">相变对流传热</h1>
 <h1 id="辐射传热">辐射传热</h1>
-<p>普朗克黑体辐射定律： <span class="math display">\[
-I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
+<p>普朗克黑体辐射定律，辐射率： <span class="math display">\[
+I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{kT}\right)-1}
 \]</span></p>
+<p>而单色辐射力 <span class="math display">\[
+E_\nu(\nu,T)=2\pi I_\nu(\nu,T)
+\]</span> 辐射力 <span class="math display">\[
+E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
+\]</span> 物体对于热辐射具有吸收率<span class="math inline">\(\alpha\)</span>、反射率<span class="math inline">\(\rho\)</span>、透射率<span class="math inline">\(\tau\)</span>，<span class="math inline">\(\alpha+\rho+\tau\equiv1\)</span>。<span class="math inline">\(\alpha=1\)</span>则为黑体，<span class="math inline">\(\rho=1\)</span>为镜体（漫反射时为白体），<span class="math inline">\(\tau=1\)</span>时为透明体。物体的发射率（黑度）<span class="math inline">\(\varepsilon=\alpha\)</span>。实际物体的<span class="math inline">\(\alpha\)</span>是<span class="math inline">\(\nu\)</span>的函数，若<span class="math inline">\(\alpha\)</span>与<span class="math inline">\(\nu\)</span>无关则称为灰体。</p>
 <h1 id="传质基础">传质基础</h1>
 <h1 id="耦合传热数值模拟">耦合传热数值模拟</h1>
 <p>在许多过程中，热边界条件并不能事先确定，需要进行耦合传热分析。常用方法包括分区求解、边界耦合与整场离散、整场求解两种方法。</p>
@@ -251,6 +257,14 @@ I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2019/11/19/自然辩证法/" title="自然辩证法">
+  <strong>上一篇：</strong><br/>
+  <span>
+  自然辩证法</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2019/10/21/TCL学习笔记/"  title="TCL学习笔记">
@@ -300,7 +314,7 @@ I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -310,7 +324,7 @@ I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/笔记/" title="笔记">笔记<sup>13</sup></a></li>
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>14</sup></a></li>
 			
 		
 			
@@ -342,19 +356,19 @@ I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
 			
 		
 			
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 			
@@ -366,7 +380,7 @@ I_\nu(\nu,T)=\frac{2h\nu^3}{c^2}\frac{1}{\exp\left(\frac{h\nu}{ kt}\right)-1}
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
 			
 		
 		</ul>
