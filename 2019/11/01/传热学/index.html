@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="埃雅仁迪尔之星">
 <meta property="og:description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-21T03:38:59.572Z">
+<meta property="og:updated_time" content="2019-12-19T04:49:32.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="传热学">
 <meta name="twitter:description" content="工程热力学专注研究平衡态系统，传热学则研究有温差存在时的热能传递；因而热力学中常用的单位都不带时间，而传热学中的物理量基本以时间为分母。 嗯，总之就是要学。 传热方式 三种传热方式及其研究：  热传导 研究重点：固体传热 基本定律：傅立叶定律（导热基本定律） \[ \pmb q = -\lambda\pmb\nabla T \] 其中热流密度\(\pmb q\)为单位时间通过单位面积的热量，单位\">
@@ -94,7 +94,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传热方式"><span class="toc-number">1.</span> <span class="toc-text">&#x4F20;&#x70ED;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#稳态热传导"><span class="toc-number">2.</span> <span class="toc-text">&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导热微分方程"><span class="toc-number">2.1.</span> <span class="toc-text">&#x5BFC;&#x70ED;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一类条件的一维稳态导热问题"><span class="toc-number">2.2.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7C7B;&#x6761;&#x4EF6;&#x7684;&#x4E00;&#x7EF4;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#肋片导热"><span class="toc-number">2.3.</span> <span class="toc-text">&#x808B;&#x7247;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非稳态热传导"><span class="toc-number">3.</span> <span class="toc-text">&#x975E;&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#毕渥数"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6BD5;&#x6E25;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零维非稳态导热与集中参数法"><span class="toc-number">3.2.</span> <span class="toc-text">&#x96F6;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x4E0E;&#x96C6;&#x4E2D;&#x53C2;&#x6570;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一维非稳态导热"><span class="toc-number">3.3.</span> <span class="toc-text">&#x4E00;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单形状的多维非稳态导热"><span class="toc-number">3.4.</span> <span class="toc-text">&#x7B80;&#x5355;&#x5F62;&#x72B6;&#x7684;&#x591A;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#热传导数值模拟"><span class="toc-number">4.</span> <span class="toc-text">&#x70ED;&#x4F20;&#x5BFC;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对流传热基础"><span class="toc-number">5.</span> <span class="toc-text">&#x5BF9;&#x6D41;&#x4F20;&#x70ED;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相变对流传热"><span class="toc-number">6.</span> <span class="toc-text">&#x76F8;&#x53D8;&#x5BF9;&#x6D41;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#辐射传热"><span class="toc-number">7.</span> <span class="toc-text">&#x8F90;&#x5C04;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#传质基础"><span class="toc-number">8.</span> <span class="toc-text">&#x4F20;&#x8D28;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#耦合传热数值模拟"><span class="toc-number">9.</span> <span class="toc-text">&#x8026;&#x5408;&#x4F20;&#x70ED;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分区求解边界耦合"><span class="toc-number">9.1.</span> <span class="toc-text">&#x5206;&#x533A;&#x6C42;&#x89E3;&#x3001;&#x8FB9;&#x754C;&#x8026;&#x5408;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整场离散整场求解"><span class="toc-number">9.2.</span> <span class="toc-text">&#x6574;&#x573A;&#x79BB;&#x6563;&#x3001;&#x6574;&#x573A;&#x6C42;&#x89E3;</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传热方式"><span class="toc-number">1.</span> <span class="toc-text">&#x4F20;&#x70ED;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#稳态热传导"><span class="toc-number">2.</span> <span class="toc-text">&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导热微分方程"><span class="toc-number">2.1.</span> <span class="toc-text">&#x5BFC;&#x70ED;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一类条件的一维稳态导热问题"><span class="toc-number">2.2.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7C7B;&#x6761;&#x4EF6;&#x7684;&#x4E00;&#x7EF4;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#肋片导热"><span class="toc-number">2.3.</span> <span class="toc-text">&#x808B;&#x7247;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非稳态热传导"><span class="toc-number">3.</span> <span class="toc-text">&#x975E;&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#毕渥数"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6BD5;&#x6E25;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零维非稳态导热与集中参数法"><span class="toc-number">3.2.</span> <span class="toc-text">&#x96F6;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x4E0E;&#x96C6;&#x4E2D;&#x53C2;&#x6570;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一维非稳态导热"><span class="toc-number">3.3.</span> <span class="toc-text">&#x4E00;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单形状的多维非稳态导热"><span class="toc-number">3.4.</span> <span class="toc-text">&#x7B80;&#x5355;&#x5F62;&#x72B6;&#x7684;&#x591A;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#金属凝固传热"><span class="toc-number">3.5.</span> <span class="toc-text">&#x91D1;&#x5C5E;&#x51DD;&#x56FA;&#x4F20;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#热传导数值模拟"><span class="toc-number">4.</span> <span class="toc-text">&#x70ED;&#x4F20;&#x5BFC;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对流传热基础"><span class="toc-number">5.</span> <span class="toc-text">&#x5BF9;&#x6D41;&#x4F20;&#x70ED;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相变对流传热"><span class="toc-number">6.</span> <span class="toc-text">&#x76F8;&#x53D8;&#x5BF9;&#x6D41;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#辐射传热"><span class="toc-number">7.</span> <span class="toc-text">&#x8F90;&#x5C04;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#传质基础"><span class="toc-number">8.</span> <span class="toc-text">&#x4F20;&#x8D28;&#x57FA;&#x7840;</span></a></li></ol>
 		
 		</div>
 		
@@ -179,18 +179,18 @@ T=\frac{\cosh[m(x-H)]}{\cosh(mH)}(T_0-T_\infty)+T_\infty,\quad\mathrm{where}\ \ 
 <p>当<span class="math inline">\(Bi\to0\)</span>时（工程中一般是<span class="math inline">\(Bi&lt;0.1\)</span>），固体内温度均匀，可认为温度仅是时间的函数，即将质量、热容汇集到一个点上，成为零维物体，这就是集中参数法。</p>
 <p>设任意形状的满足集中参数法条件的固体，体积为<span class="math inline">\(V\)</span>，表面积为<span class="math inline">\(A\)</span>，初始温度为<span class="math inline">\(T_0\)</span>，突然置于<span class="math inline">\(T_\infty\)</span>的环境中，表面换热系数<span class="math inline">\(h\)</span>为常数，则导热方程的解为： <span class="math display">\[
 \frac{T-T_\infty}{T_0-T_\infty}=\exp\left(-\frac{hA}{\rho c_pV}t\right),\quad \Phi=(T_o-T_\infty)hA\exp\left(-\frac{hA}{\rho c_pV}t\right)
-\]</span> 若定义特征长度<span class="math inline">\(l_c=\frac VA\)</span>，傅里叶数<span class="math inline">\(Fo=\frac{at}{l_c^2}\)</span>，过余温度<span class="math inline">\(\theta=T-T_\infty\)</span>，则 <span class="math display">\[
+\]</span> 若定义特征长度<span class="math inline">\(l_c=\frac VA\)</span>，傅里叶数<span class="math inline">\(Fo=\frac{at}{l_c^2}\)</span>（无量纲时间，表示从物体表面发生热扰动时刻至计算时间为止的时间间隔），过余温度<span class="math inline">\(\theta=T-T_\infty\)</span>，则 <span class="math display">\[
 \frac{\theta}{\theta_0}=\exp(-Bi\,\cdot\,Fo)
 \]</span> 该降温过程的时间常数<span class="math inline">\(t_c=\frac{\rho c_pV}{hA}\)</span>，经过一个时间常数，过余温度下降到初始过余温度的36.8%. 从开始到热平衡状态，总传热量<span class="math inline">\(Q_0=\rho c_p V(T_0-T_\infty)\)</span>.</p>
 <h2 id="一维非稳态导热">一维非稳态导热</h2>
-<p>以平板为例，厚<span class="math inline">\(2\delta\)</span>，第三类边界条件，两侧对称受热，则 <span class="math display">\[
+<p>以平板为例，厚<span class="math inline">\(2\delta\)</span>，第三类边界条件，两侧对称受热，则利用分离变量法可以求出 <span class="math display">\[
 \frac{\theta}{\theta_0}=\sum_{n=1}^\infty\frac{4\sin\mu_n}{2\mu_n+\sin 2\mu_n}\exp(-\mu_n^2Fo)\cos(\mu_n\cdot\frac{x}{\delta})
 \]</span> 其中<span class="math inline">\(\mu_n\)</span>是方程<span class="math inline">\(\mu_n\tan\mu_n=Bi\)</span>的根。</p>
 <p>无穷级数是为了满足初始条件而引入的，当传热趋于稳定，初始条件的影响基本消失（即<strong>正规状况阶段</strong>），可简化为： <span class="math display">\[
 \frac{\theta}{\theta_0}=\frac{4\sin\mu_1}{2\mu_1+\sin 2\mu_1}\exp(-\mu_1^2Fo)\cos(\mu_1\cdot\frac{x}{\delta})
 \]</span> 注意此时时间与位置参数是可分离的。可见<span class="math inline">\(Bi\to0\)</span>时变为集中参数问题，<span class="math inline">\(Bi\to\infty\)</span>时变为第一类边界条件问题。</p>
 <p>对于一维半无限大物体，也可以得出解析解，在第一类边界条件下： <span class="math display">\[
-\frac{T-T_w}{T_0-T_w}=\mathrm{erf}\left(\frac{x}{2\sqrt{at}}\right),\quad q=\lambda\frac{T_w-T_0}{\sqrt{\pi at}}\exp\left(-\frac{x^2}{4at}\right)
+\frac{T-T_{\infty}}{T_0-T_{\infty}}=\mathrm{erf}\left(\frac{x}{2\sqrt{at}}\right),\quad q=\lambda\frac{T_w-T_0}{\sqrt{\pi at}}\exp\left(-\frac{x^2}{4at}\right)
 \]</span></p>
 <h2 id="简单形状的多维非稳态导热">简单形状的多维非稳态导热</h2>
 <p>定义无量纲温度<span class="math inline">\(\Theta=\frac{\theta}{\theta_0}\)</span>，则对于温度在长度方向不变的方形柱体、短圆柱体、长方体等简单固体，无量纲温度场等于各几何方向的一维分析解之积： <span class="math display">\[
@@ -198,6 +198,15 @@ T=\frac{\cosh[m(x-H)]}{\cosh(mH)}(T_0-T_\infty)+T_\infty,\quad\mathrm{where}\ \ 
 \]</span> 总传热百分数也具有类似关系： <span class="math display">\[
 \frac{Q}{Q_0}=\left.\frac{Q}{Q_0}\right|_1+\left.\frac{Q}{Q_0}\right|_2+\left.\frac{Q}{Q_0}\right|_3-\left.\frac{Q}{Q_0}\right|_1\left.\frac{Q}{Q_0}\right|_2-\left.\frac{Q}{Q_0}\right|_2\left.\frac{Q}{Q_0}\right|_3-\left.\frac{Q}{Q_0}\right|_3\left.\frac{Q}{Q_0}\right|_1
 \]</span></p>
+<h2 id="金属凝固传热">金属凝固传热</h2>
+<p>可以利用等效比热法将凝固潜热化归到比热中 <span class="math display">\[
+c_{\mathit{eff}}=\bar c+\frac{L_I}{\Delta T}
+\]</span> 凝固时的热量传输受多个热阻层控制（液态金属层热阻、凝固金属层热阻、间隙热阻、铸型热阻），可以根据主要控制因素进行分类。</p>
+<ol style="list-style-type: decimal">
+<li>铸型热阻控制。假设金属无过热，首先把液态金属作为环境，铸型作为半无限大平板，则可得铸型温度场以及界面热流。则界面热流与凝固潜热相等，从而可得凝固速度与凝固厚度： <span class="math display">\[
+   M=\frac{2}{\pi}\frac{T_M-T_0}{\rho_sL}\sqrt{}=C\sqrt{t}
+   \]</span> 折算厚度<span class="math inline">\(\frac{V}{F}\)</span>越大则凝固越慢</li>
+</ol>
 <h1 id="热传导数值模拟">热传导数值模拟</h1>
 <p>可以使用有限差分法、有限元法、有限体积法。一般固体使用有限元法，流体使用有限体积法，而二者之间的耦合则是流固耦合运算中的重要问题。</p>
 <p>网格毕渥数<span class="math inline">\(Bi_\Delta=\frac{h\Delta x}{\lambda}\)</span>，网格傅里叶数<span class="math inline">\(Fo_\Delta=\frac{a\Delta t}{\Delta x^2}\)</span>，对于一维问题，得出合理解的条件为 <span class="math display">\[
@@ -207,7 +216,13 @@ Fo_\Delta\le\frac{1}{2+2Bi_\Delta}
 <p>关键是把表面换热系数和流体流速联系起来 <span class="math display">\[
 \frac{\partial (\rho T)}{\partial t}+\mathrm{div}(\rho\pmb u T)=\mathrm{div}(\frac{\lambda}{c_p}\,\mathrm{grad}\,T)+\frac{\partial Q}{\partial t}
 \]</span></p>
-<p>温度边界层与速度边界层的厚度没有绝对关系</p>
+<p>温度边界层与速度边界层的厚度没有绝对关系，取决于普朗克数<span class="math inline">\(Pr=\frac{\nu}{\alpha}\)</span>，表示动量扩散和热扩散能力的相对大小。</p>
+<p>则对于圆管，热入口长度 <span class="math display">\[
+\frac{x_{et}}{d_0}|_\text{层流}\approx0.05Re\cdot Pr
+\]</span> 在流速完全发展区，流速在<span class="math inline">\(x\)</span>方向不变，引入 <span class="math display">\[
+\theta=\frac{T_s(x)-T(x)}{T_s(x)-\overline T(x)}
+\]</span> 则<span class="math inline">\(\frac{\partial \theta}{\partial x}=0\)</span></p>
+<p>强制对流换热：流速控制传热；自然对流换热：传热控制流速。</p>
 <h1 id="相变对流传热">相变对流传热</h1>
 <h1 id="辐射传热">辐射传热</h1>
 <p>普朗克黑体辐射定律，辐射率： <span class="math display">\[
@@ -219,14 +234,6 @@ E_\nu(\nu,T)=2\pi I_\nu(\nu,T)
 E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
 \]</span> 物体对于热辐射具有吸收率<span class="math inline">\(\alpha\)</span>、反射率<span class="math inline">\(\rho\)</span>、透射率<span class="math inline">\(\tau\)</span>，<span class="math inline">\(\alpha+\rho+\tau\equiv1\)</span>。<span class="math inline">\(\alpha=1\)</span>则为黑体，<span class="math inline">\(\rho=1\)</span>为镜体（漫反射时为白体），<span class="math inline">\(\tau=1\)</span>时为透明体。物体的发射率（黑度）<span class="math inline">\(\varepsilon=\alpha\)</span>。实际物体的<span class="math inline">\(\alpha\)</span>是<span class="math inline">\(\nu\)</span>的函数，若<span class="math inline">\(\alpha\)</span>与<span class="math inline">\(\nu\)</span>无关则称为灰体。</p>
 <h1 id="传质基础">传质基础</h1>
-<h1 id="耦合传热数值模拟">耦合传热数值模拟</h1>
-<p>在许多过程中，热边界条件并不能事先确定，需要进行耦合传热分析。常用方法包括分区求解、边界耦合与整场离散、整场求解两种方法。</p>
-<h2 id="分区求解边界耦合">分区求解、边界耦合</h2>
-<p>具体步骤为：</p>
-<ol style="list-style-type: decimal">
-<li></li>
-</ol>
-<h2 id="整场离散整场求解">整场离散、整场求解</h2>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -294,7 +301,7 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传热方式"><span class="toc-number">1.</span> <span class="toc-text">&#x4F20;&#x70ED;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#稳态热传导"><span class="toc-number">2.</span> <span class="toc-text">&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导热微分方程"><span class="toc-number">2.1.</span> <span class="toc-text">&#x5BFC;&#x70ED;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一类条件的一维稳态导热问题"><span class="toc-number">2.2.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7C7B;&#x6761;&#x4EF6;&#x7684;&#x4E00;&#x7EF4;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#肋片导热"><span class="toc-number">2.3.</span> <span class="toc-text">&#x808B;&#x7247;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非稳态热传导"><span class="toc-number">3.</span> <span class="toc-text">&#x975E;&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#毕渥数"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6BD5;&#x6E25;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零维非稳态导热与集中参数法"><span class="toc-number">3.2.</span> <span class="toc-text">&#x96F6;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x4E0E;&#x96C6;&#x4E2D;&#x53C2;&#x6570;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一维非稳态导热"><span class="toc-number">3.3.</span> <span class="toc-text">&#x4E00;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单形状的多维非稳态导热"><span class="toc-number">3.4.</span> <span class="toc-text">&#x7B80;&#x5355;&#x5F62;&#x72B6;&#x7684;&#x591A;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#热传导数值模拟"><span class="toc-number">4.</span> <span class="toc-text">&#x70ED;&#x4F20;&#x5BFC;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对流传热基础"><span class="toc-number">5.</span> <span class="toc-text">&#x5BF9;&#x6D41;&#x4F20;&#x70ED;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相变对流传热"><span class="toc-number">6.</span> <span class="toc-text">&#x76F8;&#x53D8;&#x5BF9;&#x6D41;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#辐射传热"><span class="toc-number">7.</span> <span class="toc-text">&#x8F90;&#x5C04;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#传质基础"><span class="toc-number">8.</span> <span class="toc-text">&#x4F20;&#x8D28;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#耦合传热数值模拟"><span class="toc-number">9.</span> <span class="toc-text">&#x8026;&#x5408;&#x4F20;&#x70ED;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分区求解边界耦合"><span class="toc-number">9.1.</span> <span class="toc-text">&#x5206;&#x533A;&#x6C42;&#x89E3;&#x3001;&#x8FB9;&#x754C;&#x8026;&#x5408;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#整场离散整场求解"><span class="toc-number">9.2.</span> <span class="toc-text">&#x6574;&#x573A;&#x79BB;&#x6563;&#x3001;&#x6574;&#x573A;&#x6C42;&#x89E3;</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#传热方式"><span class="toc-number">1.</span> <span class="toc-text">&#x4F20;&#x70ED;&#x65B9;&#x5F0F;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#稳态热传导"><span class="toc-number">2.</span> <span class="toc-text">&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#导热微分方程"><span class="toc-number">2.1.</span> <span class="toc-text">&#x5BFC;&#x70ED;&#x5FAE;&#x5206;&#x65B9;&#x7A0B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一类条件的一维稳态导热问题"><span class="toc-number">2.2.</span> <span class="toc-text">&#x7B2C;&#x4E00;&#x7C7B;&#x6761;&#x4EF6;&#x7684;&#x4E00;&#x7EF4;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x95EE;&#x9898;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#肋片导热"><span class="toc-number">2.3.</span> <span class="toc-text">&#x808B;&#x7247;&#x5BFC;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非稳态热传导"><span class="toc-number">3.</span> <span class="toc-text">&#x975E;&#x7A33;&#x6001;&#x70ED;&#x4F20;&#x5BFC;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#毕渥数"><span class="toc-number">3.1.</span> <span class="toc-text">&#x6BD5;&#x6E25;&#x6570;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#零维非稳态导热与集中参数法"><span class="toc-number">3.2.</span> <span class="toc-text">&#x96F6;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;&#x4E0E;&#x96C6;&#x4E2D;&#x53C2;&#x6570;&#x6CD5;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一维非稳态导热"><span class="toc-number">3.3.</span> <span class="toc-text">&#x4E00;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单形状的多维非稳态导热"><span class="toc-number">3.4.</span> <span class="toc-text">&#x7B80;&#x5355;&#x5F62;&#x72B6;&#x7684;&#x591A;&#x7EF4;&#x975E;&#x7A33;&#x6001;&#x5BFC;&#x70ED;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#金属凝固传热"><span class="toc-number">3.5.</span> <span class="toc-text">&#x91D1;&#x5C5E;&#x51DD;&#x56FA;&#x4F20;&#x70ED;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#热传导数值模拟"><span class="toc-number">4.</span> <span class="toc-text">&#x70ED;&#x4F20;&#x5BFC;&#x6570;&#x503C;&#x6A21;&#x62DF;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#对流传热基础"><span class="toc-number">5.</span> <span class="toc-text">&#x5BF9;&#x6D41;&#x4F20;&#x70ED;&#x57FA;&#x7840;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#相变对流传热"><span class="toc-number">6.</span> <span class="toc-text">&#x76F8;&#x53D8;&#x5BF9;&#x6D41;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#辐射传热"><span class="toc-number">7.</span> <span class="toc-text">&#x8F90;&#x5C04;&#x4F20;&#x70ED;</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#传质基础"><span class="toc-number">8.</span> <span class="toc-text">&#x4F20;&#x8D28;&#x57FA;&#x7840;</span></a></li></ol>
  
   </div>
 
@@ -314,7 +321,7 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
   
   <div class="archiveslist">
     <p class="asidetitle"><a href="/archives">归档</a></p>
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
   </div>
 
 
@@ -328,11 +335,15 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
 			
 		
 			
+				<li><a href="/tags/物理/" title="物理">物理<sup>5</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/物理/" title="物理">物理<sup>5</sup></a></li>
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
 			
 		
 			
@@ -340,7 +351,7 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
 			
 		
 			
-				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+				<li><a href="/tags/文学/" title="文学">文学<sup>3</sup></a></li>
 			
 		
 			
@@ -352,11 +363,7 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
 			
 		
 			
-				<li><a href="/tags/文学/" title="文学">文学<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+				<li><a href="/tags/电影/" title="电影">电影<sup>2</sup></a></li>
 			
 		
 			
@@ -364,15 +371,11 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
 			
 		
 			
-				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/电影/" title="电影">电影<sup>1</sup></a></li>
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
 			
 		
 			
@@ -381,6 +384,10 @@ E(T)=\int_0^\infty E_\nu(\nu,T)\:\mathrm{d}\nu
 		
 			
 				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
 			
 		
 		</ul>
