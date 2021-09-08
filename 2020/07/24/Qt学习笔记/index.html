@@ -1,0 +1,631 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Qt学习笔记 | 埃雅仁迪尔之星</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Luke">
+    
+
+    
+    <meta name="description" content="C++回顾 指针  指针是为了运行效率，不是为了好用   声明：int *p = &amp;amp;a 指向常量的指针：const int *p; 常指针：int *const p 指针数组：int *p[3] 指向数组的指针：int (*p)[3] 指向指针的指针：int **p 动态获取空间：p = new int[3] 删除：deleta p或delete [] p 引用：变量的别名，是一种隐式的指">
+<meta name="keywords" content="笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/07/24/Qt学习笔记/index.html">
+<meta property="og:site_name" content="埃雅仁迪尔之星">
+<meta property="og:description" content="C++回顾 指针  指针是为了运行效率，不是为了好用   声明：int *p = &amp;amp;a 指向常量的指针：const int *p; 常指针：int *const p 指针数组：int *p[3] 指向数组的指针：int (*p)[3] 指向指针的指针：int **p 动态获取空间：p = new int[3] 删除：deleta p或delete [] p 引用：变量的别名，是一种隐式的指">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-09-08T07:24:35.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt学习笔记">
+<meta name="twitter:description" content="C++回顾 指针  指针是为了运行效率，不是为了好用   声明：int *p = &amp;amp;a 指向常量的指针：const int *p; 常指针：int *const p 指针数组：int *p[3] 指向数组的指针：int (*p)[3] 指向指针的指针：int **p 动态获取空间：p = new int[3] 删除：deleta p或delete [] p 引用：变量的别名，是一种隐式的指">
+
+    
+    
+    <link rel="icon" href="/img/Earendil_small.png">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Earendil.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Earendil.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/Earendil.svg" alt="埃雅仁迪尔之星" title="埃雅仁迪尔之星"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="埃雅仁迪尔之星">埃雅仁迪尔之星</a></h1>
+				<h2 class="blog-motto">Luke的个人博客</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2020/07/24/Qt学习笔记/" title="Qt学习笔记" itemprop="url">Qt学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Luke" target="_blank" itemprop="author">Luke</a>
+		
+  <p class="article-time">
+    <time datetime="2020-07-23T16:00:18.000Z" itemprop="datePublished"> 发表于 2020-07-24</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#c回顾"><span class="toc-number">1.</span> <span class="toc-text">C++&#x56DE;&#x987E;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#指针"><span class="toc-number">1.1.</span> <span class="toc-text">&#x6307;&#x9488;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类"><span class="toc-number">1.2.</span> <span class="toc-text">&#x7C7B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-number">1.3.</span> <span class="toc-text">&#x6A21;&#x677F;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些较新的功能"><span class="toc-number">1.4.</span> <span class="toc-text">&#x4E00;&#x4E9B;&#x8F83;&#x65B0;&#x7684;&#x529F;&#x80FD;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt基本使用"><span class="toc-number">2.</span> <span class="toc-text">Qt&#x57FA;&#x672C;&#x4F7F;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号与槽"><span class="toc-number">2.1.</span> <span class="toc-text">&#x4FE1;&#x53F7;&#x4E0E;&#x69FD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">2.2.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h1 id="c回顾">C++回顾</h1>
+<h2 id="指针">指针</h2>
+<blockquote>
+<p>指针是为了运行效率，不是为了好用</p>
+</blockquote>
+<ul>
+<li>声明：<code>int *p = &amp;a</code></li>
+<li>指向常量的指针：<code>const int *p;</code></li>
+<li>常指针：<code>int *const p</code></li>
+<li>指针数组：<code>int *p[3]</code></li>
+<li>指向数组的指针：<code>int (*p)[3]</code></li>
+<li>指向指针的指针：<code>int **p</code></li>
+<li>动态获取空间：<code>p = new int[3]</code></li>
+<li>删除：<code>deleta p</code>或<code>delete [] p</code></li>
+<li>引用：变量的别名，是一种隐式的指针，<code>int &amp;p = a</code>，区别在于引用必须在声明时初始化，不能指向其他对象，在许多情况下代替指针使用。</li>
+</ul>
+<h2 id="类">类</h2>
+<ul>
+<li><p>元素的访问性：<code>private:</code>默认，外部不可访问<code>public:</code>外部可以访问<code>protected:</code>子类可以访问。通过在类中声明友元<code>friend</code>可以使外部函数访问<code>private</code>和<code>protected</code>元素。</p></li>
+<li><p>构造函数：与类同名，没有返回类型，有初始化列表</p></li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Complex(<span class="keyword">double</span> r, <span class="keyword">double</span> i): real(r), imag(i)&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>析构函数：<code>~</code>+类名，没有返回类型，注意删除指针释放内存</li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~Complex()&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>拷贝构造函数：以该类的对象的不可变引用为参数</li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Complex(<span class="keyword">const</span> Complex &amp;c)&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>继承：C++允许多继承，父类前需要表明继承方式</li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">neet</span>:</span> <span class="keyword">public</span> teen, <span class="keyword">public</span> player&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="模板">模板</h2>
+<blockquote>
+<p>C++常用的泛型机制，可以使函数或类适用于不同类型</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    T real;</span><br><span class="line">    T imag;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在使用时声明具体的类型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>模板不仅可以用于类型的多态化，但其他用法并不常见。</p>
+<h2 id="一些较新的功能">一些较新的功能</h2>
+<ul>
+<li>智能指针：指针最常见的问题是内存泄漏和野指针，采用智能指针可以避免这类问题。其中<code>unique_ptr</code>有所有权系统，不允许直接拷贝，并且可以阻止野指针出现。而<code>shared_ptr</code>允许多指针指向同一个地址，但是通过计数器防止多次删除，<code>shared_ptr</code>较为常用。</li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;            // 需要引入memory</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p1(<span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">3</span>));</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p2 = <span class="keyword">new</span> <span class="keyword">int</span>; <span class="comment">// 错误，不能直接把普通指针赋给智能指针</span></span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p3 = make_shared&lt;<span class="keyword">int</span>&gt;(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">shared_ptr</span>&lt;<span class="keyword">int</span>&gt; p4 = p1;</span><br><span class="line"><span class="keyword">int</span> *Pint = p1.get();         <span class="comment">// 获取原始指针；</span></span><br><span class="line"><span class="comment">// 引用计数器归零之后自动销毁；</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>新的列表容器：<code>vector&lt;T&gt;</code>，<code>array&lt;T&gt;</code>。其中<code>vector</code>可变长度，允许插入；<code>array</code>固定长度。支持迭代，更加安全。</p></li>
+<li><p>作用于可迭代对象的<code>for</code>循环：</p></li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i : a)</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">' '</span>;</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">'\n'</span>;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>类型推断：将<code>auto</code>作为类型声明的关键字。</li>
+</ul>
+<h1 id="qt基本使用">Qt基本使用</h1>
+<h2 id="信号与槽">信号与槽</h2>
+<p>当某种事件发生时，会调用相应的信号函数，而收到信号后对应的槽函数便会启动。信号与槽是多对多的关系，需要采用连接函数结合起来：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(sender, SIGNAL(signal()), receiver, SLOT(slot()));</span><br></pre></td></tr></table></figure>
+<p><code>sender</code>和<code>receiver</code>是两个指针。</p>
+<p>有多种方法连接信号与槽：</p>
+<ul>
+<li><p>Design界面连接：在“编辑信号与槽”的状态下可以直接连接，仅适用于不取参数的简单槽函数，方便，但是能完成的操作有限。连接函数在工程文件中看不到，实际上位于编译后得到的<code>ui_mainwindow.h</code>当中。特别的，把箭头引到<code>mainwindow</code>时是可以输入自定义的槽函数名的。</p></li>
+<li><p>Design界面新建：使用控件右键菜单中的“转到槽”可以为信号新建<code>mainwindow</code>上的槽函数：</p></li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> MainWindow::on_pb_ok_clicked()&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>能完成各种操作，但是不能新建控件级别的槽函数，不太方便复用。连接函数在工程文件中看不到，实际上在编译后得到的<code>moc_mainwindow.cpp</code>中使用更加底层的方法进行了连接。</p>
+<ul>
+<li>手动新建：手动编写需要注意三点：在<code>mainwindow.h</code>的<code>private slots:</code>下声明槽函数原型；在<code>mainwindow.cpp</code>定义槽函数；采用Design界面连接的方法配置连接。也可以在<code>mainwindow.cpp</code>中<code>mainwindow</code>的构造函数内手动调用连接函数，注意此时<code>receiver</code>要写<code>this</code>。连接函数也可以采用Design界面连接的方法配置。</li>
+</ul>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[mainwindow.h]</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainWindow</span> :</span> <span class="keyword">public</span> QMainWindow&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">private</span> slots:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">[mainwindow.h]</span><br><span class="line"><span class="keyword">void</span> MainWindow::reset()&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样也可以把带参数的默认函数作为槽函数了，但是只能是信号函数和槽函数参数一致的前提下</p>
+<p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(ui-&gt;lineEdit, SIGNAL(textEdited(QString)), ui-&gt;label, SLOT(setText(QString)))</span><br></pre></td></tr></table></figure></p>
+<p>此外，也可以通过新建控件类的子类来为控件新建槽函数（待确认）。</p>
+<p>总的来说，以目前的水平手动写connect函数有些困难，还是使用可视化操作较为容易。</p>
+<h2 id="其他">其他</h2>
+<ul>
+<li>Qt新定义的容器：可变长度的列表<code>QList</code>和<code>QVector</code>（仅数据存储方式不同）；集合<code>QSet</code>；字典<code>QMap</code>。<code>QList, QVector, QSet</code>都接受流插入运算符。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/笔记/">笔记</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2020/07/24/Qt学习笔记/" data-title="Qt学习笔记 | 埃雅仁迪尔之星" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2019/12/21/米奇崛起——星战9影评/"  title="米奇崛起——星战9影评">
+ <strong>下一篇：</strong><br/> 
+ <span>米奇崛起——星战9影评
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+<section id="comments" class="comment">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#c回顾"><span class="toc-number">1.</span> <span class="toc-text">C++&#x56DE;&#x987E;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#指针"><span class="toc-number">1.1.</span> <span class="toc-text">&#x6307;&#x9488;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类"><span class="toc-number">1.2.</span> <span class="toc-text">&#x7C7B;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-number">1.3.</span> <span class="toc-text">&#x6A21;&#x677F;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一些较新的功能"><span class="toc-number">1.4.</span> <span class="toc-text">&#x4E00;&#x4E9B;&#x8F83;&#x65B0;&#x7684;&#x529F;&#x80FD;</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#qt基本使用"><span class="toc-number">2.</span> <span class="toc-text">Qt&#x57FA;&#x672C;&#x4F7F;&#x7528;</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信号与槽"><span class="toc-number">2.1.</span> <span class="toc-text">&#x4FE1;&#x53F7;&#x4E0E;&#x69FD;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-number">2.2.</span> <span class="toc-text">&#x5176;&#x4ED6;</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="lgwangh" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">5</span></li></ul>
+  </div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/笔记/" title="笔记">笔记<sup>15</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/python/" title="python">python<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/物理/" title="物理">物理<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/模拟/" title="模拟">模拟<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/数据分析/" title="数据分析">数据分析<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文学/" title="文学">文学<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/WSL/" title="WSL">WSL<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/材料/" title="材料">材料<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/电影/" title="电影">电影<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/机械/" title="机械">机械<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/LaTeX/" title="LaTeX">LaTeX<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/流氓软件/" title="流氓软件">流氓软件<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/git/" title="git">git<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/博客/" title="博客">博客<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/文献/" title="文献">文献<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p style="font-size:120%"> <br/> Luke，一个不爱记笔记的工科生。 <br/>
+			</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="//weibo.com/6019591318" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lgwangh" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		<a href="https://www.douban.com/people/153318520" target="_blank" class="icon-douban" title="豆瓣"></a>
+		
+		
+		
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="//creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		Powered by <a href="//hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="Luke">Luke</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="//widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="//service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+<script type="text/javascript">
+
+var disqus_shortname = 'lgwangh';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-111367590-1', '');  
+ga('send', 'pageview');
+</script>
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
